@@ -22,9 +22,10 @@ class Pytanie(models.Model):
 	numer = models.IntegerField()
 
 
-class Odpowiedz(models.Model):
+class Odp(models.Model):
+	odpowiedzi = models.ForeignKey('Odpowiedzi')
 	pytanie = models.ForeignKey('Pytanie')
-	odpowiedz = models.IntegerField() # 0-1 dla TF, 1-5 dla 5S itd.
+	odpowiedz = models.IntegerField()  # 0-1 dla TF, 1-5 dla 5S itd.
 
 
 class Zestaw(models.Model):
@@ -39,3 +40,13 @@ class Choroba(models.Model):
 class Diagnoza(models.Model):
 	choroba = models.ForeignKey('Choroba')
 	user = models.ForeignKey('auth.User')
+
+
+class Quiz(models.Model):
+	odpowiedzi = models.ForeignKey('Odpowiedzi')
+	data = models.DateTimeField(blank=True, null=True)
+
+
+class Odpowiedzi(models.Model):
+	user = models.ForeignKey('auth.User')
+	quiz = models.ForeignKey('Quiz')
