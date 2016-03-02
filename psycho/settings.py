@@ -128,4 +128,4 @@ STATIC_URL = '/static/'
 #
 # LOGIN_REDIRECT_URL = '/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/pulpit/'
