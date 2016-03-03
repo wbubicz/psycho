@@ -23,8 +23,8 @@ class Pytanie(models.Model):
 
 
 class Odp(models.Model):
-	odpowiedzi = models.ForeignKey('Odpowiedzi')
 	pytanie = models.ForeignKey('Pytanie')
+	quiz = models.ForeignKey('Quiz')
 	odpowiedz = models.IntegerField()  # 0-1 dla TF, 1-5 dla 5S itd.
 
 
@@ -43,10 +43,5 @@ class Diagnoza(models.Model):
 
 
 class Quiz(models.Model):
-	odpowiedzi = models.ForeignKey('Odpowiedzi')
-	data = models.DateTimeField(blank=True, null=True)
-
-
-class Odpowiedzi(models.Model):
 	user = models.ForeignKey('auth.User')
-	quiz = models.ForeignKey('Quiz')
+	data = models.DateTimeField(blank=True, null=True)

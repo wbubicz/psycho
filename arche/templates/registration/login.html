@@ -10,8 +10,8 @@
 	{% endif %}
 	{% if user.is_authenticated %}
 		<p>Jesteś zalogowany jako {{ user.username }}.</p>
-		<a href="/logout">Wyloguj się.</a></br>
-		<a href="/pulpit">Przejdź do swojego pulpitu.</a>
+		<p><a href="/logout">Wyloguj się</a>.</p>
+		<p><a href="/pulpit">Przejdź do swojego pulpitu</a>.</p>
 	{% else %}
 		<p>Nie jesteś zalogowany.</p>
 		<p>Zaloguj się:</p>
@@ -30,6 +30,7 @@
 			<input type="submit" value="login"/>
 			<input type="hidden" name="next" value="{{ next }}"/>
 		</form>
+		<p>lub <a href="/register">zarejestruj</a>.</p></br>
 	{% endif %}
 </body>
 </html>
