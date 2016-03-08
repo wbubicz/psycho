@@ -2,36 +2,53 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.contrib.auth.models import User
 
-
-# from arche.models import MojUserCreationForm
+from .forms import FormularzUser
 
 
 def default(request):
 	if request.user.is_authenticated():
 		return redirect('/pulpit/')
 	else:
-		return redirect('/accounts/login/')
+		return redirect('/login/')
 
 
 def pulpit(request):
-	# user = User.objects.create_user('john2', '', 'johnpassword')
-	# user.last_name = 'Lennon'
-	# user.save()
-	u = get_object_or_404(User, username='john')
-	return render(request, 'arche/pulpit.html', {'u': u,})
+	return render(request, 'arche/pulpit.html', {'username': request.user.username,})
 
 
-	# def register(request):
-	# 	if request.method == 'POST':
-	# 		form = UserCreationForm(request.POST)
-	# 		if form.is_valid():
-	# 			new_user = form.save()
-	# 			return HttpResponseRedirect("/pulpit/")
-	# 	else:
-	# 		form = UserCreationForm()
-	# 	return render(request, "registration/register.html", {'form': form,})
+# def login(request):
+# 	if request.method == "POST":
+# 		username = request.POST.get('username', '')
+# 		password = request.POST.get('password', '')
+# 		user = User.objects.authenticate(username = username, password = password)
+# 		if user is not None:
+# 			auth.login(request, user)
+# 			return HttpResponseRedirect(reverse('home'))
+# 		else:
+# 			return HttpResponseRedirect('/accounts/invalid')
+# 	return render(request, 'arche/login.html')
 
 
-	# def register(request):
-	# 	form = MojUserCreationForm()
-	# 	return render(request, 'registration/registration_form.html', {'form': form})
+def rejestracja(request):
+	if request.method == "POST":
+		form = FormularzUser(request.POST)
+		if form.is_valid():
+			user = User.objects.create_user(**form.cleaned_data)
+			return redirect('pulpit')
+	else:
+		form = FormularzUser()
+	return render(request, 'arche/rejestracja.html', {'form': form})
+
+def evil(request):
+	# user = User.objects.get(username = 'aaaa')
+	# user.delete()
+	user = User.objects.get(username = 'user1')
+	user.delete()
+	user = User.objects.get(username = 'user188')
+	user.delete()
+	user = User.objects.get(username = 'asfas')
+	user.delete()
+# user1
+# user188
+# asfas
+	return redirect('/')

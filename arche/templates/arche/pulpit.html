@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Title</title>
-</head>
-<body>
-	<a href="/">HOME</a>
-</body>
-</html>
+{% extends 'arche/base.html' %}
+
+{% block content %}
+	<h1>Hello {{ username }}!</h1>
+	<a href="/logout">Logout</a>
+{% endblock %}

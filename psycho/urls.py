@@ -19,5 +19,4 @@ from django.contrib import admin
 urlpatterns = [
 	url(r'^admin/', admin.site.urls),
 	url(r'', include('arche.urls')),
-	url(r'^accounts/', include('registration.backends.default.urls')), # django-registration-redux
 ]
