@@ -33,9 +33,11 @@ INSTALLED_APPS = [
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
 	'django.contrib.sessions',
+	#'django.contrib.sites' # django-registration-redux
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 	'arche',
+	'registration',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -129,3 +131,33 @@ STATIC_URL = '/static/'
 # LOGIN_REDIRECT_URL = '/'
 
 LOGIN_REDIRECT_URL = '/pulpit/'
+
+# DJANGO-REGISTRATION-REDUX
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_EMAIL_HTML = False
+REGISTRATION_AUTO_LOGIN = True
+
+# EMAILE
+ADMINS = (
+	('wbubicz', 'wbubicz.psycho@gmail.com'),
+)
+
+MANAGERS = ADMINS
+
+# When you are playing around with the app and you expect that an email should
+# have been sent, just run `./manage.py send_mail` and you will get the mail
+# to the ADMINS account, no matter who the real recipient was.
+MAILER_EMAIL_BACKEND = 'django_libs.test_email_backend.EmailBackend'
+TEST_EMAIL_BACKEND_RECIPIENTS = ADMINS
+
+FROM_EMAIL = ADMINS[0][1]
+EMAIL_SUBJECT_PREFIX = '[dev yourprojectname] '
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = FROM_EMAIL
+
+EMAIL_USE_TLS = True
+
+# Enter your gmail PW from the ADMINS email entered above.
+EMAIL_HOST_PASSWORD = '39ev578g'
+EMAIL_PORT = 587

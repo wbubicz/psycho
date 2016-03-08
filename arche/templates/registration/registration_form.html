@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<div>
+	<div>
+		<h1>Wow! Rejestracja! :D</h1>
+		<form method="post" action=".">
+			{% csrf_token %}
+			{{ form.as_p }}
+
+			<input type="submit" value="{% trans 'Rejestruj' %}"/>
+		</form>
+	</div>
+</div>
+
+<hr/>
+<div>
+	<div>
+		<p><a href="{% url 'auth_login' %}">Zaloguj się</a></p>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,36 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Title</title>
-</head>
-<body>
-	{% if form.errors %}
-		<p>Nieprawidłowa nazwa użytkownika lub hasło. Spróbuj jeszcze raz.</p>
-	{% endif %}
-	{% if user.is_authenticated %}
-		<p>Jesteś zalogowany jako {{ user.username }}.</p>
-		<p><a href="/logout">Wyloguj się</a>.</p>
-		<p><a href="/pulpit">Przejdź do swojego pulpitu</a>.</p>
-	{% else %}
-		<p>Nie jesteś zalogowany.</p>
-		<p>Zaloguj się:</p>
-		<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-			{% csrf_token %}
-			<table>
-				<tr>
-					<td>{{ form.username.label_tag }}</td>
-					<td>{{ form.username }}</td>
-				</tr>
-				<tr>
-					<td>{{ form.password.label_tag }}</td>
-					<td>{{ form.password }}</td>
-				</tr>
-			</table>
-			<input type="submit" value="login"/>
-			<input type="hidden" name="next" value="{{ next }}"/>
-		</form>
-		<p>lub <a href="/register">zarejestruj</a>.</p></br>
-	{% endif %}
-</body>
-</html>
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<form method="post" action=".">
+	{% csrf_token %}
+	{{ form.as_table }}
+
+	<input type="submit" value="{% trans 'Zaloguj' %}"/>
+	<input type="hidden" name="next" value="{{ next }}"/>
+</form>
+
+<p>{% trans "Jeśli nie pamiętasz hasła, możesz je zresetować " %} <a href="{% url 'auth_password_reset' %}">{% trans "tutaj" %}</a>.</p>
+<p><a href="{% url 'registration_register' %}">{% trans "Zarejestruj się" %}</a>!</p>
+
+{% endblock %}
