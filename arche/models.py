@@ -4,9 +4,12 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 from django import forms
+
+import re
 
 RODZAJE_ODPOWIEDZI = (
 	('TF', 'Prawda albo fałsz'),
@@ -51,37 +54,55 @@ class Quiz(models.Model):
 	data = models.DateTimeField(blank=True, null=True)
 
 
-	# class UniqueUserEmailField(forms.EmailField):
-	# 	def validate(self, value):
-	# 		super(forms.EmailField, self).validate(value)
-	# 		try:
-	# 			User.objects.get(email=value)
-	# 			raise forms.ValidationError("Podany adres e-mail już istnieje.")
-	# 		except User.MultipleObjectsReturned:
-	# 			raise forms.ValidationError("Podany adres e-mail już istnieje.")
-	# 		except User.DoesNotExist:
-	# 			pass
+# class UniqueUserEmailField(forms.EmailField):
+# 	def validate(self, value):
+# 		super(forms.EmailField, self).validate(value)
+# 		try:
+# 			User.objects.get(email=value)
+# 			raise forms.ValidationError("Podany adres e-mail już istnieje.")
+# 		except User.MultipleObjectsReturned:
+# 			raise forms.ValidationError("Podany adres e-mail już istnieje.")
+# 		except User.DoesNotExist:
+# 			pass
 
 
-	# class MojUserCreationForm(UserCreationForm):
-	# 	email = forms.EmailField(required=True)
-	#
-	# 	username = forms.CharField(required=False, max_length=30)
-	# 	email = UniqueUserEmailField(required=True, label='Adres e-mail')
-	#
-	# 	def __init__(self, *args, **kwargs):
-	# 		super(MojUserCreationForm, self).__init__(*args, **kwargs)
-	# 		for fieldname in ['username']:
-	# 			self.fields[fieldname].help_text = "Bla bla"
-	# 			self.fields[fieldname].label = "dsu[a"
-	#
-	# 	def save(self, commit=True):
-	# 		user = super(MojUserCreationForm, self).save(commit=False)
-	# 		user.email = self.cleaned_data['email']
-	# 		if commit:
-	# 			user.save()
-	# 		return user
-	#
-	# 	class Meta:
-	# 		model = User
-	# 		fields = ("email", "password1", "password2")
+# class MojUserCreationForm(UserCreationForm):
+# 	email = forms.EmailField(required=True)
+#
+# 	username = forms.CharField(required=False, max_length=30)
+# 	email = UniqueUserEmailField(required=True, label='Adres e-mail')
+#
+# 	def __init__(self, *args, **kwargs):
+# 		super(MojUserCreationForm, self).__init__(*args, **kwargs)
+# 		for fieldname in ['username']:
+# 			self.fields[fieldname].help_text = "Bla bla"
+# 			self.fields[fieldname].label = "dsu[a"
+#
+# 	def save(self, commit=True):
+# 		user = super(MojUserCreationForm, self).save(commit=False)
+# 		user.email = self.cleaned_data['email']
+# 		if commit:
+# 			user.save()
+# 		return user
+#
+# 	class Meta:
+# 		model = User
+# 		fields = ("email", "password1", "password2")
+
+
+class UsernameEmail(models.Model):
+	username = models.CharField(max_length=30)
+	email = models.EmailField()
+
+
+def validate_password(password):
+	if len(password) < 8:
+		raise ValidationError("30 characters or fewer. Letters, digits and @/./+/-/_ only.")
+		if not re.match(r'[A-Z][a-z][@.+-_]', password):
+			raise ValidationError("30 characters or fewer. Letters, digits and @/./+/-/_ only.")
+
+
+class ZmianaHasla(models.Model):
+	token = models.CharField(max_length=21)
+	nowe_haslo1 = models.CharField(max_length=30, validators=[validate_password])
+	nowe_haslo2 = models.CharField(max_length=30, validators=[validate_password])

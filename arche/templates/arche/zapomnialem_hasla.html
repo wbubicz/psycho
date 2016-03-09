@@ -1,0 +1,11 @@
+{% extends 'arche/base.html' %}
+
+{% block content %}
+	<h1>Forgot password?</h1>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Send me disposable token to change password</button>
+	</form>
+	<a href="/login">Return to login page</a>
+{% endblock %}
