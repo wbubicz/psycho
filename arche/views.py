@@ -50,6 +50,7 @@ def pulpit(request):
 def email_zajety(request):
 	return render(request, 'arche/email_zajety.html')
 
+
 def rejestracja(request):
 	if request.method == "POST":
 		form = FormularzUser(request.POST)
@@ -59,7 +60,11 @@ def rejestracja(request):
 				return render(request, 'arche/email_zajety.html')
 			else:
 				user = User.objects.create_user(**form.cleaned_data)
-				return redirect('pulpit')
+				from django.contrib.auth import authenticate, login
+				user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+				if user is not None:
+					login(request, user)
+				return render(request, 'arche/pulpit.html', {'username': request.user.username,})
 
 	else:
 		form = FormularzUser()
@@ -120,7 +125,8 @@ def wyslij_mail(email, username, token):
 
 	nadawca = 'wbubicz.psycho@gmail.com'
 
-	msg = "From: " + nadawca + " <" + nadawca + ">" + "\n" + "To: To Person <" + email + ">" + "\n" + "Subject: Zmiana hasla na Psycho" + tresc
+	msg = "From: " + nadawca + " <" + nadawca + ">" + "\n" + "To: To Person <" + email + ">" + "\n"
+	msg = msg + "Subject: Zmiana hasla na Psycho\n" + tresc
 
 	# s = smtplib.SMTP('localhost')
 	# s.sendmail(me, [you], msg.as_string())
