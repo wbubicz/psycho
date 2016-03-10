@@ -3,6 +3,9 @@
 # encoding=utf8
 import sys
 
+from django.contrib.auth.hashers import make_password
+from django.forms import forms
+
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -44,16 +47,23 @@ def pulpit(request):
 # 			return HttpResponseRedirect('/accounts/invalid')
 # 	return render(request, 'arche/login.html')
 
+def email_zajety(request):
+	return render(request, 'arche/email_zajety.html')
 
 def rejestracja(request):
 	if request.method == "POST":
 		form = FormularzUser(request.POST)
 		if form.is_valid():
-			user = User.objects.create_user(**form.cleaned_data)
-			return redirect('pulpit')
+			email = form.cleaned_data['email']
+			if User.objects.filter(email=email).exists():
+				return render(request, 'arche/email_zajety.html')
+			else:
+				user = User.objects.create_user(**form.cleaned_data)
+				return redirect('pulpit')
+
 	else:
 		form = FormularzUser()
-	return render(request, 'arche/rejestracja.html', {'form': form})
+		return render(request, 'arche/rejestracja.html', {'form': form})
 
 
 def evil(request):
@@ -73,7 +83,7 @@ def zapomnialem_hasla(request):
 			token2 = ''.join(random.choice(chars) for i in range(length))
 			email = form.cleaned_data['email']
 			username = form.cleaned_data['username']
-			user = User.objects.get(username = username)
+			user = User.objects.get(username=username)
 			if user.email == email:
 				user.first_name = token1
 				user.last_name = token2
@@ -110,14 +120,14 @@ def wyslij_mail(email, username, token):
 
 	nadawca = 'wbubicz.psycho@gmail.com'
 
-	msg = "From: " + nadawca + " <" + nadawca + ">"+"\n"+"To: To Person <" + email + ">"+"\n"+"Subject: Zmiana hasla na Psycho"+tresc
+	msg = "From: " + nadawca + " <" + nadawca + ">" + "\n" + "To: To Person <" + email + ">" + "\n" + "Subject: Zmiana hasla na Psycho" + tresc
 
 	# s = smtplib.SMTP('localhost')
 	# s.sendmail(me, [you], msg.as_string())
 	# s.quit()
 
 	fromaddr = 'wbubicz.psycho@gmail.com'
-	toaddrs  = email
+	toaddrs = email
 	password = '39ev578g'
 	server = smtplib.SMTP('smtp.gmail.com:587')
 	server.ehlo()
@@ -126,18 +136,26 @@ def wyslij_mail(email, username, token):
 	server.sendmail(fromaddr, toaddrs, msg)
 	server.quit()
 
+
 def zmiana_hasla(request):
 	if request.method == "POST":
 		form = FormularzZmianaHasla(request.POST)
 		if form.is_valid():
-			length = 13
-			chars = string.ascii_letters + string.digits + '!@#$%^&*()'
-			random.seed = (os.urandom(1024))
-			token = ''.join(random.choice(chars) for i in range(length))
-			email = form.cleaned_data['email']
 			username = form.cleaned_data['username']
-			wyslij_mail(email, username, token)
-			return render(request, 'arche/haslo_zmienione.html')
+			token = form.cleaned_data['token']
+			password = form.cleaned_data['password']
+			user = User.objects.get(username=username)
+			if user.first_name == '' or user.last_name == '':
+				return render(request, 'arche/zeton_nie_istnieje.html')
+			else:
+				if user.first_name == token.split('_')[0] and user.last_name == token.split('_')[1]:
+					user.first_name = ''
+					user.last_name = ''
+					user.set_password(password)
+					user.save()
+					return render(request, 'arche/haslo_zmienione.html')
+				else:
+					return render(request, 'arche/zly_zeton.html')
 	else:
 		form = FormularzZmianaHasla()
 	return render(request, 'arche/zmiana_hasla.html', {'form': form})

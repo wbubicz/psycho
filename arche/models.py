@@ -98,11 +98,11 @@ class UsernameEmail(models.Model):
 def validate_password(password):
 	if len(password) < 8:
 		raise ValidationError("30 characters or fewer. Letters, digits and @/./+/-/_ only.")
-		if not re.match(r'[A-Z][a-z][@.+-_]', password):
-			raise ValidationError("30 characters or fewer. Letters, digits and @/./+/-/_ only.")
+	if not re.match(r'[A-Za-z0-9@.+-_]{8,}', password):
+		raise ValidationError("30 characters or fewer. Letters, digits and @/./+/-/_ only.")
 
 
 class ZmianaHasla(models.Model):
+	username = models.CharField(max_length=30)
 	token = models.CharField(max_length=21)
-	nowe_haslo1 = models.CharField(max_length=30, validators=[validate_password])
-	nowe_haslo2 = models.CharField(max_length=30, validators=[validate_password])
+	password = models.CharField(max_length=30, validators=[validate_password])

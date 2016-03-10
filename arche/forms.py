@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -9,6 +10,12 @@ class FormularzUser(forms.ModelForm):
 	class Meta:
 		model = User
 		fields = ['username', 'email', 'password']
+#
+# 	def clean_username(self):
+# 		username = self.cleaned_data['username']
+# 		if User.objects.filter(username=username).exists():
+# 			raise ValidationError('User registered already.')
+# 		return username
 
 
 class FormularzZapomnialemHasla(forms.ModelForm):
@@ -18,10 +25,10 @@ class FormularzZapomnialemHasla(forms.ModelForm):
 
 
 class FormularzZmianaHasla(forms.ModelForm):
-	nowe_haslo1 = forms.CharField(widget=forms.PasswordInput)
-	nowe_haslo2 = forms.CharField(widget=forms.PasswordInput)
+	# nowe_haslo1 = forms.CharField(widget=forms.PasswordInput)
+	# nowe_haslo2 = forms.CharField(widget=forms.PasswordInput)
 
 	class Meta:
 		model = ZmianaHasla
-		fields = ['token', 'nowe_haslo1', 'nowe_haslo2']
-		widgets = {'password': forms.PasswordInput(),}
+		fields = ['username', 'token', 'password']
+		# widgets = {'password': forms.PasswordInput(),}

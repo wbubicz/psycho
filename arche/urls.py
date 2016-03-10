@@ -11,6 +11,7 @@ urlpatterns = [
 	#url(r'^login/$', views.login, name='login'),
 	url(r'^rejestracja/$', views.rejestracja, name='rejestracja'),
 	url(r'^zapomnialem_hasla/$', views.zapomnialem_hasla, name='zapomnialem_hasla'),
+	url(r'^email_zajety/$', views.email_zajety, name='email_zajety'),
 	url(r'^zmiana_hasla/$', views.zmiana_hasla, name='zmiana_hasla'),
 	url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
 	url(r'^login/$', 'django.contrib.auth.views.login'),
