@@ -1,0 +1,14 @@
+{% extends 'arche/base.html' %}
+
+{% block content %}
+	{% for pytanie in pakiet %}
+		{{ pytanie.odpowiedz }}</br>
+		</br>
+	{% endfor %}
+
+	<!--<a href="/test">Wypełnij test</a>-->
+
+	<!--<a href="/logout">Logout</a>-->
+
+	{{ pakiet }}
+{% endblock %}

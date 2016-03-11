@@ -1,0 +1,22 @@
+{% extends 'arche/base.html' %}
+
+{% block content %}
+
+	{{ nam.nazwa }}</br></br>
+		<form action="/gogogo/" method="post">
+	{% csrf_token %}
+			{% for pytanie in pyt %}
+				{{ pytanie.tresc }}</br>
+				<input type="radio" name="pytanie{{ pytanie.id }}" value="1"> Tak
+				<input type="radio" name="pytanie{{ pytanie.id }}" value="0"> Nie
+				<!--<input type="hidden" name="dupa" value="shit">-->
+				</br></br>
+			{% endfor %}
+			<input type="submit" value="Submit">
+		</form>
+
+	</br>
+	</br>
+	<a href="/login">Return to login page</a>
+
+{% endblock %}

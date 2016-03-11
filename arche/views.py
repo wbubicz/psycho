@@ -3,8 +3,12 @@
 # encoding=utf8
 import sys
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.forms import forms
+from django.utils import timezone
+
+from arche.models import Choroba, Pytanie, Odp, Quiz
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -31,6 +35,7 @@ def default(request):
 		return redirect('/login/')
 
 
+@login_required(login_url='/login/')
 def pulpit(request):
 	return render(request, 'arche/pulpit.html', {'username': request.user.username,})
 
@@ -165,3 +170,28 @@ def zmiana_hasla(request):
 	else:
 		form = FormularzZmianaHasla()
 	return render(request, 'arche/zmiana_hasla.html', {'form': form})
+
+
+@login_required(login_url='/login/')
+def test(request):
+	pytania = Pytanie.objects.all()
+	depresja = Choroba.objects.get(id=1)
+	return render(request, 'arche/test.html', {'nam': depresja, 'pyt': pytania})
+
+
+@login_required(login_url='/login/')
+def gogogo(request):
+	quiz = Quiz()
+	quiz.user = request.user
+	quiz.data = timezone.now()
+	quiz.save()
+	if request.method == "POST":
+		for id_pytania, odpowiedz in request.POST.iteritems():
+			if id_pytania[:7] == "pytanie":
+				odp = Odp()
+				odp.quiz = quiz
+				odp.odpowiedz = odpowiedz
+				odp.pytanie = Pytanie.objects.get(id=id_pytania[7:])
+				odp.save()
+	odpowiedzi = Odp.objects.all()
+	return render(request, 'arche/cosiestao.html', {'pakiet': odpowiedzi})

@@ -19,20 +19,12 @@ RODZAJE_ODPOWIEDZI = (
 KLASYFIKACJE = (
 	('ICD-10', 'ICD-10'),
 	('DSM-IV', 'DSM-IV'),
+	('DSM-5', 'DSM-5'),
 )
 
 
-class Pytanie(models.Model):
-	zestaw = models.ForeignKey('Zestaw')
-	rodzajOdpowiedzi = models.CharField(max_length=2, choices=RODZAJE_ODPOWIEDZI)
-	tresc = models.TextField()
-	numer = models.IntegerField()
-
-
-class Odp(models.Model):
-	pytanie = models.ForeignKey('Pytanie')
-	quiz = models.ForeignKey('Quiz')
-	odpowiedz = models.IntegerField()  # 0-1 dla TF, 1-5 dla 5S itd.
+class Choroba(models.Model):
+	nazwa = models.TextField()
 
 
 class Zestaw(models.Model):
@@ -40,18 +32,35 @@ class Zestaw(models.Model):
 	klasyfikacja = models.CharField(max_length=6, choices=KLASYFIKACJE)
 
 
-class Choroba(models.Model):
-	nazwa = models.TextField()
-
-
 class Diagnoza(models.Model):
 	choroba = models.ForeignKey('Choroba')
 	user = models.ForeignKey('auth.User')
 
 
+class Grupa(models.Model):
+	zestaw = models.ForeignKey('Zestaw')
+	opis = models.CharField(max_length=200)  # Czy przez co najmniej dwa tygodnie
+	# występował u Pana/Pani któryś z następujących objawów?
+	kod = models.CharField(max_length=20)  # EPR1I, EPR2I, ABO1D itp.
+	minimum = models.IntegerField()
+
+
+class Pytanie(models.Model):
+	grupa = models.ForeignKey('Grupa')
+	rodzajOdpowiedzi = models.CharField(max_length=2, choices=RODZAJE_ODPOWIEDZI)
+	tresc = models.TextField()
+	numer = models.IntegerField()
+
+
 class Quiz(models.Model):
 	user = models.ForeignKey('auth.User')
 	data = models.DateTimeField(blank=True, null=True)
+
+
+class Odp(models.Model):
+	pytanie = models.ForeignKey('Pytanie')
+	quiz = models.ForeignKey('Quiz')
+	odpowiedz = models.IntegerField()  # 0-1 dla TF, 1-5 dla 5S itd.
 
 
 # class UniqueUserEmailField(forms.EmailField):
