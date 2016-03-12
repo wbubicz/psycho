@@ -3,8 +3,9 @@
 {% block content %}
 	<h1>Hello {{ username }}!</h1>
 
-	{{ wypis }}
-	</br></br>
+	{% for w in wypis %}
+		{{ w }}</br>
+	{% endfor %}
 	<a href="/test">Wypełnij test</a></br>
 
 	<a href="/logout">Logout</a>

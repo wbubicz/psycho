@@ -46,21 +46,23 @@ def kalkuluj_choroby(quizy):
 			if o.odpowiedz == 1:
 				c2 = c2+1
 		if c1 >= 2 and c2 >= 2:
-			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz depresje!\n'
+			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz depresje!'
 			wypis.append(s)
 		c1 = 0
 		for o in dsm5g3:
 			if o.odpowiedz == 1:
 				c1 = c1+1
 		try:
-			id11 = Odp.objects.get(id_pytania=11)
-			id12 = Odp.objects.get(id_pytania=12)
-			id20 = Odp.objects.get(id_pytania=20)
-			id21 = Odp.objects.get(id_pytania=21)
+			print 'dupa'
+			id11 = Odp.objects.get(quiz=quiz, id_pytania=11)
+			id12 = Odp.objects.get(quiz=quiz, id_pytania=12)
+			id20 = Odp.objects.get(quiz=quiz, id_pytania=20)
+			id21 = Odp.objects.get(quiz=quiz, id_pytania=21)
+			print id11
 			if c1 >= 5:
 				if id11.odpowiedz == 1 or id12.odpowiedz == 1:
 					if id20.odpowiedz == 1 and id21.odpowiedz == 1:
-						s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-V masz depresje!\n'
+						s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-V masz depresje!'
 						wypis.append(s)
 		except:
 			pass
