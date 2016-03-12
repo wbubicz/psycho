@@ -23,33 +23,57 @@ KLASYFIKACJE = (
 )
 
 
-class Choroba(models.Model):
-	nazwa = models.TextField()
+# class Choroba(models.Model):
+# 	nazwa = models.TextField()
 
 
-class Zestaw(models.Model):
-	choroba = models.ForeignKey('Choroba')
-	klasyfikacja = models.CharField(max_length=6, choices=KLASYFIKACJE)
+# class Zestaw(models.Model):
+# 	choroba = models.ForeignKey('Choroba')
+# 	klasyfikacja = models.CharField(max_length=6, choices=KLASYFIKACJE)
 
 
-class Diagnoza(models.Model):
-	choroba = models.ForeignKey('Choroba')
-	user = models.ForeignKey('auth.User')
+# class Diagnoza(models.Model):
+# 	choroba = models.ForeignKey('Choroba')
+# 	user = models.ForeignKey('auth.User')
 
 
-class Grupa(models.Model):
-	zestaw = models.ForeignKey('Zestaw')
-	opis = models.CharField(max_length=200)  # Czy przez co najmniej dwa tygodnie
-	# występował u Pana/Pani któryś z następujących objawów?
-	kod = models.CharField(max_length=20)  # EPR1I, EPR2I, ABO1D itp.
-	minimum = models.IntegerField()
+# class Grupa(models.Model):
+# 	zestaw = models.ForeignKey('Zestaw')
+# 	opis = models.CharField(max_length=200)  # Czy przez co najmniej dwa tygodnie
+# 	# występował u Pana/Pani któryś z następujących objawów?
+# 	kod = models.CharField(max_length=20)  # EPR1I, EPR2I, ABO1D itp.
+# 	minimum = models.IntegerField()
 
+class Opis(models.Model):
+	tresc = models.TextField()
+
+
+# class Pytanie(models.Model):
+# 	grupa = models.ForeignKey('Grupa')
+# 	rodzajOdpowiedzi = models.CharField(max_length=2, choices=RODZAJE_ODPOWIEDZI)
+# 	tresc = models.TextField()
+# 	numer = models.IntegerField()
 
 class Pytanie(models.Model):
-	grupa = models.ForeignKey('Grupa')
-	rodzajOdpowiedzi = models.CharField(max_length=2, choices=RODZAJE_ODPOWIEDZI)
+	numer = models.CharField(max_length=3)
 	tresc = models.TextField()
-	numer = models.IntegerField()
+	rodzajOdpowiedzi = models.CharField(max_length=2, choices=RODZAJE_ODPOWIEDZI)
+	klasyfikacja = models.CharField(max_length=6, choices=KLASYFIKACJE)
+	grupa = models.IntegerField(null=True)
+	choroba = models.TextField()
+	opis = models.ForeignKey('Opis', null=True)
+
+
+class Odp(models.Model):
+	numer = models.CharField(max_length=3)
+	tresc = models.TextField(null=True)
+	rodzajOdpowiedzi = models.CharField(max_length=2, choices=RODZAJE_ODPOWIEDZI)
+	klasyfikacja = models.CharField(max_length=6, choices=KLASYFIKACJE)
+	grupa = models.IntegerField(null=True)
+	choroba = models.TextField()
+	id_pytania = models.IntegerField(null=True)
+	quiz = models.ForeignKey('Quiz')
+	odpowiedz = models.IntegerField()  # 0-1 dla TF, 1-5 dla 5S itd.
 
 
 class Quiz(models.Model):
@@ -57,10 +81,10 @@ class Quiz(models.Model):
 	data = models.DateTimeField(blank=True, null=True)
 
 
-class Odp(models.Model):
-	pytanie = models.ForeignKey('Pytanie')
-	quiz = models.ForeignKey('Quiz')
-	odpowiedz = models.IntegerField()  # 0-1 dla TF, 1-5 dla 5S itd.
+# class Odp(models.Model):
+# 	pytanie = models.ForeignKey('Pytanie')
+# 	quiz = models.ForeignKey('Quiz')
+# 	odpowiedz = models.IntegerField()  # 0-1 dla TF, 1-5 dla 5S itd.
 
 
 # class UniqueUserEmailField(forms.EmailField):

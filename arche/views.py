@@ -2,13 +2,11 @@
 
 # encoding=utf8
 import sys
-
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.hashers import make_password
 from django.forms import forms
 from django.utils import timezone
-
-from arche.models import Choroba, Pytanie, Odp, Quiz
+#from arche.models import Choroba, Grupa, Zestaw
+from arche.models import Pytanie, Odp, Quiz
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -21,11 +19,7 @@ from .forms import FormularzUser, FormularzZapomnialemHasla, FormularzZmianaHasl
 
 import os, random, string
 
-# Import smtplib for the actual sending function
 import smtplib
-
-# Import the email modules we'll need
-from email.mime.text import MIMEText
 
 
 def default(request):
@@ -34,23 +28,63 @@ def default(request):
 	else:
 		return redirect('/login/')
 
+def kalkuluj_choroby(quizy):
+	wypis = []
+	for quiz in quizy:
+		odpowiedzi = Odp.objects.filter(quiz=quiz)
+		# DEPRESJA: ICD10: 2 z grupy pierwszej oraz 2 z grupy 2, DSM5: 5 z grupy 3, id11 lub id12, 20, 21
+		# ICD-10:
+		icd10g1 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=1)
+		icd10g2 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=2)
+		dsm5g3 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=2)
+		c1 = 0
+		c2 = 0
+		for o in icd10g1:
+			if o.odpowiedz == 1:
+				c1 = c1+1
+		for o in icd10g2:
+			if o.odpowiedz == 1:
+				c2 = c2+1
+		if c1 >= 2 and c2 >= 2:
+			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz depresje!\n'
+			wypis.append(s)
+		c1 = 0
+		for o in dsm5g3:
+			if o.odpowiedz == 1:
+				c1 = c1+1
+		try:
+			id11 = Odp.objects.get(id_pytania=11)
+			id12 = Odp.objects.get(id_pytania=12)
+			id20 = Odp.objects.get(id_pytania=20)
+			id21 = Odp.objects.get(id_pytania=21)
+			if c1 >= 5:
+				if id11.odpowiedz == 1 or id12.odpowiedz == 1:
+					if id20.odpowiedz == 1 and id21.odpowiedz == 1:
+						s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-V masz depresje!\n'
+						wypis.append(s)
+		except:
+			pass
+	# for quiz in quizes:
+	# 	odpowiedzi = Odp.objects.filter(quiz=quiz)
+	# 	zestawy = []
+	# 	grupy = []
+	# 	for odp in odpowiedzi:
+	# 		pytanie = Pytanie.objects.get(id=odp.pytanie)
+	# 		grupa = Grupa.objects.get(id=pytanie.grupa)
+	# 		if not grupa.id in grupy:
+	# 			grupy.append(grupa.id)
+	# 		zestaw = Zestaw.objects.get(id=grupa.zestaw)
+	# 		if not zestaw.id in zestawy:
+	# 			zestawy.append(zestaw.id)
+	return wypis
 
 @login_required(login_url='/login/')
 def pulpit(request):
-	return render(request, 'arche/pulpit.html', {'username': request.user.username,})
+	user = request.user
+	quizy = Quiz.objects.filter(user=user)
+	wypis = kalkuluj_choroby(quizy)
+	return render(request, 'arche/pulpit.html', {'username': user.username, 'wypis': wypis})
 
-
-# def login(request):
-# 	if request.method == "POST":
-# 		username = request.POST.get('username', '')
-# 		password = request.POST.get('password', '')
-# 		user = User.objects.authenticate(username = username, password = password)
-# 		if user is not None:
-# 			auth.login(request, user)
-# 			return HttpResponseRedirect(reverse('home'))
-# 		else:
-# 			return HttpResponseRedirect('/accounts/invalid')
-# 	return render(request, 'arche/login.html')
 
 def email_zajety(request):
 	return render(request, 'arche/email_zajety.html')
@@ -77,8 +111,8 @@ def rejestracja(request):
 
 
 def evil(request):
-	# user = User.objects.get(username = 'aaaa')
-	# user.delete()
+	user = User.objects.get(username = 'admin')
+	user.delete()
 	return redirect('/')
 
 
@@ -107,36 +141,14 @@ def zapomnialem_hasla(request):
 
 def wyslij_mail(email, username, token):
 	link = 'http://127.0.0.1:8000/zmiana_hasla/'
-	# tresc = 'Cześć ' + username + '!\n\nJeśli chcesz zmienić hasło na stronie Psycho, kliknij w link:\n\n'
-	# tresc = tresc + link + '\n\n'
-	# tresc = tresc + 'i wklej w pole "żeton" następujący kod:\n\n'
-	# tresc = tresc + token + '\n\n'
-	# tresc = tresc + 'Pozdrawiamy!'
-
 	tresc = 'Czesc ' + username + '!\n\nJesli chcesz zmienic haslo na stronie Psycho, kliknij w link:\n\n'
 	tresc = tresc + link + '\n\n'
 	tresc = tresc + 'i wklej w pole "zeton" nastepujacy kod:\n\n'
 	tresc = tresc + token + '\n\n'
 	tresc = tresc + 'Pozdrawiamy!'
-
-	# msg = MIMEText(tresc)
-	#
-	# # me == the sender's email address
-	# # you == the recipient's email address
-	# #msg['Subject'] = 'Zmiana hasła na Psycho'
-	# msg['Subject'] = 'Zmiana hasla na Psycho'
-	# msg['From'] = 'wbubicz.psycho@gmail.com'
-	# msg['To'] = email
-
 	nadawca = 'wbubicz.psycho@gmail.com'
-
 	msg = "From: " + nadawca + " <" + nadawca + ">" + "\n" + "To: To Person <" + email + ">" + "\n"
 	msg = msg + "Subject: Zmiana hasla na Psycho\n" + tresc
-
-	# s = smtplib.SMTP('localhost')
-	# s.sendmail(me, [you], msg.as_string())
-	# s.quit()
-
 	fromaddr = 'wbubicz.psycho@gmail.com'
 	toaddrs = email
 	password = '39ev578g'
@@ -175,23 +187,31 @@ def zmiana_hasla(request):
 @login_required(login_url='/login/')
 def test(request):
 	pytania = Pytanie.objects.all()
-	depresja = Choroba.objects.get(id=1)
-	return render(request, 'arche/test.html', {'nam': depresja, 'pyt': pytania})
+	return render(request, 'arche/test.html', {'pytania': pytania})
 
 
 @login_required(login_url='/login/')
 def gogogo(request):
-	quiz = Quiz()
-	quiz.user = request.user
-	quiz.data = timezone.now()
-	quiz.save()
 	if request.method == "POST":
+		quiz = Quiz()
+		quiz.user = request.user
+		quiz.data = timezone.now()
+		quiz.save()
 		for id_pytania, odpowiedz in request.POST.iteritems():
 			if id_pytania[:7] == "pytanie":
 				odp = Odp()
 				odp.quiz = quiz
 				odp.odpowiedz = odpowiedz
-				odp.pytanie = Pytanie.objects.get(id=id_pytania[7:])
+
+				id = id_pytania[7:]
+				pytanie = Pytanie.objects.get(id=id)
+				odp.id_pytania = id
+				odp.numer = pytanie.numer
+				odp.tresc = ''
+				odp.rodzajOdpowiedzi = pytanie.rodzajOdpowiedzi
+				odp.klasyfikacja = pytanie.klasyfikacja
+				odp.grupa = pytanie.grupa
+				odp.choroba = pytanie.choroba
+
 				odp.save()
-	odpowiedzi = Odp.objects.all()
-	return render(request, 'arche/cosiestao.html', {'pakiet': odpowiedzi})
+	return redirect('pulpit')

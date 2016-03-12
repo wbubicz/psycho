@@ -1,8 +1,8 @@
 {% extends 'arche/base.html' %}
 
 {% block content %}
-	{% for pytanie in pakiet %}
-		{{ pytanie.odpowiedz }}</br>
+	{% for odpowiedz in odpowiedzi %}
+		{{ odpowiedz.odpowiedz }}</br>
 		</br>
 	{% endfor %}
 
@@ -11,4 +11,6 @@
 	<!--<a href="/logout">Logout</a>-->
 
 	{{ pakiet }}
+	</br>
+	<a href="/pulpit">Return</a>
 {% endblock %}
