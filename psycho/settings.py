@@ -74,15 +74,26 @@ WSGI_APPLICATION = 'psycho.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+# DATABASES = {
+# 	'default': {
+# 		'TEST_NAME': 'wbubicz$test_wbubicz$psycho',
+# 		'ENGINE': 'django.db.backends.mysql',
+# 		'NAME': 'wbubicz$psycho',
+# 		'USER': 'root',
+# 		'PASSWORD': 'password',
+# 		'HOST': 'localhost',
+# 		'PORT': '',
+# 	}
+# }
 DATABASES = {
 	'default': {
 		'TEST_NAME': 'wbubicz$test_wbubicz$psycho',
 		'ENGINE': 'django.db.backends.mysql',
 		'NAME': 'wbubicz$psycho',
-		'USER': 'root',
-		'PASSWORD': 'password',
-		'HOST': 'localhost',
-		'PORT': '',
+		'USER': 'wbubicz',
+		'PASSWORD': 'pamysqlpass',
+		'HOST': 'wbubicz.mysql.pythonanywhere-services.com',
+		'PORT': '3306',
 	}
 }
 
