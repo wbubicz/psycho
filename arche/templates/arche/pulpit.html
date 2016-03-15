@@ -1,12 +1,17 @@
 {% extends 'arche/base.html' %}
 
 {% block content %}
-	<h1>Hello {{ username }}!</h1>
+	<h1><center>Hello {{ username }}!</center></h1>
 
+	<b>Moje choroby psychiczne</b></br>
 	{% for w in wypis %}
 		{{ w }}</br>
 	{% endfor %}
+	</br>
 	<a href="/test">Wypełnij test</a></br>
 
-	<a href="/logout">Logout</a>
+	<center>
+		<a href="/chce_zmienic_haslo">I want to change my password</a></br>
+		<a href="/logout">Logout</a>
+	</center>
 {% endblock %}

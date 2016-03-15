@@ -13,6 +13,7 @@ urlpatterns = [
 	url(r'^zapomnialem_hasla/$', views.zapomnialem_hasla, name='zapomnialem_hasla'),
 	url(r'^email_zajety/$', views.email_zajety, name='email_zajety'),
 	url(r'^zmiana_hasla/$', views.zmiana_hasla, name='zmiana_hasla'),
+	url(r'^chce_zmienic_haslo/$', views.chce_zmienic_haslo, name='chce_zmienic_haslo'),
 	url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
 	url(r'^login/$', 'django.contrib.auth.views.login'),
 

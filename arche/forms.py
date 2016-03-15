@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import User
 
-from arche.models import UsernameEmail, ZmianaHasla
+from arche.models import UsernameEmail, ZmianaHasla, ChceZmianyHasla
 
 
 class FormularzUser(forms.ModelForm):
@@ -31,4 +31,10 @@ class FormularzZmianaHasla(forms.ModelForm):
 	class Meta:
 		model = ZmianaHasla
 		fields = ['username', 'token', 'password']
+		# widgets = {'password': forms.PasswordInput(),}
+
+class FormularzChceZmianyHasla(forms.ModelForm):
+	class Meta:
+		model = ChceZmianyHasla
+		fields = ['password']
 		# widgets = {'password': forms.PasswordInput(),}

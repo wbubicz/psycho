@@ -2,23 +2,38 @@
 
 {% block content %}
 
-	<!--{{ nam.nazwa }}</br></br>-->
 	<form action="/gogogo/" method="post">
 	{% csrf_token %}
-		{% for pytanie in pytania %}
-			{{ pytanie.tresc }}</br>
-			{% if pytanie.rodzajOdpowiedzi == '5S' %}
+		<input type="radio" name="student" value="0" checked>Nie jestę studentę</br>
+		<input type="radio" name="student" value="1">Jestem studentem 1 roku</br>
+		<input type="radio" name="student" value="2">Jestem studentem 2 roku</br>
+		<input type="radio" name="student" value="3">Jestem studentem 3 roku</br>
+		<input type="radio" name="student" value="4">Jestem studentem 4 roku</br>
+		<input type="radio" name="student" value="5">Jestem studentem 5 roku</br>
+		<input type="radio" name="student" value="6">Jestem studentem 6 roku</br>
+		<input type="radio" name="student" value="7">Jestem studentem studiów doktoranckich</br>
+		{% for pytania_wg_opisu, opis_id, opis_tresc in zipped %}
+		<hr>
+			{% if opis_id == 0 %}
+				</br>
+			{% else %}
+				</br><b>{{ opis_tresc }}</b></br></br>
+			{% endif %}
+			{% for pytanie in pytania_wg_opisu %}
+				{{ pytanie.tresc }}</br>
+				{% if pytanie.rodzajOdpowiedzi == '5S' %}
 				<input type="radio" name="pytanie{{ pytanie.id }}" value="1"> Nie
 				<input type="radio" name="pytanie{{ pytanie.id }}" value="2"> Raczej nie
 				<input type="radio" name="pytanie{{ pytanie.id }}" value="3"> Nie wiem
 				<input type="radio" name="pytanie{{ pytanie.id }}" value="4"> Raczej tak
 				<input type="radio" name="pytanie{{ pytanie.id }}" value="5"> Tak
-			{% elif pytanie.rodzajOdpowiedzi == 'TF' %}
-				<input type="radio" name="pytanie{{ pytanie.id }}" value="0"> Nie
-				<input type="radio" name="pytanie{{ pytanie.id }}" value="1" checked> Tak
-			{% endif %}
-			<!--<input type="hidden" name="dupa" value="shit">-->
-			</br></br>
+				{% elif pytanie.rodzajOdpowiedzi == 'TF' %}
+					<input type="radio" name="pytanie{{ pytanie.id }}" value="0"> Nie
+					<input type="radio" name="pytanie{{ pytanie.id }}" value="1" checked> Tak
+				{% endif %}
+				<!--<input type="hidden" name="dupa" value="shit">-->
+				</br></br>
+			{% endfor %}
 		{% endfor %}
 		<input type="submit" value="Submit">
 	</form>

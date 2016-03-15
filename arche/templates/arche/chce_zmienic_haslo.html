@@ -1,13 +1,11 @@
 {% extends 'arche/base.html' %}
 
 {% block content %}
-
-	<h1>Wow! Registration!</h1>
+	<h1>Let's change password!</h1>
 	<form method="POST">
 		{% csrf_token %}
 		{{ form.as_p }}
-		<button type="submit">Register</button>
+		<button type="submit">Change password</button>
 	</form>
-	</br>
 	<a href="/login">Return to login page</a>
 {% endblock %}

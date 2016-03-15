@@ -79,6 +79,7 @@ class Odp(models.Model):
 class Quiz(models.Model):
 	user = models.ForeignKey('auth.User')
 	data = models.DateTimeField(blank=True, null=True)
+	student = models.IntegerField()
 
 
 # class Odp(models.Model):
@@ -138,4 +139,7 @@ def validate_password(password):
 class ZmianaHasla(models.Model):
 	username = models.CharField(max_length=30)
 	token = models.CharField(max_length=21)
+	password = models.CharField(max_length=30, validators=[validate_password])
+
+class ChceZmianyHasla(models.Model):
 	password = models.CharField(max_length=30, validators=[validate_password])

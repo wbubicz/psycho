@@ -1,5 +1,6 @@
 {% extends "arche/base.html" %}
 {% block content %}
+<center>
 {% if form.errors %}
 	<p>Your username and password didn't match. Please try again.</p>
 {% endif %}
@@ -21,4 +22,5 @@
 	</br>
 	<a href="/rejestracja">Register</a></br>
 	<a href="/zapomnialem_hasla">I forgot my password!</a>
+</center>
 {% endblock %}

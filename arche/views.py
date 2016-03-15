@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.forms import forms
 from django.utils import timezone
 #from arche.models import Choroba, Grupa, Zestaw
-from arche.models import Pytanie, Odp, Quiz
+from arche.models import Pytanie, Odp, Quiz, Opis
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -15,7 +15,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.contrib.auth.models import User
 
-from .forms import FormularzUser, FormularzZapomnialemHasla, FormularzZmianaHasla
+from .forms import FormularzUser, FormularzZapomnialemHasla, FormularzZmianaHasla, FormularzChceZmianyHasla
 
 import os, random, string
 
@@ -61,7 +61,7 @@ def kalkuluj_choroby(quizy):
 			print id11
 			if c1 >= 5:
 				if id11.odpowiedz == 1 or id12.odpowiedz == 1:
-					if id20.odpowiedz == 1 and id21.odpowiedz == 1:
+					if id20.odpowiedz == 1 and id21.odpowiedz == 0:
 						s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-V masz depresje!'
 						wypis.append(s)
 		except:
@@ -185,11 +185,54 @@ def zmiana_hasla(request):
 		form = FormularzZmianaHasla()
 	return render(request, 'arche/zmiana_hasla.html', {'form': form})
 
+def chce_zmienic_haslo(request):
+	if request.method == "POST":
+		form = FormularzChceZmianyHasla(request.POST)
+		if form.is_valid():
+			password = form.cleaned_data['password']
+			user = User.objects.get(username=request.user.username)
+			user.set_password(password)
+			user.save()
+			return render(request, 'arche/haslo_zmienione.html')
+	else:
+		form = FormularzChceZmianyHasla()
+	return render(request, 'arche/chce_zmienic_haslo.html', {'form': form})
+
+
 
 @login_required(login_url='/login/')
 def test(request):
+	opisy = Opis.objects.all()
+	opisy_tresc = []
+	opisy_id = []
+	for opis in opisy:
+		opisy_tresc.append(opis.tresc)
+		opisy_id.append(opis.id)
+	opisy_tresc.append('')
+	opisy_id.append(0)
+	# liczba_opisow = len(opisy_slownik)
+	pytania_wg_opisu = []
+	for opis in opisy:
+		pytania_wg_opisu.append(Pytanie.objects.filter(opis_id=opis.id))
+	pytania_wg_opisu.append(Pytanie.objects.filter(opis=None))
 	pytania = Pytanie.objects.all()
-	return render(request, 'arche/test.html', {'pytania': pytania})
+	liczba_grup = 0
+	grupy = []
+	grupa = -1
+	for pytanie in pytania:
+		if pytanie.grupa != grupa:
+			grupa = pytanie.grupa
+			liczba_grup = liczba_grup + 1
+			grupy.append(grupa)
+	zipped = zip(pytania_wg_opisu, opisy_id, opisy_tresc)
+	return render(request, 'arche/test.html', {'pytania_wg_opisu': pytania_wg_opisu,
+											   'pytania': pytania,
+											   'liczba_grup': liczba_grup,
+											   'grupy': grupy,
+				  							   'zipped': zipped,
+				  							   'opisy_tresc': opisy_tresc,
+				  							   'opisy_id': opisy_id,
+											   })
 
 
 @login_required(login_url='/login/')
@@ -198,6 +241,7 @@ def gogogo(request):
 		quiz = Quiz()
 		quiz.user = request.user
 		quiz.data = timezone.now()
+		quiz.student = request.POST.get("student", 1)
 		quiz.save()
 		for id_pytania, odpowiedz in request.POST.iteritems():
 			if id_pytania[:7] == "pytanie":
@@ -214,6 +258,5 @@ def gogogo(request):
 				odp.klasyfikacja = pytanie.klasyfikacja
 				odp.grupa = pytanie.grupa
 				odp.choroba = pytanie.choroba
-
 				odp.save()
 	return redirect('pulpit')
