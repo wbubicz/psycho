@@ -11,7 +11,7 @@
 		<input type="radio" name="student" value="4">Studiuję na 4. roku</br>
 		<input type="radio" name="student" value="5">Studiuję na 5. roku</br>
 		<input type="radio" name="student" value="6">Studiuję na 6. roku</br>
-		<input type="radio" name="student" value="7">Studiuję na studiach doktoranckich</br>
+		<input type="radio" name="student" value="7">Studiuję na studiach doktoranckich</br></br>
 		{% for pytania_wg_grupy, grupa, opis_wg_grupy in zipped %}
 			{% if grupa == 0 or grupa == 2 or grupa == 5 %}
 				<!--</br>-->
@@ -46,6 +46,6 @@
 
 	</br>
 	</br>
-	<a href="/login">Return to login page</a>
+	<a href="/pulpit">Return to pulpit</a>
 
 {% endblock %}
