@@ -13,13 +13,18 @@
 		<input type="radio" name="student" value="6">Studiuję na 6. roku</br>
 		<input type="radio" name="student" value="7">Studiuję na studiach doktoranckich</br>
 		{% for pytania_wg_grupy, grupa, opis_wg_grupy in zipped %}
-		<hr>
+			{% if grupa == 0 or grupa == 2 or grupa == 5 %}
+				<!--</br>-->
+			{% else %}
+				<hr>
+			{% endif %}
 			{% if opis_wg_grupy == '' %}
-				</br>
+				<!--</br>-->
 			{% else %}
 				</br><b>{{ opis_wg_grupy }}</b></br></br>
 			{% endif %}
 			{% for pytanie in pytania_wg_grupy %}
+				{% if grupa == 3 %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}
 				{{ pytanie.tresc }}</br>
 				{% if pytanie.rodzajOdpowiedzi == '5S' %}
 				<input type="radio" name="pytanie{{ pytanie.id }}" value="1"> Nie
@@ -28,6 +33,7 @@
 				<input type="radio" name="pytanie{{ pytanie.id }}" value="4"> Raczej tak
 				<input type="radio" name="pytanie{{ pytanie.id }}" value="5"> Tak
 				{% elif pytanie.rodzajOdpowiedzi == 'TF' %}
+					{% if grupa == 3 %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}
 					<input type="radio" name="pytanie{{ pytanie.id }}" value="0"> Nie
 					<input type="radio" name="pytanie{{ pytanie.id }}" value="1" checked> Tak
 				{% endif %}
@@ -35,7 +41,7 @@
 				</br></br>
 			{% endfor %}
 		{% endfor %}
-		<input type="submit" value="Submit">
+		<input type="submit" value="Wyślij">
 	</form>
 
 	</br>
