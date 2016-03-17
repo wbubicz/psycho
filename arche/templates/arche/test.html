@@ -4,22 +4,22 @@
 
 	<form action="/gogogo/" method="post">
 	{% csrf_token %}
-		<input type="radio" name="student" value="0" checked>Nie jestę studentę</br>
-		<input type="radio" name="student" value="1">Jestem studentem 1 roku</br>
-		<input type="radio" name="student" value="2">Jestem studentem 2 roku</br>
-		<input type="radio" name="student" value="3">Jestem studentem 3 roku</br>
-		<input type="radio" name="student" value="4">Jestem studentem 4 roku</br>
-		<input type="radio" name="student" value="5">Jestem studentem 5 roku</br>
-		<input type="radio" name="student" value="6">Jestem studentem 6 roku</br>
-		<input type="radio" name="student" value="7">Jestem studentem studiów doktoranckich</br>
-		{% for pytania_wg_opisu, opis_id, opis_tresc in zipped %}
+		<input type="radio" name="student" value="0" checked>Nie jestem studentem/studentką</br>
+		<input type="radio" name="student" value="1">Studiuję na 1. roku</br>
+		<input type="radio" name="student" value="2">Studiuję na 2. roku</br>
+		<input type="radio" name="student" value="3">Studiuję na 3. roku</br>
+		<input type="radio" name="student" value="4">Studiuję na 4. roku</br>
+		<input type="radio" name="student" value="5">Studiuję na 5. roku</br>
+		<input type="radio" name="student" value="6">Studiuję na 6. roku</br>
+		<input type="radio" name="student" value="7">Studiuję na studiach doktoranckich</br>
+		{% for pytania_wg_grupy, grupa, opis_wg_grupy in zipped %}
 		<hr>
-			{% if opis_id == 0 %}
+			{% if opis_wg_grupy == '' %}
 				</br>
 			{% else %}
-				</br><b>{{ opis_tresc }}</b></br></br>
+				</br><b>{{ opis_wg_grupy }}</b></br></br>
 			{% endif %}
-			{% for pytanie in pytania_wg_opisu %}
+			{% for pytanie in pytania_wg_grupy %}
 				{{ pytanie.tresc }}</br>
 				{% if pytanie.rodzajOdpowiedzi == '5S' %}
 				<input type="radio" name="pytanie{{ pytanie.id }}" value="1"> Nie

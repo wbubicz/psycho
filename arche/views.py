@@ -66,6 +66,25 @@ def kalkuluj_choroby(quizy):
 						wypis.append(s)
 		except:
 			pass
+
+		# ANANKASTYCZNE ZABURZENIE: ICD10: min 4, DSM4: min 4.
+		icd10g4 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=4)
+		dsm4g5 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=5)
+		c1 = 0
+		c2 = 0
+		for o in icd10g4:
+			if o.odpowiedz == 1:
+				c1 = c1+1
+		for o in dsm4g5:
+			if o.odpowiedz == 1:
+				c2 = c2+1
+		if c1 >= 4:
+			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz anakastyczne zaburzenie osobowosci!'
+			wypis.append(s)
+		if c2 >= 4:
+			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz anakastyczne zaburzenie osobowosci!'
+			wypis.append(s)
+
 	# for quiz in quizes:
 	# 	odpowiedzi = Odp.objects.filter(quiz=quiz)
 	# 	zestawy = []
@@ -203,35 +222,46 @@ def chce_zmienic_haslo(request):
 @login_required(login_url='/login/')
 def test(request):
 	opisy = Opis.objects.all()
+	pytania = Pytanie.objects.all()
 	opisy_tresc = []
 	opisy_id = []
 	for opis in opisy:
 		opisy_tresc.append(opis.tresc)
 		opisy_id.append(opis.id)
-	opisy_tresc.append('')
-	opisy_id.append(0)
-	# liczba_opisow = len(opisy_slownik)
-	pytania_wg_opisu = []
-	for opis in opisy:
-		pytania_wg_opisu.append(Pytanie.objects.filter(opis_id=opis.id))
-	pytania_wg_opisu.append(Pytanie.objects.filter(opis=None))
-	pytania = Pytanie.objects.all()
+
 	liczba_grup = 0
 	grupy = []
 	grupa = -1
+	opisy_wg_grupy = []
+	opis_id_temp = -1
 	for pytanie in pytania:
 		if pytanie.grupa != grupa:
 			grupa = pytanie.grupa
 			liczba_grup = liczba_grup + 1
 			grupy.append(grupa)
-	zipped = zip(pytania_wg_opisu, opisy_id, opisy_tresc)
-	return render(request, 'arche/test.html', {'pytania_wg_opisu': pytania_wg_opisu,
+			opis_id = pytanie.opis_id
+			if opis_id == opis_id_temp:
+				opisy_wg_grupy.append('')
+			else:
+				opisy_wg_grupy.append(Opis.objects.get(id=opis_id).tresc)
+			opis_id_temp = opis_id
+	pytania_wg_grupy = []
+	for grupa in grupy:
+		pytania_wg_grupy.append(Pytanie.objects.filter(grupa=grupa))
+
+	print len(pytania_wg_grupy)
+	print len(grupy)
+	print len(opisy_wg_grupy)
+
+	zipped = zip(pytania_wg_grupy, grupy, opisy_wg_grupy)
+	return render(request, 'arche/test.html', {'pytania_wg_grupy': pytania_wg_grupy,
 											   'pytania': pytania,
 											   'liczba_grup': liczba_grup,
 											   'grupy': grupy,
 				  							   'zipped': zipped,
 				  							   'opisy_tresc': opisy_tresc,
 				  							   'opisy_id': opisy_id,
+				  							   'opisy_wg_grupy': opisy_wg_grupy,
 											   })
 
 
