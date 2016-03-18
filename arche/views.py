@@ -134,8 +134,9 @@ def kalkuluj_choroby(quizy):
 	# 		zestaw = Zestaw.objects.get(id=grupa.zestaw)
 	# 		if not zestaw.id in zestawy:
 	# 			zestawy.append(zestaw.id)
-	if wypis == '':
-		wypis = 'Nie masz zaburzen psychicznych. Na razie.'
+	if len(wypis) == 0:
+			s = 'Nie masz zaburzen psychicznych. Na razie.'
+			wypis.append(s)
 	return wypis
 
 @login_required(login_url='/login/')
