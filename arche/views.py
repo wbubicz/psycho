@@ -85,6 +85,43 @@ def kalkuluj_choroby(quizy):
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz anakastyczne zaburzenie osobowosci!'
 			wypis.append(s)
 
+		# OSOBOWOSC PARANOICZNA, powiedzmy po 4 z 7 kazdego testu, 6 i 7 grupa
+		icd10g6 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=6)
+		dsm4g7 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=7)
+		c1 = 0
+		c2 = 0
+		for o in icd10g6:
+			if o.odpowiedz == 1:
+				c1 = c1+1
+		for o in dsm4g7:
+			if o.odpowiedz == 1:
+				c2 = c2+1
+		if c1 >= 4:
+			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz paranoidalne zaburzenie osobowosci!'
+			wypis.append(s)
+		if c2 >= 4:
+			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz paranoidalne zaburzenie osobowosci!'
+			wypis.append(s)
+
+		# Unikowe zaburzenie osobowosci: ICD10: min 4, DSM4: min 4, 8 i 9 grupa
+		icd10g8 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=8)
+		dsm4g9 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=9)
+		c1 = 0
+		c2 = 0
+		for o in icd10g8:
+			if o.odpowiedz == 1:
+				c1 = c1+1
+		for o in dsm4g9:
+			if o.odpowiedz == 1:
+				c2 = c2+1
+		if c1 >= 4:
+			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz unikowe zaburzenie osobowosci!'
+			wypis.append(s)
+		if c2 >= 4:
+			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz unikowe zaburzenie osobowosci!'
+			wypis.append(s)
+
+
 	# for quiz in quizes:
 	# 	odpowiedzi = Odp.objects.filter(quiz=quiz)
 	# 	zestawy = []
@@ -97,6 +134,8 @@ def kalkuluj_choroby(quizy):
 	# 		zestaw = Zestaw.objects.get(id=grupa.zestaw)
 	# 		if not zestaw.id in zestawy:
 	# 			zestawy.append(zestaw.id)
+	if wypis == '':
+		wypis = 'Nie masz zaburzen psychicznych. Na razie.'
 	return wypis
 
 @login_required(login_url='/login/')

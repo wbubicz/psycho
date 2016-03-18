@@ -13,7 +13,7 @@
 		<input type="radio" name="student" value="6">Studiuję na 6. roku</br>
 		<input type="radio" name="student" value="7">Studiuję na studiach doktoranckich</br></br>
 		{% for pytania_wg_grupy, grupa, opis_wg_grupy in zipped %}
-			{% if grupa == 0 or grupa == 2 or grupa == 5 %}
+			{% if grupa == 0 or grupa == 2 or grupa == 5 or grupa == 6 or grupa == 7 or grupa == 8 or grupa == 9 %}
 				<!--</br>-->
 			{% else %}
 				<hr>
@@ -25,7 +25,7 @@
 			{% endif %}
 			{% for pytanie in pytania_wg_grupy %}
 				{% if grupa == 3 %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}
-				{{ pytanie.tresc }}</br>
+				{{ pytanie.numer }}. {{ pytanie.tresc }}</br>
 				{% if pytanie.rodzajOdpowiedzi == '5S' %}
 				<input type="radio" name="pytanie{{ pytanie.id }}" value="1"> Nie
 				<input type="radio" name="pytanie{{ pytanie.id }}" value="2"> Raczej nie
