@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2ddec5e6-2924-42cb-961c-9a47c959b8a7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/pulpit.html" afterPath="$PROJECT_DIR$/arche/templates/arche/pulpit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/views.py" afterPath="$PROJECT_DIR$/arche/views.py" />
     </list>
     <ignored path="psycho.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/arche/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="138" column="27" selection-start-line="138" selection-start-column="27" selection-end-line="138" selection-end-column="27" />
+              <caret line="135" column="27" selection-start-line="135" selection-start-column="27" selection-end-line="135" selection-end-column="27" />
               <folding>
                 <element signature="e#41#51#0" expanded="true" />
               </folding>
@@ -62,10 +60,10 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/psycho/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40767387">
-              <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.5707434">
+              <caret line="91" column="15" selection-start-line="91" selection-start-column="15" selection-end-line="91" selection-end-column="15" />
               <folding>
-                <marker date="1458320020937" expanded="true" signature="2133:2380" placeholder="..." />
+                <marker date="1458320194422" expanded="true" signature="2133:2380" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -875,14 +873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arche/templates/arche/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.709677">
-          <caret line="15" column="112" selection-start-line="15" selection-start-column="112" selection-end-line="15" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/arche/templates/arche/pulpit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.7419355">
@@ -891,10 +881,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/arche/templates/arche/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.709677">
+          <caret line="15" column="112" selection-start-line="15" selection-start-column="112" selection-end-line="15" selection-end-column="112" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/arche/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="138" column="27" selection-start-line="138" selection-start-column="27" selection-end-line="138" selection-end-column="27" />
+          <caret line="135" column="27" selection-start-line="135" selection-start-column="27" selection-end-line="135" selection-end-column="27" />
           <folding>
             <element signature="e#41#51#0" expanded="true" />
           </folding>
@@ -903,10 +901,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/psycho/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40767387">
-          <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.5707434">
+          <caret line="91" column="15" selection-start-line="91" selection-start-column="15" selection-end-line="91" selection-end-column="15" />
           <folding>
-            <marker date="1458320020937" expanded="true" signature="2133:2380" placeholder="..." />
+            <marker date="1458320194422" expanded="true" signature="2133:2380" placeholder="..." />
           </folding>
         </state>
       </provider>
