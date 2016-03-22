@@ -2,10 +2,12 @@
 
 # encoding=utf8
 import sys
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.forms import forms
 from django.utils import timezone
 #from arche.models import Choroba, Grupa, Zestaw
+
+
 from arche.models import Pytanie, Odp, Quiz, Opis
 
 reload(sys)
@@ -21,6 +23,15 @@ import os, random, string
 
 import smtplib
 
+nazwy = ['',
+		'Depresja (ICD-10)',
+		'Depresja (DSM-5)',
+		'Anankastyczne zaburzenie osobowosci (ICD-10)',
+		'Anankastyczne zaburzenie osobowosci (DSM-IV)',
+		'Paranoidalne zaburzenie osobowosci (ICD-10)',
+		'Paranoidalne zaburzenie osobowosci (DSM-IV)',
+		'Unikowe zaburzenie osobowosci (ICD-10)',
+		'Unikowe zaburzenie osobowosci (DSM-IV)',]
 
 def default(request):
 	if request.user.is_authenticated():
@@ -29,6 +40,7 @@ def default(request):
 		return redirect('/login/')
 
 def kalkuluj_choroby(quizy):
+	choroby = []
 	wypis = []
 	for quiz in quizy:
 		odpowiedzi = Odp.objects.filter(quiz=quiz)
@@ -47,22 +59,22 @@ def kalkuluj_choroby(quizy):
 				c2 = c2+1
 		if c1 >= 2 and c2 >= 2:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz depresje!'
+			choroby.append(nazwy[1])
 			wypis.append(s)
 		c1 = 0
 		for o in dsm5g3:
 			if o.odpowiedz == 1:
 				c1 = c1+1
 		try:
-			print 'dupa'
 			id11 = Odp.objects.get(quiz=quiz, id_pytania=11)
 			id12 = Odp.objects.get(quiz=quiz, id_pytania=12)
 			id20 = Odp.objects.get(quiz=quiz, id_pytania=20)
 			id21 = Odp.objects.get(quiz=quiz, id_pytania=21)
-			print id11
 			if c1 >= 5:
 				if id11.odpowiedz == 1 or id12.odpowiedz == 1:
 					if id20.odpowiedz == 1 and id21.odpowiedz == 0:
 						s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-V masz depresje!'
+						choroby.append(nazwy[2])
 						wypis.append(s)
 		except:
 			pass
@@ -80,9 +92,11 @@ def kalkuluj_choroby(quizy):
 				c2 = c2+1
 		if c1 >= 4:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz anakastyczne zaburzenie osobowosci!'
+			choroby.append(nazwy[3])
 			wypis.append(s)
 		if c2 >= 4:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz anakastyczne zaburzenie osobowosci!'
+			choroby.append(nazwy[4])
 			wypis.append(s)
 
 		# OSOBOWOSC PARANOICZNA, powiedzmy po 4 z 7 kazdego testu, 6 i 7 grupa
@@ -98,9 +112,11 @@ def kalkuluj_choroby(quizy):
 				c2 = c2+1
 		if c1 >= 4:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz paranoidalne zaburzenie osobowosci!'
+			choroby.append(nazwy[5])
 			wypis.append(s)
 		if c2 >= 4:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz paranoidalne zaburzenie osobowosci!'
+			choroby.append(nazwy[6])
 			wypis.append(s)
 
 		# Unikowe zaburzenie osobowosci: ICD10: min 4, DSM4: min 4, 8 i 9 grupa
@@ -116,9 +132,11 @@ def kalkuluj_choroby(quizy):
 				c2 = c2+1
 		if c1 >= 4:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz unikowe zaburzenie osobowosci!'
+			choroby.append(nazwy[7])
 			wypis.append(s)
 		if c2 >= 4:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz unikowe zaburzenie osobowosci!'
+			choroby.append(nazwy[8])
 			wypis.append(s)
 
 
@@ -134,17 +152,20 @@ def kalkuluj_choroby(quizy):
 	# 		zestaw = Zestaw.objects.get(id=grupa.zestaw)
 	# 		if not zestaw.id in zestawy:
 	# 			zestawy.append(zestaw.id)
-	if len(wypis) == 0:
-			s = 'Nie masz zaburzen psychicznych. Na razie.'
-			wypis.append(s)
-	return wypis
+	if not wypis:
+		s = 'Nie masz zaburzen psychicznych. Na razie.'
+		wypis.append(s)
+	return (wypis, choroby)
 
 @login_required(login_url='/login/')
 def pulpit(request):
 	user = request.user
 	quizy = Quiz.objects.filter(user=user)
-	wypis = kalkuluj_choroby(quizy)
-	return render(request, 'arche/pulpit.html', {'username': user.username, 'wypis': wypis})
+	wypis, choroby = kalkuluj_choroby(quizy)
+	admin = False
+	if user.is_superuser:
+		admin = True
+	return render(request, 'arche/pulpit.html', {'username': user.username, 'wypis': wypis, 'admin': admin})
 
 
 def email_zajety(request):
@@ -330,3 +351,24 @@ def gogogo(request):
 				odp.choroba = pytanie.choroba
 				odp.save()
 	return redirect('pulpit')
+
+@user_passes_test(lambda u: u.is_superuser)
+def wykresy(request):
+	pytania = Pytanie.objects.all()
+	nazwa = ''
+	choroby = []
+	for p in pytania:
+		if p.choroba != nazwa:
+			nazwa = p.choroba
+			choroby.append(nazwa)
+	userzy = User.objects.all()
+	quizy = []
+	choroby = []
+	for user in userzy:
+		quizy.append(Quiz.objects.filter(user=user).order_by('-data')[0])
+	wypis, choroby = kalkuluj_choroby(quizy)
+	# [1, 2, 3, 4, 1, 4, 1].count(1)
+	liczby = []
+	for n in nazwy:
+		liczby.append(choroby.count(n))
+	return render(request, 'arche/wykresy.html', {'choroby': choroby, 'liczby': liczby, 'nazwy': nazwy})
