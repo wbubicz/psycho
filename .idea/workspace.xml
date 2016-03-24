@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ddec5e6-2924-42cb-961c-9a47c959b8a7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/views.py" afterPath="$PROJECT_DIR$/arche/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/psycho/settings.py" afterPath="$PROJECT_DIR$/psycho/settings.py" />
     </list>
     <ignored path="psycho.iws" />
@@ -25,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/arche/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7553957">
+            <state vertical-scroll-proportion="0.0">
               <caret line="391" column="12" selection-start-line="391" selection-start-column="12" selection-end-line="391" selection-end-column="12" />
               <folding>
                 <element signature="e#41#51#0" expanded="true" />
@@ -59,13 +57,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/psycho/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="90" column="15" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.6127098">
+              <caret line="91" column="33" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
               <folding>
-                <marker date="1458851587871" expanded="true" signature="2131:2358" placeholder="..." />
+                <marker date="1458852350073" expanded="true" signature="2133:2380" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -197,8 +195,8 @@
         <option value="$PROJECT_DIR$/arche/templatetags/__init__.py" />
         <option value="$PROJECT_DIR$/arche/templatetags/filter_tags.py" />
         <option value="$PROJECT_DIR$/arche/templates/arche/wykresy.html" />
-        <option value="$PROJECT_DIR$/psycho/settings.py" />
         <option value="$PROJECT_DIR$/arche/views.py" />
+        <option value="$PROJECT_DIR$/psycho/settings.py" />
       </list>
     </option>
   </component>
@@ -536,7 +534,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1000" extended-state="7" />
+    <frame x="-9" y="-9" width="1938" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24791667" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -954,22 +952,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/psycho/settings.py">
+    <entry file="file://$PROJECT_DIR$/arche/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="15" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="15" />
+          <caret line="391" column="12" selection-start-line="391" selection-start-column="12" selection-end-line="391" selection-end-column="12" />
           <folding>
-            <marker date="1458851587871" expanded="true" signature="2131:2358" placeholder="..." />
+            <element signature="e#41#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arche/views.py">
+    <entry file="file://$PROJECT_DIR$/psycho/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7553957">
-          <caret line="391" column="12" selection-start-line="391" selection-start-column="12" selection-end-line="391" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.6127098">
+          <caret line="91" column="33" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
           <folding>
-            <element signature="e#41#51#0" expanded="true" />
+            <marker date="1458852350073" expanded="true" signature="2133:2380" placeholder="..." />
           </folding>
         </state>
       </provider>
