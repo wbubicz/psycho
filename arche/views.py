@@ -23,15 +23,22 @@ import os, random, string
 
 import smtplib
 
-nazwy = ['',
-		'Depresja (ICD-10)',
-		'Depresja (DSM-5)',
-		'Anankastyczne zaburzenie osobowosci (ICD-10)',
-		'Anankastyczne zaburzenie osobowosci (DSM-IV)',
-		'Paranoidalne zaburzenie osobowosci (ICD-10)',
-		'Paranoidalne zaburzenie osobowosci (DSM-IV)',
-		'Unikowe zaburzenie osobowosci (ICD-10)',
-		'Unikowe zaburzenie osobowosci (DSM-IV)',]
+nazwy = ["",
+		 "Depresja (ICD-10)",
+		 "Depresja (DSM-5)",
+		 "Anankastyczne zaburzenie osobowosci (ICD-10)",
+		 "Anankastyczne zaburzenie osobowosci (DSM-IV)",
+		 "Paranoidalne zaburzenie osobowosci (ICD-10)",
+		 "Paranoidalne zaburzenie osobowosci (DSM-IV)",
+		 "Unikowe zaburzenie osobowosci (ICD-10)",
+		 "Unikowe zaburzenie osobowosci (DSM-IV)", ]
+
+nazwy_uogolnione = ["",
+		 "Depresja",
+		 "Anankastyczne zaburzenie osobowosci",
+		 "Paranoidalne zaburzenie osobowosci",
+		 "Unikowe zaburzenie osobowosci", ]
+
 
 def default(request):
 	if request.user.is_authenticated():
@@ -41,10 +48,13 @@ def default(request):
 
 def kalkuluj_choroby(quizy):
 	choroby = []
+	choroby_uogolnione = []
 	wypis = []
+	check = False
 	for quiz in quizy:
 		odpowiedzi = Odp.objects.filter(quiz=quiz)
 		# DEPRESJA: ICD10: 2 z grupy pierwszej oraz 2 z grupy 2, DSM5: 5 z grupy 3, id11 lub id12, 20, 21
+		check = False
 		# ICD-10:
 		icd10g1 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=1)
 		icd10g2 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=2)
@@ -59,6 +69,7 @@ def kalkuluj_choroby(quizy):
 				c2 = c2+1
 		if c1 >= 2 and c2 >= 2:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz depresje!'
+			check = True
 			choroby.append(nazwy[1])
 			wypis.append(s)
 		c1 = 0
@@ -74,12 +85,16 @@ def kalkuluj_choroby(quizy):
 				if id11.odpowiedz == 1 or id12.odpowiedz == 1:
 					if id20.odpowiedz == 1 and id21.odpowiedz == 0:
 						s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-V masz depresje!'
+						check = True
 						choroby.append(nazwy[2])
 						wypis.append(s)
 		except:
 			pass
+		if check:
+			choroby_uogolnione.append(nazwy_uogolnione[1])
 
 		# ANANKASTYCZNE ZABURZENIE: ICD10: min 4, DSM4: min 4.
+		check = False
 		icd10g4 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=4)
 		dsm4g5 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=5)
 		c1 = 0
@@ -92,14 +107,19 @@ def kalkuluj_choroby(quizy):
 				c2 = c2+1
 		if c1 >= 4:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz anakastyczne zaburzenie osobowosci!'
+			check = True
 			choroby.append(nazwy[3])
 			wypis.append(s)
 		if c2 >= 4:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz anakastyczne zaburzenie osobowosci!'
+			check = True
 			choroby.append(nazwy[4])
 			wypis.append(s)
+		if check:
+			choroby_uogolnione.append(nazwy_uogolnione[2])
 
 		# OSOBOWOSC PARANOICZNA, powiedzmy po 4 z 7 kazdego testu, 6 i 7 grupa
+		check = False
 		icd10g6 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=6)
 		dsm4g7 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=7)
 		c1 = 0
@@ -112,14 +132,19 @@ def kalkuluj_choroby(quizy):
 				c2 = c2+1
 		if c1 >= 4:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz paranoidalne zaburzenie osobowosci!'
+			check = True
 			choroby.append(nazwy[5])
 			wypis.append(s)
 		if c2 >= 4:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz paranoidalne zaburzenie osobowosci!'
+			check = True
 			choroby.append(nazwy[6])
 			wypis.append(s)
+		if check:
+			choroby_uogolnione.append(nazwy_uogolnione[3])
 
 		# Unikowe zaburzenie osobowosci: ICD10: min 4, DSM4: min 4, 8 i 9 grupa
+		check = False
 		icd10g8 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=8)
 		dsm4g9 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=9)
 		c1 = 0
@@ -132,13 +157,16 @@ def kalkuluj_choroby(quizy):
 				c2 = c2+1
 		if c1 >= 4:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz unikowe zaburzenie osobowosci!'
+			check = True
 			choroby.append(nazwy[7])
 			wypis.append(s)
 		if c2 >= 4:
 			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz unikowe zaburzenie osobowosci!'
+			check = True
 			choroby.append(nazwy[8])
 			wypis.append(s)
-
+		if check:
+			choroby_uogolnione.append(nazwy_uogolnione[4])
 
 	# for quiz in quizes:
 	# 	odpowiedzi = Odp.objects.filter(quiz=quiz)
@@ -155,7 +183,7 @@ def kalkuluj_choroby(quizy):
 	if not wypis:
 		s = 'Nie masz zaburzen psychicznych. Na razie.'
 		wypis.append(s)
-	return (wypis, choroby)
+	return (wypis, choroby_uogolnione)
 
 @login_required(login_url='/login/')
 def pulpit(request):
@@ -354,21 +382,17 @@ def gogogo(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def wykresy(request):
-	pytania = Pytanie.objects.all()
-	nazwa = ''
-	choroby = []
-	for p in pytania:
-		if p.choroba != nazwa:
-			nazwa = p.choroba
-			choroby.append(nazwa)
 	userzy = User.objects.all()
 	quizy = []
-	choroby = []
+	# dla kazdego usera bierzemy jego ostatni quiz:
 	for user in userzy:
 		quizy.append(Quiz.objects.filter(user=user).order_by('-data')[0])
-	wypis, choroby = kalkuluj_choroby(quizy)
-	# [1, 2, 3, 4, 1, 4, 1].count(1)
+	# dla wszystkich ostatnich quizow pobieramy liste wynikajacych z niego chorob, powstaje zwykla lista
+	wypis, choroby_uogolnione = kalkuluj_choroby(quizy) # choroby wskazuje ile każdej choroby
+	# for i in range(0, len(choroby_uogolnione)):
+	# 	choroby_uogolnione[i] = choroby_uogolnione[i].rsplit(' ', 1)[0]
 	liczby = []
-	for n in nazwy:
-		liczby.append(choroby.count(n))
-	return render(request, 'arche/wykresy.html', {'choroby': choroby, 'liczby': liczby, 'nazwy': nazwy})
+	# liczymy wystapienia kazdej po kolei choroby
+	for n in nazwy_uogolnione:
+		liczby.append(choroby_uogolnione.count(n))
+	return render(request, 'arche/wykresy.html', {'choroby': choroby_uogolnione, 'liczby': liczby, 'nazwy': nazwy_uogolnione})

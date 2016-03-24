@@ -3,29 +3,36 @@
 {% load filter_tags %}
 
 {% block content %}
-	{{ liczby }}</br>
-	{% for c in choroby %}
-		{{ c }}</br>
-	{% endfor %}
-	</br>
-	<a href="/pulpit">Return tu pulpit</a>
 
 
-	<script> var zmienna = {{ liczby|tojson }}; </script>
+	<script> var liczby = {{ liczby|tojson }}; </script>
+	<script> var nazwy = {{ nazwy|safe }}; </script>
 	<p id="demo"></p>
+	<p id="demo2"></p>
 
-	<script>
-		var text = "";
-		var i;
-		for (i = 0; i < zmienna.length; i++) {
-			text += zmienna[i] + " ";
-		}
-		document.getElementById("demo").innerHTML = text;
-	</script>
+	<!--<script>-->
+		<!--var LICZBA_CHOROB = 8;-->
+		<!--var text = "";-->
+		<!--var i;-->
+		<!--for (i = 1; i <= LICZBA_CHOROB; i++) {-->
+			<!--text += liczby[i] + " ";-->
+		<!--}-->
+		<!--document.getElementById("demo").innerHTML = text;-->
+	<!--</script>-->
+	<!--<script>-->
+		<!--var text2 = "";-->
+		<!--var i;-->
+		<!--for (i = 1; i <= LICZBA_CHOROB; i++) {-->
+			<!--text2 += nazwy[i] + "</br>";-->
+		<!--}-->
+		<!--document.getElementById("demo2").innerHTML = text2;-->
+	<!--</script>-->
 
 	<!--Load the AJAX API-->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript">
+		var LICZBA_CHOROB = 8;
+
 		// Load the Visualization API and the corechart package.
 		google.charts.load('current', {'packages':['corechart']});
 
@@ -38,16 +45,14 @@
 			var data = new google.visualization.DataTable();
 			data.addColumn('string', 'Choroba');
 			data.addColumn('number', 'Liczba osob');
-			data.addRows([
-				['Mushrooms', 3],
-				['Onions', 1],
-				['Olives', 1],
-				['Zucchini', 1],
-				['Pepperoni', 2]
-			]);
+			var arr = [];
+			for (i = 1; i <= LICZBA_CHOROB; i++) {
+				arr.push([nazwy[i], liczby[i]]);
+			}
+			data.addRows(arr);
 
 			// Set chart options
-			var options = {'title':'Ile jakich chorob maja ludzie', 'width':400, 'height':300};
+			var options = {'title':'Ile jakich chorób mają ludzie', 'width':1400, 'height':500};
 
 			// Instantiate and draw our chart, passing in some options.
 			var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -55,4 +60,8 @@
 		}
 	</script>
 	<div id="chart_div"></div>
+
+	<center>
+		<a href="/pulpit">Return tu pulpit</a>
+	</center>
 {% endblock %}
