@@ -386,7 +386,10 @@ def wykresy(request):
 	quizy = []
 	# dla kazdego usera bierzemy jego ostatni quiz:
 	for user in userzy:
-		quizy.append(Quiz.objects.filter(user=user).order_by('-data')[0])
+		try:
+			quizy.append(Quiz.objects.filter(user=user).order_by('-data')[0])
+		except:
+			pass
 	# dla wszystkich ostatnich quizow pobieramy liste wynikajacych z niego chorob, powstaje zwykla lista
 	wypis, choroby_uogolnione = kalkuluj_choroby(quizy) # choroby wskazuje ile każdej choroby
 	# for i in range(0, len(choroby_uogolnione)):
