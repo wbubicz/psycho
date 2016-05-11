@@ -5,13 +5,15 @@ import sys
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.forms import forms
 from django.utils import timezone
+from random import randint
 #from arche.models import Choroba, Grupa, Zestaw
-
-
+from arche.backend.kalkulacja_chorob import kalkuluj_choroby
 from arche.models import Pytanie, Odp, Quiz, Opis
 
 reload(sys)
 sys.setdefaultencoding('utf8')
+
+
 
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -23,22 +25,7 @@ import os, random, string
 
 import smtplib
 
-nazwy = ["",
-		 "Depresja (ICD-10)",
-		 "Depresja (DSM-5)",
-		 "Anankastyczne zaburzenie osobowosci (ICD-10)",
-		 "Anankastyczne zaburzenie osobowosci (DSM-IV)",
-		 "Paranoidalne zaburzenie osobowosci (ICD-10)",
-		 "Paranoidalne zaburzenie osobowosci (DSM-IV)",
-		 "Unikowe zaburzenie osobowosci (ICD-10)",
-		 "Unikowe zaburzenie osobowosci (DSM-IV)", ]
-
-nazwy_uogolnione = ["",
-		 "Depresja",
-		 "Anankastyczne zaburzenie osobowosci",
-		 "Paranoidalne zaburzenie osobowosci",
-		 "Unikowe zaburzenie osobowosci", ]
-
+from stale import *
 
 def default(request):
 	if request.user.is_authenticated():
@@ -46,154 +33,39 @@ def default(request):
 	else:
 		return redirect('/login/')
 
-def kalkuluj_choroby(quizy):
-	choroby = []
-	choroby_uogolnione = []
-	wypis = []
-	check = False
-	for quiz in quizy:
-		odpowiedzi = Odp.objects.filter(quiz=quiz)
-		# DEPRESJA: ICD10: 2 z grupy pierwszej oraz 2 z grupy 2, DSM5: 5 z grupy 3, id11 lub id12, 20, 21
-		check = False
-		# ICD-10:
-		icd10g1 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=1)
-		icd10g2 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=2)
-		dsm5g3 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=2)
-		c1 = 0
-		c2 = 0
-		for o in icd10g1:
-			if o.odpowiedz == 1:
-				c1 = c1+1
-		for o in icd10g2:
-			if o.odpowiedz == 1:
-				c2 = c2+1
-		if c1 >= 2 and c2 >= 2:
-			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz depresje!'
-			check = True
-			choroby.append(nazwy[1])
-			wypis.append(s)
-		c1 = 0
-		for o in dsm5g3:
-			if o.odpowiedz == 1:
-				c1 = c1+1
-		try:
-			id11 = Odp.objects.get(quiz=quiz, id_pytania=11)
-			id12 = Odp.objects.get(quiz=quiz, id_pytania=12)
-			id20 = Odp.objects.get(quiz=quiz, id_pytania=20)
-			id21 = Odp.objects.get(quiz=quiz, id_pytania=21)
-			if c1 >= 5:
-				if id11.odpowiedz == 1 or id12.odpowiedz == 1:
-					if id20.odpowiedz == 1 and id21.odpowiedz == 0:
-						s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-V masz depresje!'
-						check = True
-						choroby.append(nazwy[2])
-						wypis.append(s)
-		except:
-			pass
-		if check:
-			choroby_uogolnione.append(nazwy_uogolnione[1])
-
-		# ANANKASTYCZNE ZABURZENIE: ICD10: min 4, DSM4: min 4.
-		check = False
-		icd10g4 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=4)
-		dsm4g5 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=5)
-		c1 = 0
-		c2 = 0
-		for o in icd10g4:
-			if o.odpowiedz == 1:
-				c1 = c1+1
-		for o in dsm4g5:
-			if o.odpowiedz == 1:
-				c2 = c2+1
-		if c1 >= 4:
-			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz anakastyczne zaburzenie osobowosci!'
-			check = True
-			choroby.append(nazwy[3])
-			wypis.append(s)
-		if c2 >= 4:
-			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz anakastyczne zaburzenie osobowosci!'
-			check = True
-			choroby.append(nazwy[4])
-			wypis.append(s)
-		if check:
-			choroby_uogolnione.append(nazwy_uogolnione[2])
-
-		# OSOBOWOSC PARANOICZNA, powiedzmy po 4 z 7 kazdego testu, 6 i 7 grupa
-		check = False
-		icd10g6 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=6)
-		dsm4g7 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=7)
-		c1 = 0
-		c2 = 0
-		for o in icd10g6:
-			if o.odpowiedz == 1:
-				c1 = c1+1
-		for o in dsm4g7:
-			if o.odpowiedz == 1:
-				c2 = c2+1
-		if c1 >= 4:
-			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz paranoidalne zaburzenie osobowosci!'
-			check = True
-			choroby.append(nazwy[5])
-			wypis.append(s)
-		if c2 >= 4:
-			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz paranoidalne zaburzenie osobowosci!'
-			check = True
-			choroby.append(nazwy[6])
-			wypis.append(s)
-		if check:
-			choroby_uogolnione.append(nazwy_uogolnione[3])
-
-		# Unikowe zaburzenie osobowosci: ICD10: min 4, DSM4: min 4, 8 i 9 grupa
-		check = False
-		icd10g8 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=8)
-		dsm4g9 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=9)
-		c1 = 0
-		c2 = 0
-		for o in icd10g8:
-			if o.odpowiedz == 1:
-				c1 = c1+1
-		for o in dsm4g9:
-			if o.odpowiedz == 1:
-				c2 = c2+1
-		if c1 >= 4:
-			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych ICD-10 masz unikowe zaburzenie osobowosci!'
-			check = True
-			choroby.append(nazwy[7])
-			wypis.append(s)
-		if c2 >= 4:
-			s = 'Wg testu z ' + str(quiz.data) + ' i kryteriow diagnostycznych DSM-IV masz unikowe zaburzenie osobowosci!'
-			check = True
-			choroby.append(nazwy[8])
-			wypis.append(s)
-		if check:
-			choroby_uogolnione.append(nazwy_uogolnione[4])
-
-	# for quiz in quizes:
-	# 	odpowiedzi = Odp.objects.filter(quiz=quiz)
-	# 	zestawy = []
-	# 	grupy = []
-	# 	for odp in odpowiedzi:
-	# 		pytanie = Pytanie.objects.get(id=odp.pytanie)
-	# 		grupa = Grupa.objects.get(id=pytanie.grupa)
-	# 		if not grupa.id in grupy:
-	# 			grupy.append(grupa.id)
-	# 		zestaw = Zestaw.objects.get(id=grupa.zestaw)
-	# 		if not zestaw.id in zestawy:
-	# 			zestawy.append(zestaw.id)
-	if not wypis:
-		s = 'Nie masz zaburzen psychicznych. Na razie.'
-		wypis.append(s)
-	return (wypis, choroby_uogolnione)
-
 @login_required(login_url='/login/')
 def pulpit(request):
 	user = request.user
 	quizy = Quiz.objects.filter(user=user)
-	wypis, choroby = kalkuluj_choroby(quizy)
+	wypis_python, choroby, wypis_datalog = kalkuluj_choroby(quizy)
 	admin = False
+
+	wypis1 = []
+	wypis2 = []
+	wypis3 = []
+	for x in wypis_python:
+		for y in wypis_python[x]:
+			wypis1.append(x)
+			wypis2.append(y)
+			wypis3.append(wypis_python[x][y])
+	wypis_python_zipped = zip(wypis1, wypis2, wypis3)
+
+	wypis1 = []
+	wypis2 = []
+	wypis3 = []
+	for x in wypis_datalog:
+		for y in wypis_datalog[x]:
+			wypis1.append(x)
+			wypis2.append(y)
+			wypis3.append(wypis_datalog[x][y])
+	wypis_datalog_zipped = zip(wypis1, wypis2, wypis3)
+
 	if user.is_superuser:
 		admin = True
-	return render(request, 'arche/pulpit.html', {'username': user.username, 'wypis': wypis, 'admin': admin})
+	return render(request, 'arche/pulpit.html', {'username': user.username,
+												 'wypis_python_zipped': wypis_python_zipped,
+												 'wypis_datalog_zipped': wypis_datalog_zipped,
+												 'admin': admin})
 
 
 def email_zajety(request):
@@ -399,3 +271,63 @@ def wykresy(request):
 	for n in nazwy_uogolnione:
 		liczby.append(choroby_uogolnione.count(n))
 	return render(request, 'arche/wykresy.html', {'choroby': choroby_uogolnione, 'liczby': liczby, 'nazwy': nazwy_uogolnione})
+
+def load(request):
+	for i in range(200):
+		length = 5
+		chars = string.ascii_letters
+		random.seed = (os.urandom(1024))
+		username = ''.join(random.choice(chars) for i in range(length)).lower()
+		email = username + '@' + ''.join(random.choice(chars) for i in range(3)).lower() + '.pl'
+		# password = ''.join(random.choice(chars) for i in range(8))
+		password = 'alalalal'
+		user = User.objects.create_user(username, email, password)
+		user.last_login = strTimeProp("5/31/2016 5:00 PM", "6/30/2016 5:00 PM", '%m/%d/%Y %I:%M %p')
+		user.save()
+		student = randint(0, 6)
+		quiz = Quiz()
+		quiz.user = user
+		quiz.data = randomDate()
+		quiz.student = student
+		quiz.save()
+		pytania = Pytanie.objects.all()
+		for p in pytania:
+			odp = Odp()
+			odp.quiz = quiz
+			if randint(1,10) > 7:
+				odp.odpowiedz = 1
+			else:
+				odp.odpowiedz = 0
+			odp.id_pytania = p.id
+			odp.numer = p.numer
+			odp.tresc = ''
+			odp.rodzajOdpowiedzi = p.rodzajOdpowiedzi
+			odp.klasyfikacja = p.klasyfikacja
+			odp.grupa = p.grupa
+			odp.choroba = p.choroba
+			odp.save()
+		# from django.contrib.auth import authenticate, login
+		# user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+		# if user is not None:
+		# 	login(request, user)
+	return redirect('/')
+
+import time, datetime
+
+
+def strTimeProp(poczatek, koniec, format):
+	poczatek_w_ms = time.mktime(time.strptime(poczatek, format))
+	koniec_w_ms = time.mktime(time.strptime(koniec, format))
+	print poczatek_w_ms
+	print koniec_w_ms
+	wybrany_czas_w_ms = poczatek_w_ms + random.random() * (koniec_w_ms - poczatek_w_ms)
+	wybrany_czas_w_ms = round(wybrany_czas_w_ms, 3)
+	print wybrany_czas_w_ms
+	# print datetime.strptime('%Y-%m-%d %H:%M:%S.%f', time.localtime(wybrany_czas_w_ms))
+	# return datetime.strptime('%Y-%m-%d %H:%M:%S.%f', time.localtime(wybrany_czas_w_ms))
+	print datetime.datetime.fromtimestamp(wybrany_czas_w_ms)
+	return datetime.datetime.fromtimestamp(wybrany_czas_w_ms) # ('%Y-%m-%d %H:%M:%S.%f', time.localtime(wybrany_czas_w_ms))
+
+
+def randomDate():
+	return strTimeProp("4/1/2016 11:00 AM", "5/31/2016 5:00 PM", '%m/%d/%Y %I:%M %p')

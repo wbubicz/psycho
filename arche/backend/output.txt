@@ -1,0 +1,1 @@
+{'Paranoidalne zaburzenie osobowosci (DSM-IV)': True, 'Anankastyczne zaburzenie osobowosci (DSM-IV)': True, 'Paranoidalne zaburzenie osobowosci (ICD-10)': True, 'Unikowe zaburzenie osobowosci (ICD-10)': True, 'Unikowe zaburzenie osobowosci (DSM-IV)': True, 'Anankastyczne zaburzenie osobowosci (ICD-10)': True, 'Depresja (ICD-10)': True}
