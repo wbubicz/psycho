@@ -3,21 +3,33 @@
 {% block content %}
 	<h1><center>Hello {{ username }}!</center></h1>
 
-	<b>Moje choroby psychiczne PYTHON</b></br></br>
+	Ogólny czas przetwarzania: {{ czas_wykonania }}</br></br>
+	<b>Moje choroby psychiczne PYTHON</b></br>
 	{% for w1, w2, w3 in wypis_python_zipped %}
-		{{ w1 }}
-		{{ w2 }}
+		{% if w1 != '' %}
+			</br>{{ w1 }}</br>
+		{% endif %}
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ w2 }}
 		{{ w3 }}</br>
 	{% endfor %}
+	</br>
+	Czas wykonania proceduralnie: {{ czas_python }}
+	</br>
 	</br>
 
-	<b>Moje choroby psychiczne DATALOG</b></br></br>
+	<b>Moje choroby psychiczne DATALOG</b></br>
 	{% for w1, w2, w3 in wypis_datalog_zipped %}
-		{{ w1 }}
-		{{ w2 }}
+		{% if w1 != '' %}
+			</br>{{ w1 }}</br>
+		{% endif %}
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ w2 }}
 		{{ w3 }}</br>
 	{% endfor %}
 	</br>
+	Czas wykonania logicznie: {{ czas_datalog }}
+	</br>
+	</br>
+
 	<a href="/test">Wypełnij test</a></br>
 
 	<center>

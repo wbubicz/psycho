@@ -45,7 +45,11 @@ for grupa in nazwy_grup:
 (choroba_datalog[nazwy[8]]==True) <= (liczba_odp_tak['DSM5_g9']>=MIN_GRUPA_9_UNIKOWE_DSMIV)
 
 wypis_datalog = {}
-for i in range(8):
+liczba_wpisow = len(nazwy) - 1# minus 1 bo w choroba_datalog liczenie jest od 0, a w nazwach od 1
+for i in range(liczba_wpisow):
+	wypis_datalog[nazwy[i + 1]] = False
+
+for i in range(liczba_wpisow):
 	if ((choroba_datalog[nazwy[i+1]]==X).data):
 		if (choroba_datalog[nazwy[i+1]]==X).data[0][0]==True:
 			wypis_datalog[nazwy[i + 1]] = True

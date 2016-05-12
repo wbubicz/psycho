@@ -35,11 +35,12 @@ nazwy = ["",
 		 "Unikowe zaburzenie osobowosci (DSM-IV)",  # 8
 		]
 
-nazwy_uogolnione = ["",
+nazwy_uogolnione = ["Osoby zdrowe",
 		 "Depresja",
 		 "Anankastyczne zaburzenie osobowosci",
 		 "Paranoidalne zaburzenie osobowosci",
-		 "Unikowe zaburzenie osobowosci", ]
+		 "Unikowe zaburzenie osobowosci",
+		 "Wiecej niz jedno zaburzenie", ]
 
 MIN_GRUPA_1_DEPRESJA_ICD10 = 2
 MIN_GRUPA_2_DEPRESJA_ICD10 = 2

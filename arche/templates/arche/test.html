@@ -34,8 +34,8 @@
 				<input type="radio" name="pytanie{{ pytanie.id }}" value="5"> Tak
 				{% elif pytanie.rodzajOdpowiedzi == 'TF' %}
 					{% if grupa == 3 %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}
-					<input type="radio" name="pytanie{{ pytanie.id }}" value="0"> Nie
-					<input type="radio" name="pytanie{{ pytanie.id }}" value="1" checked> Tak
+					<input type="radio" name="pytanie{{ pytanie.id }}" value="0" checked> Nie
+					<input type="radio" name="pytanie{{ pytanie.id }}" value="1"> Tak
 				{% endif %}
 				<!--<input type="hidden" name="dupa" value="shit">-->
 				</br></br>

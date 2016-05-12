@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
 # encoding=utf8
-from arche.stale import *
-
-from arche.models import Pytanie, Odp, Quiz, Opis
 import ast
-from pyDatalog import pyDatalog
+import inspect
+import os
+import sys
+import time
+from zliczanie_python import zlicz_python
 
-import os, sys, inspect
+from arche.backend.stale import *
+from arche.models import Odp
 obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
 obecny_folder = obecny_folder[:-8]
 if obecny_folder not in sys.path:
@@ -22,16 +24,16 @@ sys.setdefaultencoding('utf8')
 
 def kalkuluj_choroby(quizy):
 	wyniki = {}
-	choroby_uogolnione_python = {}
-	choroby_uogolnione_datalog = {}
+	choroby_uogolnione_python = []
+	choroby_uogolnione_datalog = []
 	wypis_python = {}
 	wypis_datalog = {}
+	czas_python = 0
+	czas_datalog = 0
 	for quiz in quizy:
 		data_quizu = str(quiz.data)
 		wypis_python[data_quizu] = {}
 		wypis_datalog[data_quizu] = {}
-		choroby_uogolnione_python[data_quizu] = {}
-		choroby_uogolnione_datalog[data_quizu] = {}
 
 		# DEPRESJA: ICD10: 2 z grupy pierwszej oraz 2 z grupy 2, DSM5: 5 z grupy 3, id11 lub id12, 20, ~21
 
@@ -56,9 +58,6 @@ def kalkuluj_choroby(quizy):
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
-		if wyniki['ICD10_g1'].count(1) >= MIN_GRUPA_1_DEPRESJA_ICD10 and wyniki['ICD10_g2'].count(1) >= MIN_GRUPA_2_DEPRESJA_ICD10:
-			wypis_python[data_quizu][nazwy[1]] = True
-
 		try:
 			id11 = Odp.objects.get(quiz=quiz, id_pytania=11)
 			temp = []
@@ -76,10 +75,7 @@ def kalkuluj_choroby(quizy):
 			temp = []
 			temp.append(id21.odpowiedz)
 			wyniki[nazwy_grup[6]] = temp
-			if wyniki['DSM5_g1'].count(1) >= MIN_GRUPA_3_DEPRESJA_DSM5:
-				if id11.odpowiedz == 1 or id12.odpowiedz == 1:
-					if id20.odpowiedz == 1 and id21.odpowiedz == 0:
-						wypis_python[data_quizu][nazwy[2]] = True
+
 		except:
 			pass
 
@@ -99,11 +95,6 @@ def kalkuluj_choroby(quizy):
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
-		if wyniki['ICD10_g4'].count(1) >= MIN_GRUPA_4_ANANKASTYCZNE_ICD10:
-			wypis_python[data_quizu][nazwy[3]] = True
-		if wyniki['DSM5_g5'].count(1) >= MIN_GRUPA_5_ANANKASTYCZNE_DSMIV:
-			wypis_python[data_quizu][nazwy[4]] = True
-
 		# OSOBOWOSC PARANOICZNA, powiedzmy po 4 z 7 kazdego testu, grupy: 6, 7
 
 		icd10g6 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=6)
@@ -119,11 +110,6 @@ def kalkuluj_choroby(quizy):
 		for odpowiedz in dsm4g7:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
-
-		if wyniki['ICD10_g6'].count(1) >= MIN_GRUPA_6_PARANOICZNA_ICD10:
-			wypis_python[data_quizu][nazwy[5]] = True
-		if wyniki['DSM5_g7'].count(1) >= MIN_GRUPA_7_PARANOICZNA_DSMIV:
-			wypis_python[data_quizu][nazwy[6]] = True
 
 		# UNIKOWE ZABURZENIE OSOBOWOSCI: ICD10: min 4, DSM4: min 4, grupy: 8, 9
 
@@ -141,42 +127,66 @@ def kalkuluj_choroby(quizy):
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
-		if wyniki['ICD10_g8'].count(1) >= MIN_GRUPA_8_UNIKOWE_ICD10:
-			wypis_python[data_quizu][nazwy[7]] = True
-		if wyniki['DSM5_g9'].count(1) >= MIN_GRUPA_9_UNIKOWE_DSMIV:
-			wypis_python[data_quizu][nazwy[8]] = True
 
+		# KALKULACJA PYTHON
+
+		czas_start = time.time()
+		wypis_python = zlicz_python(wyniki, id11, id12, id20, id21, wypis_python, data_quizu)
+		czas_koniec = time.time()
+		czas_python = czas_koniec - czas_start
+		czas_python = "{:.12f}".format(czas_python)
+
+
+		# KALKULACJA DATALOG
+
+		czas_start = time.time()
 		obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + "\\"
-
 		wyniki_as_string = str(wyniki)
-		os.system("python "+obecny_folder+"reguly.py " + '"' + wyniki_as_string + '"')
-
+		os.system("python "+obecny_folder+"pydatalog.py " + '"' + wyniki_as_string + '"')
 		with open(obecny_folder+'output.txt', 'r') as myfile:
 			output = myfile.read().replace('\n', '')
-
 		wypis_datalog_dla_quizu = ast.literal_eval(output)
 		wypis_datalog[data_quizu] = wypis_datalog_dla_quizu
+		czas_koniec = time.time()
+		czas_datalog = czas_koniec - czas_start
 
+
+
+		temp = {}
+		for choroba_uogolniona in nazwy_uogolnione:
+			temp[choroba_uogolniona] = False
 		# Choroby uogolnione, Python
 		if wypis_python[data_quizu][nazwy[1]] or wypis_python[data_quizu][nazwy[2]]:
-			choroby_uogolnione_python[data_quizu][1] = True
+			temp[nazwy_uogolnione[1]] = True
 		if wypis_python[data_quizu][nazwy[3]] or wypis_python[data_quizu][nazwy[4]]:
-			choroby_uogolnione_python[data_quizu][2] = True
+			temp[nazwy_uogolnione[2]] = True
 		if wypis_python[data_quizu][nazwy[5]] or wypis_python[data_quizu][nazwy[6]]:
-			choroby_uogolnione_python[data_quizu][3] = True
+			temp[nazwy_uogolnione[3]] = True
 		if wypis_python[data_quizu][nazwy[7]] or wypis_python[data_quizu][nazwy[8]]:
-			choroby_uogolnione_python[data_quizu][4] = True
+			temp[nazwy_uogolnione[4]] = True
+		if temp.values().count(True) > 1: # wiecej niz jedna choroba
+			choroby_uogolnione_python.append(nazwy_uogolnione[5])
+		elif not True in temp.values(): # zero chorob
+			choroby_uogolnione_python.append(nazwy_uogolnione[0])
+		else: # jedna choroba
+			for numer in range(1, 5):
+				choroba_uogolniona = nazwy_uogolnione[numer]
+				if temp[choroba_uogolniona] == True:
+					choroby_uogolnione_python.append(choroba_uogolniona)
+					break
 		# Choroby uogolnione, Datalog
 		if wypis_datalog_dla_quizu[nazwy[1]] or wypis_datalog_dla_quizu[nazwy[2]]:
-			choroby_uogolnione_datalog[data_quizu][1] = True
+			choroby_uogolnione_datalog.append(nazwy_uogolnione[1])
 		if wypis_datalog_dla_quizu[nazwy[3]] or wypis_datalog_dla_quizu[nazwy[4]]:
-			choroby_uogolnione_datalog[data_quizu][2] = True
+			choroby_uogolnione_datalog.append(nazwy_uogolnione[2])
 		if wypis_datalog_dla_quizu[nazwy[4]] or wypis_datalog_dla_quizu[nazwy[6]]:
-			choroby_uogolnione_datalog[data_quizu][3] = True
+			choroby_uogolnione_datalog.append(nazwy_uogolnione[3])
 		if wypis_datalog_dla_quizu[nazwy[7]] or wypis_datalog_dla_quizu[nazwy[8]]:
-			choroby_uogolnione_datalog[data_quizu][4] = True
+			choroby_uogolnione_datalog.append(nazwy_uogolnione[4])
+		if not True in wypis_datalog_dla_quizu:
+			choroby_uogolnione_datalog.append(nazwy_uogolnione[0])
 
 	# DWA SLESZE TRZEBA JAKOS GLOBALNIE DO ZMIENNEJ WSTAWIC BO INACZEJ BEDZIE DLA LINUXA INACZEJ DLA WINSOWSA!!!!!!!
 
-	return (wypis_python, choroby_uogolnione_python, wypis_datalog)
+	return (wypis_python, choroby_uogolnione_python, wypis_datalog, czas_python, czas_datalog)
 

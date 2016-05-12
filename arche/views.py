@@ -1,31 +1,25 @@
 # -*- coding: utf-8 -*-
-
 # encoding=utf8
+
 import sys
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.forms import forms
-from django.utils import timezone
+import os, random, string
+import smtplib
+import time, datetime
+import collections
 from random import randint
-#from arche.models import Choroba, Grupa, Zestaw
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.utils import timezone
 from arche.backend.kalkulacja_chorob import kalkuluj_choroby
 from arche.models import Pytanie, Odp, Quiz, Opis
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from .forms import FormularzUser, FormularzZapomnialemHasla, FormularzZmianaHasla, FormularzChceZmianyHasla
+from arche.backend.stale import *
+from django.contrib.auth import authenticate, login
 
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-
-
-from django.shortcuts import render, get_object_or_404, redirect
-
-from django.contrib.auth.models import User
-
-from .forms import FormularzUser, FormularzZapomnialemHasla, FormularzZmianaHasla, FormularzChceZmianyHasla
-
-import os, random, string
-
-import smtplib
-
-from stale import *
 
 def default(request):
 	if request.user.is_authenticated():
@@ -33,38 +27,55 @@ def default(request):
 	else:
 		return redirect('/login/')
 
+
 @login_required(login_url='/login/')
 def pulpit(request):
+	czas_start = time.time()
 	user = request.user
 	quizy = Quiz.objects.filter(user=user)
-	wypis_python, choroby, wypis_datalog = kalkuluj_choroby(quizy)
-	admin = False
+	wypis_python, choroby_uogolnione, wypis_datalog, czas_python, czas_datalog = kalkuluj_choroby(quizy)
+	wypis_python = collections.OrderedDict(sorted(wypis_python.items()))
+	wypis_datalog = collections.OrderedDict(sorted(wypis_datalog.items()))
 
-	wypis1 = []
-	wypis2 = []
-	wypis3 = []
+	wypis1, wypis2, wypis3 = [], [], []
+	temp = ''
 	for x in wypis_python:
+		wypis_python[x] = collections.OrderedDict(sorted(wypis_python[x].items()))
 		for y in wypis_python[x]:
-			wypis1.append(x)
-			wypis2.append(y)
+			if x == temp:
+				wypis1.append("")
+			else:
+				wypis1.append("Quiz z " + str(x)[:-16] + ":")
+				temp = x
+			wypis2.append(y + ":")
 			wypis3.append(wypis_python[x][y])
 	wypis_python_zipped = zip(wypis1, wypis2, wypis3)
 
-	wypis1 = []
-	wypis2 = []
-	wypis3 = []
+	wypis1, wypis2, wypis3 = [], [], []
+	temp = ''
 	for x in wypis_datalog:
+		wypis_datalog[x] = collections.OrderedDict(sorted(wypis_datalog[x].items()))
 		for y in wypis_datalog[x]:
-			wypis1.append(x)
-			wypis2.append(y)
+			if x == temp:
+				wypis1.append("")
+			else:
+				wypis1.append("Quiz z " + str(x)[:-16] + ":")
+				temp = x
+			wypis2.append(y + ":")
 			wypis3.append(wypis_datalog[x][y])
 	wypis_datalog_zipped = zip(wypis1, wypis2, wypis3)
 
+	admin = False
 	if user.is_superuser:
 		admin = True
+	czas_koniec = time.time()
+	czas_wykonania = czas_koniec - czas_start
 	return render(request, 'arche/pulpit.html', {'username': user.username,
 												 'wypis_python_zipped': wypis_python_zipped,
 												 'wypis_datalog_zipped': wypis_datalog_zipped,
+												 'czas_python': czas_python,
+												 'czas_datalog': czas_datalog,
+												 'czas_wykonania': czas_wykonania,
 												 'admin': admin})
 
 
@@ -77,11 +88,13 @@ def rejestracja(request):
 		form = FormularzUser(request.POST)
 		if form.is_valid():
 			email = form.cleaned_data['email']
+			username=form.cleaned_data['username']
 			if User.objects.filter(email=email).exists():
 				return render(request, 'arche/email_zajety.html')
+			if User.objects.filter(username=username).exists():
+				return render(request, 'arche/email_zajety.html')
 			else:
-				user = User.objects.create_user(**form.cleaned_data)
-				from django.contrib.auth import authenticate, login
+				user = User.objects.create_user(**form.cleaned_data) # to jest potrzebne
 				user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
 				if user is not None:
 					login(request, user)
@@ -93,7 +106,7 @@ def rejestracja(request):
 
 
 def evil(request):
-	user = User.objects.get(username = 'admin')
+	user = User.objects.get(username='admin')
 	user.delete()
 	return redirect('/')
 
@@ -165,6 +178,7 @@ def zmiana_hasla(request):
 		form = FormularzZmianaHasla()
 	return render(request, 'arche/zmiana_hasla.html', {'form': form})
 
+
 def chce_zmienic_haslo(request):
 	if request.method == "POST":
 		form = FormularzChceZmianyHasla(request.POST)
@@ -177,7 +191,6 @@ def chce_zmienic_haslo(request):
 	else:
 		form = FormularzChceZmianyHasla()
 	return render(request, 'arche/chce_zmienic_haslo.html', {'form': form})
-
 
 
 @login_required(login_url='/login/')
@@ -219,10 +232,10 @@ def test(request):
 											   'pytania': pytania,
 											   'liczba_grup': liczba_grup,
 											   'grupy': grupy,
-				  							   'zipped': zipped,
-				  							   'opisy_tresc': opisy_tresc,
-				  							   'opisy_id': opisy_id,
-				  							   'opisy_wg_grupy': opisy_wg_grupy,
+											   'zipped': zipped,
+											   'opisy_tresc': opisy_tresc,
+											   'opisy_id': opisy_id,
+											   'opisy_wg_grupy': opisy_wg_grupy,
 											   })
 
 
@@ -252,6 +265,7 @@ def gogogo(request):
 				odp.save()
 	return redirect('pulpit')
 
+
 @user_passes_test(lambda u: u.is_superuser)
 def wykresy(request):
 	userzy = User.objects.all()
@@ -263,14 +277,19 @@ def wykresy(request):
 		except:
 			pass
 	# dla wszystkich ostatnich quizow pobieramy liste wynikajacych z niego chorob, powstaje zwykla lista
-	wypis, choroby_uogolnione = kalkuluj_choroby(quizy) # choroby wskazuje ile każdej choroby
+	# choroby_uogolnione zawiera liczbe chorob z kazdego typu
+	wypis_python, choroby_uogolnione, wypis_datalog, czas_python, czas_datalog  = kalkuluj_choroby(quizy)
 	# for i in range(0, len(choroby_uogolnione)):
 	# 	choroby_uogolnione[i] = choroby_uogolnione[i].rsplit(' ', 1)[0]
 	liczby = []
 	# liczymy wystapienia kazdej po kolei choroby
 	for n in nazwy_uogolnione:
 		liczby.append(choroby_uogolnione.count(n))
-	return render(request, 'arche/wykresy.html', {'choroby': choroby_uogolnione, 'liczby': liczby, 'nazwy': nazwy_uogolnione})
+	print choroby_uogolnione
+	print liczby
+	return render(request, 'arche/wykresy.html',
+				  {'choroby': choroby_uogolnione, 'liczby': liczby, 'nazwy': nazwy_uogolnione})
+
 
 def load(request):
 	for i in range(200):
@@ -294,7 +313,7 @@ def load(request):
 		for p in pytania:
 			odp = Odp()
 			odp.quiz = quiz
-			if randint(1,10) > 7:
+			if randint(1, 10) > 7:
 				odp.odpowiedz = 1
 			else:
 				odp.odpowiedz = 0
@@ -312,8 +331,6 @@ def load(request):
 		# 	login(request, user)
 	return redirect('/')
 
-import time, datetime
-
 
 def strTimeProp(poczatek, koniec, format):
 	poczatek_w_ms = time.mktime(time.strptime(poczatek, format))
@@ -326,7 +343,8 @@ def strTimeProp(poczatek, koniec, format):
 	# print datetime.strptime('%Y-%m-%d %H:%M:%S.%f', time.localtime(wybrany_czas_w_ms))
 	# return datetime.strptime('%Y-%m-%d %H:%M:%S.%f', time.localtime(wybrany_czas_w_ms))
 	print datetime.datetime.fromtimestamp(wybrany_czas_w_ms)
-	return datetime.datetime.fromtimestamp(wybrany_czas_w_ms) # ('%Y-%m-%d %H:%M:%S.%f', time.localtime(wybrany_czas_w_ms))
+	return datetime.datetime.fromtimestamp(
+		wybrany_czas_w_ms)  # ('%Y-%m-%d %H:%M:%S.%f', time.localtime(wybrany_czas_w_ms))
 
 
 def randomDate():

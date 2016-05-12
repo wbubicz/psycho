@@ -2,18 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ddec5e6-2924-42cb-961c-9a47c959b8a7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arche/backend/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arche/backend/output.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arche/backend/reguly.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arche/datalog/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arche/stale.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arche/backend/zliczanie_python.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/1.py" afterPath="$PROJECT_DIR$/1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py" afterPath="$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/backend/output.txt" afterPath="$PROJECT_DIR$/arche/backend/output.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/pulpit.html" afterPath="$PROJECT_DIR$/arche/templates/arche/pulpit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/urls.py" afterPath="$PROJECT_DIR$/arche/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/test.html" afterPath="$PROJECT_DIR$/arche/templates/arche/test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/wykresy.html" afterPath="$PROJECT_DIR$/arche/templates/arche/wykresy.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/views.py" afterPath="$PROJECT_DIR$/arche/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/psycho/settings.py" afterPath="$PROJECT_DIR$/psycho/settings.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/arche/backend/reguly.py" afterPath="$PROJECT_DIR$/arche/backend/pydatalog.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/arche/stale.py" afterPath="$PROJECT_DIR$/arche/backend/stale.py" />
     </list>
     <ignored path="psycho.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,43 +32,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="a.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../a.py">
+      <file leaf-file-name="pydatalog.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/arche/backend/pydatalog.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
-              <folding>
-                <element signature="e#3652#3667#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="b.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../b.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="57" />
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reguly.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/arche/backend/reguly.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/arche/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="66" column="70" selection-start-line="66" selection-start-column="50" selection-end-line="66" selection-end-column="70" />
+            <state vertical-scroll-proportion="0.6582734">
+              <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
               <folding>
                 <element signature="e#41#51#0" expanded="true" />
               </folding>
@@ -78,11 +54,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="wykresy.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/arche/templates/arche/wykresy.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.451612">
+              <caret line="48" column="53" selection-start-line="48" selection-start-column="53" selection-end-line="48" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="pulpit.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/arche/templates/arche/pulpit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.580645">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.7419355">
+              <caret line="5" column="48" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -91,30 +77,60 @@
       <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/arche/templates/arche/test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="66" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="66" />
+            <state vertical-scroll-proportion="-19.741936">
+              <caret line="36" column="88" selection-start-line="36" selection-start-column="88" selection-end-line="36" selection-end-column="88" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="kalkulacja_chorob.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rejestracja.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/arche/templates/arche/rejestracja.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.483871">
+              <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/arche/templates/registration/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.16129">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="kalkulacja_chorob.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.0203837">
-              <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="149" column="8" selection-start-line="149" selection-start-column="8" selection-end-line="150" selection-end-column="47" />
               <folding>
-                <element signature="e#41#66#0" expanded="true" />
+                <element signature="e#41#51#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stale.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/arche/stale.py">
+      <file leaf-file-name="zliczanie_python.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/arche/backend/zliczanie_python.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="28" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="28" />
+              <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="stale.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/arche/backend/stale.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="37" column="16" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -136,9 +152,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/arche/templates/registration/activation_email_subject.txt" />
-        <option value="$PROJECT_DIR$/arche/templates/registration/activation_complete.html" />
-        <option value="$PROJECT_DIR$/arche/templates/registration/logout.html" />
         <option value="$PROJECT_DIR$/arche/templates/registration/password_change_done.html" />
         <option value="$PROJECT_DIR$/arche/templates/registration/password_change_form.html" />
         <option value="$PROJECT_DIR$/arche/templates/registration/password_reset_complete.html" />
@@ -169,11 +182,9 @@
         <option value="$PROJECT_DIR$/arche/templates/arche/chce_zmienic_haslo.html" />
         <option value="$PROJECT_DIR$/arche/models.py" />
         <option value="$PROJECT_DIR$/arche/forms.py" />
-        <option value="$PROJECT_DIR$/arche/templates/arche/test.html" />
         <option value="$PROJECT_DIR$/arche/filtry.py" />
         <option value="$PROJECT_DIR$/arche/templatetags/__init__.py" />
         <option value="$PROJECT_DIR$/arche/templatetags/filter_tags.py" />
-        <option value="$PROJECT_DIR$/arche/templates/arche/wykresy.html" />
         <option value="$PROJECT_DIR$/psycho/settings.py" />
         <option value="$PROJECT_DIR$/arche/urls.py" />
         <option value="$PROJECT_DIR$/1.py" />
@@ -183,10 +194,15 @@
         <option value="$PROJECT_DIR$/arche/datalog/reguly.py" />
         <option value="$PROJECT_DIR$/../b.py" />
         <option value="$PROJECT_DIR$/arche/backend/output.txt" />
-        <option value="$PROJECT_DIR$/arche/views.py" />
-        <option value="$PROJECT_DIR$/arche/templates/arche/pulpit.html" />
         <option value="$PROJECT_DIR$/arche/backend/reguly.py" />
+        <option value="$PROJECT_DIR$/arche/backend/pydatalog.py" />
+        <option value="$PROJECT_DIR$/arche/backend/zliczanie_python.py" />
+        <option value="$PROJECT_DIR$/arche/templates/arche/wykresy.html" />
+        <option value="$PROJECT_DIR$/arche/backend/stale.py" />
         <option value="$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py" />
+        <option value="$PROJECT_DIR$/arche/templates/arche/test.html" />
+        <option value="$PROJECT_DIR$/arche/templates/arche/pulpit.html" />
+        <option value="$PROJECT_DIR$/arche/views.py" />
       </list>
     </option>
   </component>
@@ -221,7 +237,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -405,6 +420,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -414,15 +430,15 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\prog\mgr\psycho\arche\templates\registration" />
-      <recent name="D:\prog\mgr\psycho\arche\templates" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\prog\mgr\psycho\arche\backend" />
       <recent name="D:\prog\mgr\psycho\arche\datalog" />
       <recent name="D:\prog\mgr\psycho\arche" />
       <recent name="D:\prog\mgr\psycho\arche\templates\arche" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\prog\mgr\psycho\arche\templates\registration" />
+      <recent name="D:\prog\mgr\psycho\arche\templates" />
     </key>
   </component>
   <component name="RunManager">
@@ -597,17 +613,12 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/arche/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/arche/templates/arche/pulpit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -784,13 +795,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arche/templates/registration/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/arche/templates/arche/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.8387096">
@@ -816,13 +820,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23287672">
           <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/arche/templates/arche/rejestracja.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2117061">
-          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -868,13 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arche/templates/arche/wykresy.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/psycho/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -903,20 +893,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arche/templates/arche/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="66" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../a.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
           <folding>
-            <element signature="e#3652#3667#0" expanded="true" />
+            <element signature="e#3652#3667#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -924,15 +906,7 @@
     <entry file="file://$PROJECT_DIR$/../b.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/arche/templates/arche/pulpit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.580645">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -945,38 +919,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arche/stale.py">
+    <entry file="file://$PROJECT_DIR$/arche/backend/pydatalog.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="28" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="28" />
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arche/views.py">
+    <entry file="file://$PROJECT_DIR$/arche/backend/stale.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="70" selection-start-line="66" selection-start-column="50" selection-end-line="66" selection-end-column="70" />
-          <folding>
-            <element signature="e#41#51#0" expanded="true" />
-          </folding>
+          <caret line="37" column="16" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arche/backend/reguly.py">
+    <entry file="file://$PROJECT_DIR$/arche/templates/registration/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.16129">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/templates/arche/rejestracja.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.483871">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/templates/arche/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.741936">
+          <caret line="36" column="88" selection-start-line="36" selection-start-column="88" selection-end-line="36" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/templates/arche/wykresy.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.451612">
+          <caret line="48" column="53" selection-start-line="48" selection-start-column="53" selection-end-line="48" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/backend/zliczanie_python.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0203837">
-          <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="149" column="8" selection-start-line="149" selection-start-column="8" selection-end-line="150" selection-end-column="47" />
           <folding>
-            <element signature="e#41#66#0" expanded="true" />
+            <element signature="e#41#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/templates/arche/pulpit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.7419355">
+          <caret line="5" column="48" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6582734">
+          <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
+          <folding>
+            <element signature="e#41#51#0" expanded="true" />
           </folding>
         </state>
       </provider>

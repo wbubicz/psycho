@@ -31,7 +31,7 @@
 	<!--Load the AJAX API-->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript">
-		var LICZBA_CHOROB = 8;
+		var LICZBA_MOZLIWOSCI_CHOROB = 5;
 
 		// Load the Visualization API and the corechart package.
 		google.charts.load('current', {'packages':['corechart']});
@@ -46,7 +46,7 @@
 			data.addColumn('string', 'Choroba');
 			data.addColumn('number', 'Liczba osob');
 			var arr = [];
-			for (i = 1; i <= LICZBA_CHOROB; i++) {
+			for (i = 0; i <= LICZBA_MOZLIWOSCI_CHOROB; i++) {
 				arr.push([nazwy[i], liczby[i]]);
 			}
 			data.addRows(arr);
