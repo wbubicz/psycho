@@ -195,48 +195,32 @@ def chce_zmienic_haslo(request):
 
 @login_required(login_url='/login/')
 def test(request):
-	opisy = Opis.objects.all()
 	pytania = Pytanie.objects.all()
-	opisy_tresc = []
-	opisy_id = []
-	for opis in opisy:
-		opisy_tresc.append(opis.tresc)
-		opisy_id.append(opis.id)
-
-	liczba_grup = 0
+	pytania_wg_grupy, opisy_wg_grupy = [], []
 	grupy = []
-	grupa = -1
-	opisy_wg_grupy = []
-	opis_id_temp = -1
-	for pytanie in pytania:
-		if pytanie.grupa != grupa:
-			grupa = pytanie.grupa
-			liczba_grup = liczba_grup + 1
-			grupy.append(grupa)
-			opis_id = pytanie.opis_id
-			if opis_id == opis_id_temp:
-				opisy_wg_grupy.append('')
-			else:
-				opisy_wg_grupy.append(Opis.objects.get(id=opis_id).tresc)
-			opis_id_temp = opis_id
-	pytania_wg_grupy = []
+	hr = []
+	for i in ISTNIEJACE_GRUPY: # przepisanie list bo jest TEN motyw
+		grupy.append(i)
+		hr.append(i)
 	for grupa in grupy:
 		pytania_wg_grupy.append(Pytanie.objects.filter(grupa=grupa))
+	opis_id_temp = -1 # do sprawdzania czy opis sie powtarza
+	for pwg in pytania_wg_grupy:
+		opis_id = pwg[0].opis_id # bierzemy pierwsze pytanie z grupy i sprawdzamy opis
+		if opis_id == opis_id_temp:
+			opisy_wg_grupy.append('')
+		else:
+			opisy_wg_grupy.append(Opis.objects.get(id=opis_id).tresc)
+		opis_id_temp = opis_id
+	hr_tak = [1,3,4,10] # przed tymi grupami powinien byc hr
+	for i in range(len(hr)):
+		if hr[i] in hr_tak:
+			hr[i] = True
+		else:
+			hr[i] = False
 
-	print len(pytania_wg_grupy)
-	print len(grupy)
-	print len(opisy_wg_grupy)
-
-	zipped = zip(pytania_wg_grupy, grupy, opisy_wg_grupy)
-	return render(request, 'arche/test.html', {'pytania_wg_grupy': pytania_wg_grupy,
-											   'pytania': pytania,
-											   'liczba_grup': liczba_grup,
-											   'grupy': grupy,
-											   'zipped': zipped,
-											   'opisy_tresc': opisy_tresc,
-											   'opisy_id': opisy_id,
-											   'opisy_wg_grupy': opisy_wg_grupy,
-											   })
+	zipped = zip(pytania_wg_grupy, grupy, opisy_wg_grupy, hr)
+	return render(request, 'arche/test.html', {'zipped': zipped, })
 
 
 @login_required(login_url='/login/')
@@ -301,12 +285,12 @@ def load(request):
 		# password = ''.join(random.choice(chars) for i in range(8))
 		password = 'alalalal'
 		user = User.objects.create_user(username, email, password)
-		user.last_login = strTimeProp("5/31/2016 5:00 PM", "6/30/2016 5:00 PM", '%m/%d/%Y %I:%M %p')
+		user.last_login = losuj_date_z_przedzialu("5/31/2016 5:00 PM", "6/30/2016 5:00 PM", '%m/%d/%Y %I:%M %p')
 		user.save()
 		student = randint(0, 6)
 		quiz = Quiz()
 		quiz.user = user
-		quiz.data = randomDate()
+		quiz.data = losuj_date()
 		quiz.student = student
 		quiz.save()
 		pytania = Pytanie.objects.all()
@@ -332,7 +316,7 @@ def load(request):
 	return redirect('/')
 
 
-def strTimeProp(poczatek, koniec, format):
+def losuj_date_z_przedzialu(poczatek, koniec, format):
 	poczatek_w_ms = time.mktime(time.strptime(poczatek, format))
 	koniec_w_ms = time.mktime(time.strptime(koniec, format))
 	print poczatek_w_ms
@@ -347,5 +331,5 @@ def strTimeProp(poczatek, koniec, format):
 		wybrany_czas_w_ms)  # ('%Y-%m-%d %H:%M:%S.%f', time.localtime(wybrany_czas_w_ms))
 
 
-def randomDate():
-	return strTimeProp("4/1/2016 11:00 AM", "5/31/2016 5:00 PM", '%m/%d/%Y %I:%M %p')
+def losuj_date():
+	return losuj_date_z_przedzialu("4/1/2016 11:00 AM", "5/31/2016 5:00 PM", '%m/%d/%Y %I:%M %p')

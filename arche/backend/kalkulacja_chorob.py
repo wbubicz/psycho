@@ -127,11 +127,34 @@ def kalkuluj_choroby(quizy):
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
+		# ZESPOL LEKU UOGOLNIONEGO: ICD10: 65, 1 z g11, 3 z g12, nie lek paniczny i nie ZOK, DSM5:
+
+		try:
+			id65 = Odp.objects.get(quiz=quiz, id_pytania=65)
+			temp = []
+			temp.append(id11.odpowiedz)
+			wyniki[nazwy_grup[13]] = temp
+		except:
+			pass
+		icd10g11 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=11)
+		numer_nazwy_grupy = 14
+		odpowiedzi_do_przepisania = []
+		for odpowiedz in icd10g11:
+			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
+		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+
+		icd10g12 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=12)
+		numer_nazwy_grupy = 15
+		odpowiedzi_do_przepisania = []
+		for odpowiedz in icd10g12:
+			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
+		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+
 
 		# KALKULACJA PYTHON
 
 		czas_start = time.time()
-		wypis_python = zlicz_python(wyniki, id11, id12, id20, id21, wypis_python, data_quizu)
+		wypis_python = zlicz_python(wyniki, id11, id12, id20, id21, id65, wypis_python, data_quizu)
 		czas_koniec = time.time()
 		czas_python = czas_koniec - czas_start
 		czas_python = "{:.12f}".format(czas_python)
@@ -157,15 +180,18 @@ def kalkuluj_choroby(quizy):
 			temp[choroba_uogolniona] = False
 		# Choroby uogolnione, Python
 		if wypis_python[data_quizu][nazwy[1]] or wypis_python[data_quizu][nazwy[2]]:
-			temp[nazwy_uogolnione[1]] = True
-		if wypis_python[data_quizu][nazwy[3]] or wypis_python[data_quizu][nazwy[4]]:
 			temp[nazwy_uogolnione[2]] = True
-		if wypis_python[data_quizu][nazwy[5]] or wypis_python[data_quizu][nazwy[6]]:
+		if wypis_python[data_quizu][nazwy[3]] or wypis_python[data_quizu][nazwy[4]]:
 			temp[nazwy_uogolnione[3]] = True
-		if wypis_python[data_quizu][nazwy[7]] or wypis_python[data_quizu][nazwy[8]]:
+		if wypis_python[data_quizu][nazwy[5]] or wypis_python[data_quizu][nazwy[6]]:
 			temp[nazwy_uogolnione[4]] = True
+		if wypis_python[data_quizu][nazwy[7]] or wypis_python[data_quizu][nazwy[8]]:
+			temp[nazwy_uogolnione[5]] = True
+		if wypis_python[data_quizu][nazwy[9]]:
+			temp[nazwy_uogolnione[6]] = True
+
 		if temp.values().count(True) > 1: # wiecej niz jedna choroba
-			choroby_uogolnione_python.append(nazwy_uogolnione[5])
+			choroby_uogolnione_python.append(nazwy_uogolnione[1])
 		elif not True in temp.values(): # zero chorob
 			choroby_uogolnione_python.append(nazwy_uogolnione[0])
 		else: # jedna choroba

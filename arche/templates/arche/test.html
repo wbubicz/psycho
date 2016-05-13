@@ -12,11 +12,12 @@
 		<input type="radio" name="student" value="5">Studiuję na 5. roku</br>
 		<input type="radio" name="student" value="6">Studiuję na 6. roku</br>
 		<input type="radio" name="student" value="7">Studiuję na studiach doktoranckich</br></br>
-		{% for pytania_wg_grupy, grupa, opis_wg_grupy in zipped %}
-			{% if grupa == 0 or grupa == 2 or grupa == 5 or grupa == 6 or grupa == 7 or grupa == 8 or grupa == 9 %}
-				<!--</br>-->
-			{% else %}
+		{% for pytania_wg_grupy, grupa, opis_wg_grupy, hr in zipped %}
+			{% if hr %} <!-- jak zaczyna sie grupa 1,3,... to postaw hr -->
 				<hr>
+				{% if grupa == 10 %}
+					</br>
+				{% endif %}
 			{% endif %}
 			{% if opis_wg_grupy == '' %}
 				<!--</br>-->

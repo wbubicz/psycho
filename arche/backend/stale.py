@@ -3,25 +3,26 @@
 
 nazwy_grup = [
 				# DEPRESJA
-				'ICD10_g1', # 0
-				'ICD10_g2', # 1
-					'DSM5_g3', # 2
-						'DSM5_11', # 3
-						'DSM5_12', # 4
-						'DSM5_20', # 5
-						'DSM5_21', # 6
+				'ICD10_g1', # 0					grupa 1
+				'ICD10_g2', # 1					grupa 2
+					'DSM5_g3', # 2				grupa 3
+						'DSM5_11', # 3			grupa 0
+						'DSM5_12', # 4				  0
+						'DSM5_20', # 5				  0
+						'DSM5_21', # 6				  0
 				# ANANKASTYCZNE ZABURZENIE
-				'ICD10_g4', # 7
-					'DSM5_g5', # 8
+				'ICD10_g4', # 7					grupa 4
+					'DSM5_g5', # 8				grupa 5
 				# OSOBOWOSC PARANOICZNA
-				'ICD10_g6', # 9
-					'DSM5_g7', # 10
+				'ICD10_g6', # 9					grupa 6
+					'DSM5_g7', # 10				grupa 7
 				# UNIKOWE ZABURZENIE OSOBOWOSCI
-				'ICD10_g8', # 11
-					'DSM5_g9', # 12
-				# #
-				# 'ICD10_g', # 13
-				# 	'DSM5_g', # 14
+				'ICD10_g8', # 11				grupa 8
+					'DSM5_g9', # 12				grupa 9
+				# ZESPOL LEKU UOGOLNIONEGO
+						'ICD10_65', # 13			grupa 10
+				'ICD10_g11', # 14				grupa 11
+				'ICD10_g12', # 15				grupa 12
 ]
 
 nazwy = ["",
@@ -33,14 +34,18 @@ nazwy = ["",
 		 "Paranoidalne zaburzenie osobowosci (DSM-IV)", # 6
 		 "Unikowe zaburzenie osobowosci (ICD-10)", # 7
 		 "Unikowe zaburzenie osobowosci (DSM-IV)",  # 8
+		 "Zespol leku uogolnionego (ICD-10)", # 9
 		]
 
-nazwy_uogolnione = ["Osoby zdrowe",
-		 "Depresja",
-		 "Anankastyczne zaburzenie osobowosci",
-		 "Paranoidalne zaburzenie osobowosci",
-		 "Unikowe zaburzenie osobowosci",
-		 "Wiecej niz jedno zaburzenie", ]
+nazwy_uogolnione = [
+					"Osoby zdrowe",							# 0
+					"Wiecej niz jedno zaburzenie",			# 1
+					"Depresja",								# 2
+					"Anankastyczne zaburzenie osobowosci",	# 3
+					"Paranoidalne zaburzenie osobowosci",	# 4
+					"Unikowe zaburzenie osobowosci",		# 5
+					"Zespol leku uogolnionego",				# 6
+					]
 
 MIN_GRUPA_1_DEPRESJA_ICD10 = 2
 MIN_GRUPA_2_DEPRESJA_ICD10 = 2
@@ -51,3 +56,7 @@ MIN_GRUPA_6_PARANOICZNA_ICD10 = 4
 MIN_GRUPA_7_PARANOICZNA_DSMIV = 4
 MIN_GRUPA_8_UNIKOWE_ICD10 = 4
 MIN_GRUPA_9_UNIKOWE_DSMIV = 4
+MIN_GRUPA_11_ZLU_ICD10 = 1
+MIN_GRUPA_12_ZLU_ICD10 = 3
+
+ISTNIEJACE_GRUPY = [1,2,3,0,4,5,6,7,8,9,10,11,12]

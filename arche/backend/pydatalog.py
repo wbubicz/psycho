@@ -43,9 +43,13 @@ for grupa in nazwy_grup:
 (choroba_datalog[nazwy[7]]==True) <= (liczba_odp_tak['ICD10_g8']>=MIN_GRUPA_8_UNIKOWE_ICD10)
 # Unikowe zaburzenie osobowosci (DSM-IV) 8
 (choroba_datalog[nazwy[8]]==True) <= (liczba_odp_tak['DSM5_g9']>=MIN_GRUPA_9_UNIKOWE_DSMIV)
+# Zespol leku uogolnionego (ICD-10) 9
+(choroba_datalog[nazwy[9]]==True) <= (liczba_odp_tak['ICD10_g11']>=MIN_GRUPA_11_ZLU_ICD10)\
+											& (liczba_odp_tak['ICD10_g12']>=MIN_GRUPA_12_ZLU_ICD10)\
+											& (odpowiedz_datalog['ICD10_65',0]==1)
 
 wypis_datalog = {}
-liczba_wpisow = len(nazwy) - 1# minus 1 bo w choroba_datalog liczenie jest od 0, a w nazwach od 1
+liczba_wpisow = len(nazwy) - 1 # minus 1 bo w choroba_datalog liczenie jest od 0, a w nazwach od 1
 for i in range(liczba_wpisow):
 	wypis_datalog[nazwy[i + 1]] = False
 
