@@ -212,9 +212,8 @@ def test(request):
 		else:
 			opisy_wg_grupy.append(Opis.objects.get(id=opis_id).tresc)
 		opis_id_temp = opis_id
-	hr_tak = [1,3,4,10] # przed tymi grupami powinien byc hr
 	for i in range(len(hr)):
-		if hr[i] in hr_tak:
+		if hr[i] in GRUPY_WYMAGAJACE_ODDZIELENIA:
 			hr[i] = True
 		else:
 			hr[i] = False

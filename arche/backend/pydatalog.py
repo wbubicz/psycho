@@ -9,7 +9,7 @@ from pyDatalog import pyDatalog
 pyDatalog.create_terms('X, Y, NazwaGrupy, odpowiedz_datalog, choroba_datalog, liczba_odp_tak')
 
 pierwotny_stdout = sys.stdout
-obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + "\\"
+obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
 sys.stdout = open(obecny_folder+'output.txt', 'w') # Wynik skryptu do output.txt
 
 import ast

@@ -163,7 +163,7 @@ def kalkuluj_choroby(quizy):
 		# KALKULACJA DATALOG
 
 		czas_start = time.time()
-		obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + "\\"
+		obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
 		wyniki_as_string = str(wyniki)
 		os.system("python "+obecny_folder+"pydatalog.py " + '"' + wyniki_as_string + '"')
 		with open(obecny_folder+'output.txt', 'r') as myfile:

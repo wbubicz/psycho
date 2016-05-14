@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 # encoding=utf8
 
-nazwy_grup = [
+nazwy_grup = [	# ICD
+					# DSM
+						# Single
 				# DEPRESJA
 				'ICD10_g1', # 0					grupa 1
 				'ICD10_g2', # 1					grupa 2
@@ -20,9 +22,13 @@ nazwy_grup = [
 				'ICD10_g8', # 11				grupa 8
 					'DSM5_g9', # 12				grupa 9
 				# ZESPOL LEKU UOGOLNIONEGO
-						'ICD10_65', # 13			grupa 10
+						'ICD10_65', # 13		grupa 10
 				'ICD10_g11', # 14				grupa 11
 				'ICD10_g12', # 15				grupa 12
+						'DSM5_88' # 16			grupa 13
+					'DSM5_g14', # 17			grupa 14
+						'DSM5_96' # 18			grupa 15
+						'DSM5_97' # 19			grupa 16
 ]
 
 nazwy = ["",
@@ -35,6 +41,7 @@ nazwy = ["",
 		 "Unikowe zaburzenie osobowosci (ICD-10)", # 7
 		 "Unikowe zaburzenie osobowosci (DSM-IV)",  # 8
 		 "Zespol leku uogolnionego (ICD-10)", # 9
+		 "Zespol leku uogolnionego (DSM-5)", # 10
 		]
 
 nazwy_uogolnione = [
@@ -58,5 +65,10 @@ MIN_GRUPA_8_UNIKOWE_ICD10 = 4
 MIN_GRUPA_9_UNIKOWE_DSMIV = 4
 MIN_GRUPA_11_ZLU_ICD10 = 1
 MIN_GRUPA_12_ZLU_ICD10 = 3
+MIN_GRUPA_14_ZLU_ICD10 = 3
 
-ISTNIEJACE_GRUPY = [1,2,3,0,4,5,6,7,8,9,10,11,12]
+ISTNIEJACE_GRUPY = [1,2,3,0,4,5,6,7,8,9,10,11,12,13,14,15,16]
+
+GRUPY_WYMAGAJACE_ODDZIELENIA = [1,3,4,10,13] # przed tymi grupami powinien byc hr
+
+SLASH = "/"

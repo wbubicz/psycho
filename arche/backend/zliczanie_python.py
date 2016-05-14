@@ -27,5 +27,6 @@ def zlicz_python(wyniki, id11, id12, id20, id21, id65, wypis_python, data_quizu)
 		if wyniki['ICD10_g12'].count(1) >= MIN_GRUPA_12_ZLU_ICD10:
 			if id65.odpowiedz == 1:
 					wypis_python[data_quizu][nazwy[9]] = True
+				# trzeba dodac tu i w datalogu ze nie ma ZOK i panicznego
 
 	return wypis_python
