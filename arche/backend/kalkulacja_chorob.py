@@ -30,6 +30,7 @@ def kalkuluj_choroby(quizy):
 	wypis_datalog = {}
 	czas_python = 0
 	czas_datalog = 0
+	id11, id12, id20, id21, id65 = "", "", "", "", ""
 	for quiz in quizy:
 		data_quizu = str(quiz.data)
 		wypis_python[data_quizu] = {}
@@ -132,7 +133,7 @@ def kalkuluj_choroby(quizy):
 		try:
 			id65 = Odp.objects.get(quiz=quiz, id_pytania=65)
 			temp = []
-			temp.append(id11.odpowiedz)
+			temp.append(id65.odpowiedz)
 			wyniki[nazwy_grup[13]] = temp
 		except:
 			pass
