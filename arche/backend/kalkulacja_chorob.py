@@ -30,7 +30,8 @@ def kalkuluj_choroby(quizy):
 	wypis_datalog = {}
 	czas_python = 0
 	czas_datalog = 0
-	id11, id12, id20, id21, id65 = "", "", "", "", ""
+	odp = Odp()
+	id11, id12, id20, id21, id65 = odp, odp, odp, odp, odp
 	for quiz in quizy:
 		data_quizu = str(quiz.data)
 		wypis_python[data_quizu] = {}
