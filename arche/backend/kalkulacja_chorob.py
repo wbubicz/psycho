@@ -152,11 +152,54 @@ def kalkuluj_choroby(quizy):
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
+		try:
+			id88 = Odp.objects.get(quiz=quiz, id_pytania=88)
+			temp = []
+			temp.append(id88.odpowiedz)
+			wyniki[nazwy_grup[16]] = temp
+			id96 = Odp.objects.get(quiz=quiz, id_pytania=96)
+			temp = []
+			temp.append(id96.odpowiedz)
+			wyniki[nazwy_grup[18]] = temp
+			id97 = Odp.objects.get(quiz=quiz, id_pytania=97)
+			temp = []
+			temp.append(id97.odpowiedz)
+			wyniki[nazwy_grup[19]] = temp
+		except:
+			pass
+		dsm5g14 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-5', grupa=14)
+		numer_nazwy_grupy = 17
+		odpowiedzi_do_przepisania = []
+		for odpowiedz in dsm5g14:
+			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
+		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+
+		# ZABURZENIE OBSESYJNO-KOMPULSYJNE: ICD10: 98, 4 z g18, 103
+
+		try:
+			id98 = Odp.objects.get(quiz=quiz, id_pytania=98)
+			id103 = Odp.objects.get(quiz=quiz, id_pytania=103)
+			temp = []
+			temp.append(id98.odpowiedz)
+			wyniki[nazwy_grup[20]] = temp
+			temp = []
+			temp.append(id103.odpowiedz)
+			wyniki[nazwy_grup[22]] = temp
+		except:
+			pass
+		icd10g18 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=18)
+		numer_nazwy_grupy = 21
+		odpowiedzi_do_przepisania = []
+		for odpowiedz in icd10g18:
+			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
+		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+
+
 
 		# KALKULACJA PYTHON
 
 		czas_start = time.time()
-		wypis_python = zlicz_python(wyniki, id11, id12, id20, id21, id65, wypis_python, data_quizu)
+		wypis_python = zlicz_python(wyniki, wypis_python, data_quizu)
 		czas_koniec = time.time()
 		czas_python = czas_koniec - czas_start
 		czas_python = "{:.12f}".format(czas_python)

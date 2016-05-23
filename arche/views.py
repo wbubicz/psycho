@@ -45,7 +45,7 @@ def pulpit(request):
 			if x == temp:
 				wypis1.append("")
 			else:
-				wypis1.append("Quiz z " + str(x)[:-16] + ":")
+				wypis1.append("Quiz z " + str(x)[:-15] + ":")
 				temp = x
 			wypis2.append(y + ":")
 			wypis3.append(wypis_python[x][y])

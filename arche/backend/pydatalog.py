@@ -47,6 +47,15 @@ for grupa in nazwy_grup:
 (choroba_datalog[nazwy[9]]==True) <= (liczba_odp_tak['ICD10_g11']>=MIN_GRUPA_11_ZLU_ICD10)\
 											& (liczba_odp_tak['ICD10_g12']>=MIN_GRUPA_12_ZLU_ICD10)\
 											& (odpowiedz_datalog['ICD10_65',0]==1)
+# Zespol leku uogolnionego (DSM-5) 10
+(choroba_datalog[nazwy[10]]==True) <= (liczba_odp_tak['DSM5_g14']>=MIN_GRUPA_14_ZLU_DSM5)\
+											& (odpowiedz_datalog['DSM5_88',0]==1)\
+											& (odpowiedz_datalog['DSM5_96',0]==1)\
+											& (odpowiedz_datalog['DSM5_97',0]==0)
+# Zaburzenie obsesyjno-kompulsyjne (ICD-10) 11
+(choroba_datalog[nazwy[11]]==True) <= (liczba_odp_tak['ICD10_g18']>=MIN_GRUPA_18_ZOK_ICD10)\
+											& (odpowiedz_datalog['ICD10_98',0]==1)\
+											& (odpowiedz_datalog['ICD10_103',0]==1)
 
 wypis_datalog = {}
 liczba_wpisow = len(nazwy) - 1 # minus 1 bo w choroba_datalog liczenie jest od 0, a w nazwach od 1

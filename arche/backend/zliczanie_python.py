@@ -1,6 +1,6 @@
 from stale import *
 
-def zlicz_python(wyniki, id11, id12, id20, id21, id65, wypis_python, data_quizu):
+def zlicz_python(wyniki, wypis_python, data_quizu):
 	for i in range(1, len(nazwy)):
 		wypis_python[data_quizu][nazwy[i]] = False
 
@@ -8,8 +8,8 @@ def zlicz_python(wyniki, id11, id12, id20, id21, id65, wypis_python, data_quizu)
 		if wyniki['ICD10_g2'].count(1) >= MIN_GRUPA_2_DEPRESJA_ICD10:
 					wypis_python[data_quizu][nazwy[1]] = True
 	if wyniki['DSM5_g3'].count(1) >= MIN_GRUPA_3_DEPRESJA_DSM5:
-		if id11.odpowiedz == 1 or id12.odpowiedz == 1:
-			if id20.odpowiedz == 1 and id21.odpowiedz == 0:
+		if wyniki['DSM5_11'][0] == 1 or wyniki['DSM5_12'][0] == 1:
+			if wyniki['DSM5_20'][0] == 1 and wyniki['DSM5_21'][0] == 0:
 					wypis_python[data_quizu][nazwy[2]] = True
 	if wyniki['ICD10_g4'].count(1) >= MIN_GRUPA_4_ANANKASTYCZNE_ICD10:
 					wypis_python[data_quizu][nazwy[3]] = True
@@ -25,8 +25,14 @@ def zlicz_python(wyniki, id11, id12, id20, id21, id65, wypis_python, data_quizu)
 					wypis_python[data_quizu][nazwy[8]] = True
 	if wyniki['ICD10_g11'].count(1) >= MIN_GRUPA_11_ZLU_ICD10:
 		if wyniki['ICD10_g12'].count(1) >= MIN_GRUPA_12_ZLU_ICD10:
-			if id65.odpowiedz == 1:
+			if wyniki['ICD10_65'][0] == 1:
 					wypis_python[data_quizu][nazwy[9]] = True
 				# trzeba dodac tu i w datalogu ze nie ma ZOK i panicznego
+	if wyniki['DSM5_g14'].count(1) >= MIN_GRUPA_14_ZLU_DSM5:
+		if wyniki['DSM5_88'][0] == 1 and wyniki['DSM5_96'][0] == 1 and wyniki['DSM5_97'][0] == 0:
+					wypis_python[data_quizu][nazwy[10]] = True
+	if wyniki['ICD10_g18'].count(1) >= MIN_GRUPA_18_ZOK_ICD10:
+		if wyniki['ICD10_98'][0] == 1 and wyniki['ICD10_103'][0] == 1:
+					wypis_python[data_quizu][nazwy[11]] = True
 
 	return wypis_python

@@ -29,6 +29,10 @@ nazwy_grup = [	# ICD
 					'DSM5_g14', # 17			grupa 14
 						'DSM5_96' # 18			grupa 15
 						'DSM5_97' # 19			grupa 16
+				# ZABURZENIE OBSESYJNO-KOMPULSYJNE
+				'ICD10_98' # 20					grupa 17
+						'ICD10_g18' # 21		grupa 18
+				'ICD10_103' # 22				grupa 19
 ]
 
 nazwy = ["",
@@ -42,6 +46,7 @@ nazwy = ["",
 		 "Unikowe zaburzenie osobowosci (DSM-IV)",  # 8
 		 "Zespol leku uogolnionego (ICD-10)", # 9
 		 "Zespol leku uogolnionego (DSM-5)", # 10
+		 "Zaburzenie obsesyjno-kompulsyjne (ICD-10)", # 11
 		]
 
 nazwy_uogolnione = [
@@ -52,6 +57,7 @@ nazwy_uogolnione = [
 					"Paranoidalne zaburzenie osobowosci",	# 4
 					"Unikowe zaburzenie osobowosci",		# 5
 					"Zespol leku uogolnionego",				# 6
+					"Zaburzenie obsesyjno-kompulsyjne",		# 7
 					]
 
 MIN_GRUPA_1_DEPRESJA_ICD10 = 2
@@ -65,10 +71,11 @@ MIN_GRUPA_8_UNIKOWE_ICD10 = 4
 MIN_GRUPA_9_UNIKOWE_DSMIV = 4
 MIN_GRUPA_11_ZLU_ICD10 = 1
 MIN_GRUPA_12_ZLU_ICD10 = 3
-MIN_GRUPA_14_ZLU_ICD10 = 3
+MIN_GRUPA_14_ZLU_DSM5 = 3
+MIN_GRUPA_18_ZOK_ICD10 = 4
 
-ISTNIEJACE_GRUPY = [1,2,3,0,4,5,6,7,8,9,10,11,12,13,14,15,16]
+ISTNIEJACE_GRUPY = [1,2,3,0,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
 
-GRUPY_WYMAGAJACE_ODDZIELENIA = [1,3,4,10,13] # przed tymi grupami powinien byc hr
+GRUPY_WYMAGAJACE_ODDZIELENIA = [1,3,4,10,13,17] # przed tymi grupami powinien byc hr
 
 SLASH = "/"
