@@ -27,12 +27,12 @@ nazwy_grup = [	# ICD
 				'ICD10_g12', # 15				grupa 12
 						'DSM5_88' # 16			grupa 13
 					'DSM5_g14', # 17			grupa 14
-						'DSM5_96' # 18			grupa 15
-						'DSM5_97' # 19			grupa 16
+						'DSM5_96', # 18			grupa 15
+						'DSM5_97', # 19			grupa 16
 				# ZABURZENIE OBSESYJNO-KOMPULSYJNE
-				'ICD10_98' # 20					grupa 17
-						'ICD10_g18' # 21		grupa 18
-				'ICD10_103' # 22				grupa 19
+				'ICD10_98', # 20					grupa 17
+						'ICD10_g18', # 21		grupa 18
+				'ICD10_103', # 22				grupa 19
 ]
 
 nazwy = ["",
