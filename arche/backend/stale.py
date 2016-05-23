@@ -25,7 +25,7 @@ nazwy_grup = [	# ICD
 						'ICD10_65', # 13		grupa 10
 				'ICD10_g11', # 14				grupa 11
 				'ICD10_g12', # 15				grupa 12
-						'DSM5_88' # 16			grupa 13
+						'DSM5_88', # 16			grupa 13
 					'DSM5_g14', # 17			grupa 14
 						'DSM5_96', # 18			grupa 15
 						'DSM5_97', # 19			grupa 16
