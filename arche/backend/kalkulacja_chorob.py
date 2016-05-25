@@ -194,6 +194,22 @@ def kalkuluj_choroby(quizy):
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
+		# HISTRIONICZNE ZABURZENIE OSOBOWOSCI: ICD 3 z g20, DSM-IV: 5 z g21
+
+		icd10g20 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=23)
+		numer_nazwy_grupy = 23
+		odpowiedzi_do_przepisania = []
+		for odpowiedz in icd10g20:
+			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
+		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+
+		dsm4g21 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=21)
+		numer_nazwy_grupy = 24
+		odpowiedzi_do_przepisania = []
+		for odpowiedz in dsm4g21:
+			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
+		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+
 
 
 		# KALKULACJA PYTHON

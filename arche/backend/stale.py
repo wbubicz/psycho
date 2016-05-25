@@ -14,13 +14,13 @@ nazwy_grup = [	# ICD
 						'DSM5_21', # 6				  0
 				# ANANKASTYCZNE ZABURZENIE
 				'ICD10_g4', # 7					grupa 4
-					'DSM5_g5', # 8				grupa 5
+					'DSMIV_g5', # 8				grupa 5
 				# OSOBOWOSC PARANOICZNA
 				'ICD10_g6', # 9					grupa 6
-					'DSM5_g7', # 10				grupa 7
+					'DSMIV_g7', # 10			grupa 7
 				# UNIKOWE ZABURZENIE OSOBOWOSCI
 				'ICD10_g8', # 11				grupa 8
-					'DSM5_g9', # 12				grupa 9
+					'DSMIV_g9', # 12			grupa 9
 				# ZESPOL LEKU UOGOLNIONEGO
 						'ICD10_65', # 13		grupa 10
 				'ICD10_g11', # 14				grupa 11
@@ -30,9 +30,11 @@ nazwy_grup = [	# ICD
 						'DSM5_96', # 18			grupa 15
 						'DSM5_97', # 19			grupa 16
 				# ZABURZENIE OBSESYJNO-KOMPULSYJNE
-				'ICD10_98', # 20					grupa 17
+				'ICD10_98', # 20				grupa 17
 						'ICD10_g18', # 21		grupa 18
 				'ICD10_103', # 22				grupa 19
+				'ICD10_g20', # 23				grupa 20
+					'DSMIV_g21', # 24			grupa 21
 ]
 
 nazwy = ["",
@@ -47,6 +49,8 @@ nazwy = ["",
 		 "Zespol leku uogolnionego (ICD-10)", # 9
 		 "Zespol leku uogolnionego (DSM-5)", # 10
 		 "Zaburzenie obsesyjno-kompulsyjne (ICD-10)", # 11
+		 "Histrioniczne zaburzenie osobowosci (ICD-10)", # 12
+		 "Histrioniczne zaburzenie osobowosci (DSM-IV)", # 13
 		]
 
 nazwy_uogolnione = [
@@ -58,6 +62,7 @@ nazwy_uogolnione = [
 					"Unikowe zaburzenie osobowosci",		# 5
 					"Zespol leku uogolnionego",				# 6
 					"Zaburzenie obsesyjno-kompulsyjne",		# 7
+					"Histrioniczne zaburzenie osobowosci",	# 8
 					]
 
 MIN_GRUPA_1_DEPRESJA_ICD10 = 2
@@ -73,9 +78,11 @@ MIN_GRUPA_11_ZLU_ICD10 = 1
 MIN_GRUPA_12_ZLU_ICD10 = 3
 MIN_GRUPA_14_ZLU_DSM5 = 3
 MIN_GRUPA_18_ZOK_ICD10 = 4
+MIN_GRUPA_20_HZO_ICD10 = 3
+MIN_GRUPA_21_HZO_DSMIV = 5
 
-ISTNIEJACE_GRUPY = [1,2,3,0,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+ISTNIEJACE_GRUPY = [1,2,3,0,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]
 
-GRUPY_WYMAGAJACE_ODDZIELENIA = [1,3,4,10,13,17] # przed tymi grupami powinien byc hr
+GRUPY_WYMAGAJACE_ODDZIELENIA = [1,3,4,10,13,17,20] # przed tymi grupami powinien byc hr
 
 SLASH = "/"
