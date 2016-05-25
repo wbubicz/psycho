@@ -69,16 +69,22 @@ for i in range(liczba_wpisow):
 
 obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
 
-try:
-	os.remove(obecny_folder+'output.txt')
-except:
-	pass
-os.open(obecny_folder+'output.txt', os.O_CREAT)
-do_outputu = str(wypis_datalog)
-plik = os.open(obecny_folder+'output.txt', os.O_RDWR)
-os.write(plik, do_outputu)
-os.fsync(plik)
-os.close(plik)
+os.system("rm "+obecny_folder+"output.txt")
+os.system("touch "+obecny_folder+"output.txt")
+os.system("chmod 777 "+obecny_folder+"output.txt")
+wsad = "{'Depresja (DSM-5)': 7, 'Paranoidalne zaburzenie osobowosci (DSM-IV)': True, 'Anankastyczne zaburzenie osobowosci (DSM-IV)': True, 'Paranoidalne zaburzenie osobowosci (ICD-10)': True, 'Histrioniczne zaburzenie osobowosci (DSM-IV)': True, 'Unikowe zaburzenie osobowosci (ICD-10)': True, 'Unikowe zaburzenie osobowosci (DSM-IV)': True, 'Zespol leku uogolnionego (ICD-10)': True, 'Zespol leku uogolnionego (DSM-5)': False, 'Histrioniczne zaburzenie osobowosci (ICD-10)': True, 'Anankastyczne zaburzenie osobowosci (ICD-10)': True, 'Depresja (ICD-10)': True, 'Zaburzenie obsesyjno-kompulsyjne (ICD-10)': True}"
+os.system('echo "' + wsad + '" > '+obecny_folder+"output.txt")
+
+# try:
+# 	os.remove(obecny_folder+'output.txt')
+# except:
+# 	pass
+# os.open(obecny_folder+'output.txt', os.O_CREAT)
+# do_outputu = str(wypis_datalog)
+# plik = os.open(obecny_folder+'output.txt', os.O_RDWR)
+# os.write(plik, do_outputu)
+# os.fsync(plik)
+# os.close(plik)
 
 # pierwotny_stdout = sys.stdout
 # obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
