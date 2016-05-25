@@ -61,6 +61,10 @@ for grupa in nazwy_grup:
 # Histrioniczne zaburzenie osobowosci (DSM-IV) 13
 (choroba_datalog[nazwy[13]]==True) <= (liczba_odp_tak['DSMIV_g21']>=MIN_GRUPA_21_HZO_DSMIV)
 
+for i in range(liczba_wpisow):
+	if ((choroba_datalog[nazwy[i+1]]==X).data):
+		print (choroba_datalog[nazwy[i+1]]==X).data
+
 wypis_datalog = {}
 liczba_wpisow = len(nazwy) - 1 # minus 1 bo w choroba_datalog liczenie jest od 0, a w nazwach od 1
 for i in range(liczba_wpisow):
