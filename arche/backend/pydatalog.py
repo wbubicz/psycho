@@ -69,14 +69,15 @@ for i in range(liczba_wpisow):
 
 obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
 
-with open(obecny_folder+'output.txt','w') as f:
-	f.write(str(wypis_datalog))
-	f.flush()
-
-print wypis_datalog
-print "AAAAAAAAAAAAAAAAA"
-with open(obecny_folder+'output.txt','w') as f:
-	print f.readall()
+try:
+	os.remove(obecny_folder+'output.txt')
+except:
+	pass
+os.open(obecny_folder+'output.txt', os.O_CREAT)
+do_outputu = str(wypis_datalog)
+plik = os.open(obecny_folder+'output.txt', os.O_RDWR)
+os.write(plik, do_outputu)
+os.close(plik)
 
 # pierwotny_stdout = sys.stdout
 # obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
