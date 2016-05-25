@@ -8,10 +8,6 @@ from stale import *
 from pyDatalog import pyDatalog
 pyDatalog.create_terms('X, Y, NazwaGrupy, odpowiedz_datalog, choroba_datalog, liczba_odp_tak')
 
-pierwotny_stdout = sys.stdout
-obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
-sys.stdout = open(obecny_folder+'output.txt', 'w') # Wynik skryptu do output.txt
-
 import ast
 dane_wejsciowe = sys.argv[1]
 wyniki_datalog = ast.literal_eval(dane_wejsciowe)
@@ -65,6 +61,13 @@ for i in range(liczba_wpisow):
 	if ((choroba_datalog[nazwy[i+1]]==X).data):
 		print (choroba_datalog[nazwy[i+1]]==X).data
 
+print "AAAA"
+if ((choroba_datalog[nazwy[12]]==True).data):
+	print (choroba_datalog[nazwy[12]]==True).data
+print "BBBB"
+print (liczba_odp_tak['ICD10_g20']==X)
+print liczba_odp_tak['ICD10_g20']
+
 wypis_datalog = {}
 liczba_wpisow = len(nazwy) - 1 # minus 1 bo w choroba_datalog liczenie jest od 0, a w nazwach od 1
 for i in range(liczba_wpisow):
@@ -75,6 +78,9 @@ for i in range(liczba_wpisow):
 		if (choroba_datalog[nazwy[i+1]]==X).data[0][0]==True:
 			wypis_datalog[nazwy[i + 1]] = True
 
-print wypis_datalog
 
+pierwotny_stdout = sys.stdout
+obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
+sys.stdout = open(obecny_folder+'output.txt', 'w') # Wynik skryptu do output.txt
+print wypis_datalog
 sys.stdout = pierwotny_stdout # restore the previous stdout.
