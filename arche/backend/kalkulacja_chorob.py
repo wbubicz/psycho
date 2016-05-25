@@ -210,6 +210,8 @@ def kalkuluj_choroby(quizy):
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
+		print wyniki
+
 
 
 		# KALKULACJA PYTHON

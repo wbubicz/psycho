@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ddec5e6-2924-42cb-961c-9a47c959b8a7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/backend/stale.py" afterPath="$PROJECT_DIR$/arche/backend/stale.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py" afterPath="$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py" />
     </list>
     <ignored path="psycho.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,8 +26,8 @@
       <file leaf-file-name="kalkulacja_chorob.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7494005">
-              <caret line="220" column="51" selection-start-line="220" selection-start-column="51" selection-end-line="220" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.64748204">
+              <caret line="212" column="20" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -148,10 +148,10 @@
         <option value="$PROJECT_DIR$/../k.py" />
         <option value="$PROJECT_DIR$/psycho/settings.py" />
         <option value="$PROJECT_DIR$/arche/views.py" />
-        <option value="$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py" />
         <option value="$PROJECT_DIR$/arche/backend/zliczanie_python.py" />
         <option value="$PROJECT_DIR$/arche/backend/pydatalog.py" />
         <option value="$PROJECT_DIR$/arche/backend/stale.py" />
+        <option value="$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py" />
       </list>
     </option>
   </component>
@@ -820,8 +820,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7494005">
-          <caret line="220" column="51" selection-start-line="220" selection-start-column="51" selection-end-line="220" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.64748204">
+          <caret line="212" column="20" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
           <folding />
         </state>
       </provider>
