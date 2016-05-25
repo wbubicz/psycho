@@ -35,7 +35,7 @@ for grupa in nazwy_grup:
 (choroba_datalog[nazwy[5]]==True) <= (liczba_odp_tak['ICD10_g6']>=MIN_GRUPA_6_PARANOICZNA_ICD10)
 # Paranoidalne zaburzenie osobowosci (DSM-IV) 6
 (choroba_datalog[nazwy[6]]==True) <= (liczba_odp_tak['DSMIV_g7']>=MIN_GRUPA_7_PARANOICZNA_DSMIV)
-(choroba_datalog[nazwy[12]]==True) <= (liczba_odp_tak['ICD10_g20']>=MIN_GRUPA_20_HZO_ICD10)
+(choroba_datalog["Histrioniczne zaburzenie osobowosci (ICD-10)"]==True) <= (liczba_odp_tak['ICD10_g20']>=1)
 # Unikowe zaburzenie osobowosci (ICD-10) 7
 (choroba_datalog[nazwy[7]]==True) <= (liczba_odp_tak['ICD10_g8']>=MIN_GRUPA_8_UNIKOWE_ICD10)
 # Unikowe zaburzenie osobowosci (DSM-IV) 8
