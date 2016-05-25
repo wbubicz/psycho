@@ -196,7 +196,7 @@ def kalkuluj_choroby(quizy):
 
 		# HISTRIONICZNE ZABURZENIE OSOBOWOSCI: ICD 3 z g20, DSM-IV: 5 z g21
 
-		icd10g20 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=23)
+		icd10g20 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=20)
 		numer_nazwy_grupy = 23
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in icd10g20:

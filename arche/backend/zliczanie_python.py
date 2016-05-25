@@ -42,7 +42,7 @@ def zlicz_python(wyniki, wypis_python, data_quizu):
 
 	if wyniki['ICD10_g20'].count(1) >= MIN_GRUPA_20_HZO_ICD10:
 					wypis_python[data_quizu][nazwy[12]] = True
-	if wyniki['ICD10_g20'].count(1) >= MIN_GRUPA_20_HZO_ICD10:
-					wypis_python[data_quizu][nazwy[12]] = True
+	if wyniki['DSMIV_g21'].count(1) >= MIN_GRUPA_21_HZO_DSMIV:
+					wypis_python[data_quizu][nazwy[13]] = True
 
 	return wypis_python
