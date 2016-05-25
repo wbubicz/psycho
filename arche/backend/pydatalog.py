@@ -73,6 +73,11 @@ with open(obecny_folder+'output.txt','w') as f:
 	f.write(str(wypis_datalog))
 	f.flush()
 
+print wypis_datalog
+print "AAAAAAAAAAAAAAAAA"
+with open(obecny_folder+'output.txt','w') as f:
+	print f.readall()
+
 # pierwotny_stdout = sys.stdout
 # obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
 # sys.stdout = open(obecny_folder+'output.txt', 'w') # Wynik skryptu do output.txt
