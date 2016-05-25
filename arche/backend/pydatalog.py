@@ -69,10 +69,8 @@ for i in range(liczba_wpisow):
 
 obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
 
-f = open(obecny_folder+'output.txt','w')
-f.truncate()
-f.write(str(wypis_datalog)) # python will convert \n to os.linesep
-f.close()
+with open(obecny_folder+'output.txt','w') as f:
+	f.write(str(wypis_datalog))
 
 # pierwotny_stdout = sys.stdout
 # obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
