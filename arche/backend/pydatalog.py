@@ -77,6 +77,7 @@ os.open(obecny_folder+'output.txt', os.O_CREAT)
 do_outputu = str(wypis_datalog)
 plik = os.open(obecny_folder+'output.txt', os.O_RDWR)
 os.write(plik, do_outputu)
+os.fsync(plik)
 os.close(plik)
 
 # pierwotny_stdout = sys.stdout

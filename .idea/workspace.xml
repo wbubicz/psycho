@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ddec5e6-2924-42cb-961c-9a47c959b8a7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/backend/stale.py" afterPath="$PROJECT_DIR$/arche/backend/stale.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/psycho/settings.py" afterPath="$PROJECT_DIR$/psycho/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/backend/output.txt" afterPath="$PROJECT_DIR$/arche/backend/output.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/backend/pydatalog.py" afterPath="$PROJECT_DIR$/arche/backend/pydatalog.py" />
     </list>
     <ignored path="psycho.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/arche/backend/pydatalog.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+              <caret line="80" column="14" selection-start-line="80" selection-start-column="14" selection-end-line="80" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -58,7 +58,7 @@
         <entry file="file://$PROJECT_DIR$/psycho/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="76" column="0" selection-start-line="76" selection-start-column="2" selection-end-line="86" selection-end-column="3" />
+              <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="86" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -69,6 +69,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.8776978">
               <caret line="87" column="10" selection-start-line="87" selection-start-column="10" selection-end-line="87" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="output.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/arche/backend/output.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="609" />
               <folding />
             </state>
           </provider>
@@ -149,8 +159,8 @@
         <option value="$PROJECT_DIR$/arche/views.py" />
         <option value="$PROJECT_DIR$/arche/backend/zliczanie_python.py" />
         <option value="$PROJECT_DIR$/arche/backend/output.txt" />
-        <option value="$PROJECT_DIR$/arche/backend/pydatalog.py" />
         <option value="$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py" />
+        <option value="$PROJECT_DIR$/arche/backend/pydatalog.py" />
         <option value="$PROJECT_DIR$/psycho/settings.py" />
         <option value="$PROJECT_DIR$/arche/backend/stale.py" />
       </list>
@@ -773,23 +783,7 @@
     <entry file="file://$PROJECT_DIR$/arche/backend/output.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/arche/backend/pydatalog.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/arche/backend/zliczanie_python.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="609" />
           <folding />
         </state>
       </provider>
@@ -802,14 +796,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/psycho/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="76" column="0" selection-start-line="76" selection-start-column="2" selection-end-line="86" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/arche/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -817,6 +803,30 @@
           <folding>
             <element signature="e#41#51#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/backend/zliczanie_python.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/backend/pydatalog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="80" column="14" selection-start-line="80" selection-start-column="14" selection-end-line="80" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/psycho/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="86" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
