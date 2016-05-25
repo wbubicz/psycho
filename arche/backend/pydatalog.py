@@ -76,7 +76,7 @@ wsad = "{'Depresja (DSM-5)': 7, 'Paranoidalne zaburzenie osobowosci (DSM-IV)': T
 gogo = 'echo "'
 gogo = gogo + wsad
 gogo = gogo + '" > '
-gogo = gogo + +obecny_folder
+gogo = gogo + obecny_folder
 gogo = gogo + "output.txt"
 os.system(gogo)
 
