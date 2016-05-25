@@ -71,6 +71,7 @@ obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( 
 
 with open(obecny_folder+'output.txt','w') as f:
 	f.write(str(wypis_datalog))
+	f.flush()
 
 # pierwotny_stdout = sys.stdout
 # obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
