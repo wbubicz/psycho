@@ -71,7 +71,6 @@ obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( 
 
 f = open(obecny_folder+'output.txt','w')
 f.truncate()
-print wypis_datalog
 f.write(str(wypis_datalog)) # python will convert \n to os.linesep
 f.close()
 
