@@ -31,8 +31,8 @@ nazwy_grup = [	# ICD
 						'DSM5_97', # 19			grupa 16
 				# ZABURZENIE OBSESYJNO-KOMPULSYJNE
 				'ICD10_98', # 20				grupa 17
-						'ICD10_g18', # 21		grupa 18
-				'ICD10_103', # 22				grupa 19
+				'ICD10_g18', # 21				grupa 18
+						'ICD10_103', # 22		grupa 19
 				'ICD10_g20', # 23				grupa 20
 					'DSMIV_g21', # 24			grupa 21
 ]
