@@ -69,16 +69,12 @@ for i in range(liczba_wpisow):
 
 obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
 
-os.system("rm "+obecny_folder+"output.txt")
-os.system("touch "+obecny_folder+"output.txt")
-os.system("chmod 777 "+obecny_folder+"output.txt")
 wsad = "{'Depresja (DSM-5)': 7, 'Paranoidalne zaburzenie osobowosci (DSM-IV)': True, 'Anankastyczne zaburzenie osobowosci (DSM-IV)': True, 'Paranoidalne zaburzenie osobowosci (ICD-10)': True, 'Histrioniczne zaburzenie osobowosci (DSM-IV)': True, 'Unikowe zaburzenie osobowosci (ICD-10)': True, 'Unikowe zaburzenie osobowosci (DSM-IV)': True, 'Zespol leku uogolnionego (ICD-10)': True, 'Zespol leku uogolnionego (DSM-5)': False, 'Histrioniczne zaburzenie osobowosci (ICD-10)': True, 'Anankastyczne zaburzenie osobowosci (ICD-10)': True, 'Depresja (ICD-10)': True, 'Zaburzenie obsesyjno-kompulsyjne (ICD-10)': True}"
-gogo = 'echo "'
-gogo = gogo + wsad
-gogo = gogo + '" > '
-gogo = gogo + obecny_folder
-gogo = gogo + "output.txt"
-os.system(gogo)
+cmd = 'echo "'
+cmd = cmd + wsad
+cmd = cmd + '" > '
+cmd = cmd + "/home/wbubicz/arche/backend/output.txt"
+os.system(cmd)
 
 # try:
 # 	os.remove(obecny_folder+'output.txt')

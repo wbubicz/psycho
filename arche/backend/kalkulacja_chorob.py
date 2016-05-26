@@ -226,7 +226,19 @@ def kalkuluj_choroby(quizy):
 		czas_start = time.time()
 		obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
 		wyniki_as_string = str(wyniki)
-		os.system("python "+obecny_folder+"pydatalog.py " + '"' + wyniki_as_string + '"')
+		wyniki_as_string = '"' + wyniki_as_string
+		wyniki_as_string = wyniki_as_string + '"'
+		cmd = "python /home/wbubicz/arche/backend/pydatalog.py "
+		cmd = cmd + wyniki_as_string
+		try:
+			os.system("rm /home/wbubicz/arche/backend/output.txt")
+		except:
+			pass
+		try:
+			os.system("touch /home/wbubicz/arche/backend/output.txt")
+		except:
+			pass
+		os.system(cmd)
 		with open(obecny_folder+'output.txt', 'r') as myfile:
 			output = myfile.read().replace('\n', '')
 		wypis_datalog_dla_quizu = ast.literal_eval(output)
