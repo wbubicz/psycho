@@ -228,14 +228,14 @@ def kalkuluj_choroby(quizy):
 		wyniki_as_string = str(wyniki)
 		wyniki_as_string = '"' + wyniki_as_string
 		wyniki_as_string = wyniki_as_string + '"'
-		cmd = "python /home/wbubicz/arche/backend/pydatalog.py "
+		cmd = "python /home/wbubicz/psycho/arche/backend/pydatalog.py "
 		cmd = cmd + wyniki_as_string
 		try:
-			os.system("rm /home/wbubicz/arche/backend/output.txt")
+			os.system("rm /home/wbubicz/psycho/arche/backend/output.txt")
 		except:
 			pass
 		try:
-			os.system("touch /home/wbubicz/arche/backend/output.txt")
+			os.system("touch /home/wbubicz/psycho/arche/backend/output.txt")
 		except:
 			pass
 		os.system(cmd)
