@@ -2,7 +2,6 @@ import os, sys, inspect
 from stale import *
 from pyDatalog import pyDatalog
 pyDatalog.create_terms('X, Y, NazwaGrupy, odpowiedz_datalog, choroba_datalog, liczba_odp_tak')
-os.system("touch /home/wbubicz/fefwfef.ss")
 
 import ast
 dane_wejsciowe = sys.argv[1]
@@ -11,6 +10,7 @@ wyniki_datalog = ast.literal_eval(dane_wejsciowe)
 for grupa in nazwy_grup:
 	for i in range(len(wyniki_datalog[grupa])):
 		odpowiedz_datalog[grupa,i] = wyniki_datalog[grupa][i]
+os.system("touch /home/wbubicz/fefwfef.ss")
 
 # Regula zliczajaca ilosc jedynek w liscie
 (liczba_odp_tak[NazwaGrupy]==len_(Y)) <= (odpowiedz_datalog[NazwaGrupy,Y]==1)
