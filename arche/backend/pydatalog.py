@@ -1,13 +1,8 @@
 import os, sys, inspect
-os.system("touch /home/wbubicz/aababs.ss")
-obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
-obecny_folder = obecny_folder[:-8] # obetnie "\datalog"
-if obecny_folder not in sys.path:
-	sys.path.insert(0, obecny_folder)
-
 from stale import *
 from pyDatalog import pyDatalog
 pyDatalog.create_terms('X, Y, NazwaGrupy, odpowiedz_datalog, choroba_datalog, liczba_odp_tak')
+os.system("touch /home/wbubicz/fefwfef.ss")
 
 import ast
 dane_wejsciowe = sys.argv[1]
