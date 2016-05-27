@@ -1,8 +1,8 @@
 import os, sys, inspect
 from stale import *
 from pyDatalog import pyDatalog
-pyDatalog.create_terms('X, Y, NazwaGrupy, odpowiedz_datalog, choroba_datalog, liczba_odp_tak')
 os.system("touch /home/wbubicz/fefwfef.ss")
+pyDatalog.create_terms('X, Y, NazwaGrupy, odpowiedz_datalog, choroba_datalog, liczba_odp_tak')
 
 import ast
 dane_wejsciowe = sys.argv[1]
