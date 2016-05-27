@@ -1,4 +1,5 @@
 import os, sys, inspect
+os.system("touch /home/wbubicz/aababs.ss")
 obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0]))
 obecny_folder = obecny_folder[:-8] # obetnie "\datalog"
 if obecny_folder not in sys.path:
