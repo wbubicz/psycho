@@ -20,7 +20,8 @@ if obecny_folder not in sys.path:
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-
+wyniki = {}
+dane_wejsciowe = ""
 
 def kalkuluj_choroby(quizy):
 	wyniki = {}
@@ -226,27 +227,44 @@ def kalkuluj_choroby(quizy):
 		czas_start = time.time()
 		obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
 		wyniki_as_string = str(wyniki)
+		# wyniki_as_string = "{'ICD10_65': [1], 'ICD10_g20': [], 'DSMIV_g5': [1, 1, 1, 1, 1, 1, 1, 1], 'DSMIV_g7': [1, 1, 1, 1, 1, 1, 1], 'ICD10_g8': [1, 1, 1, 1, 1, 1], 'ICD10_g2': [1, 1, 1, 1, 1, 1, 1], 'ICD10_g1': [1, 1, 1], 'DSM5_97': [1], 'DSMIV_g9': [1, 1, 1, 1, 1, 1, 1], 'ICD10_g6': [1, 1, 1, 1, 1, 1, 1], 'ICD10_g4': [1, 1, 1, 1, 1, 1, 1, 1], 'DSM5_g3': [1, 1, 1, 1, 1, 1, 1, 1, 1], 'DSM5_11': [1], 'DSM5_12': [1], 'DSM5_96': [1], 'DSMIV_g21': [], 'DSM5_g14': [1, 1, 1, 1, 1, 1, 1], 'ICD10_g18': [1, 1, 1, 1], 'ICD10_g12': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'ICD10_g11': [1, 1, 1, 1], 'DSM5_88': [1], 'DSM5_21': [1], 'DSM5_20': [1], 'ICD10_103': [1], 'ICD10_98': [1]}"
 		wyniki_as_string = '"' + wyniki_as_string
 		wyniki_as_string = wyniki_as_string + '"'
 		cmd = "python /home/wbubicz/psycho/arche/backend/pydatalog.py "
+		# cmd = 'python "D:\\prog\\mgr\\psycho\\arche\\backend\\pydatalog.py" '
 		cmd = cmd + wyniki_as_string
 		try:
 			os.system("rm /home/wbubicz/psycho/arche/backend/output.txt")
+			# os.system('rm "D:\\prog\\mgr\\psycho\\arche\\backend\\output.txt"')
 		except:
 			pass
 		try:
-			os.system("touch /home/wbubicz/psycho/arche/backend/output.txt")
+			os.system('touch /home/wbubicz/psycho/arche/backend/output.txt')
+			# os.system('touch "D:\\prog\\mgr\\psycho\\arche\\backend\\output.txt"')
 		except:
 			pass
-		os.system(cmd)
-		with open(obecny_folder+'output.txt', 'r') as myfile:
-			output = myfile.read().replace('\n', '')
-		wypis_datalog_dla_quizu = ast.literal_eval(output)
+
+		#################################
+		# URUCHOMIENIE ZEWNETRZNEGO PLIKU
+		# os.system(cmd)
+		# with open(obecny_folder+'output.txt', 'r') as myfile:
+		# 	output = myfile.read().replace('\n', '')
+		# wypis_datalog_dla_quizu = ast.literal_eval(output)
+		#################################
+
+		#############################################################
+		# ODZEWNETRZNIENIE
+		import globals
+		import pydatalog
+		globals.init()
+		pydatalog.fun(str(wyniki))
+		wypis_datalog_dla_quizu = globals.glob_dict
+		#
+		##############################################################
+
 		wypis_datalog[data_quizu] = wypis_datalog_dla_quizu
 		czas_koniec = time.time()
 		czas_datalog = czas_koniec - czas_start
-
-
 
 		temp = {}
 		for choroba_uogolniona in nazwy_uogolnione:
