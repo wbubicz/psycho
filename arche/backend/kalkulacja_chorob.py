@@ -21,10 +21,8 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 wyniki = {}
-dane_wejsciowe = ""
 
 def kalkuluj_choroby(quizy):
-	wyniki = {}
 	choroby_uogolnione_python = []
 	choroby_uogolnione_datalog = []
 	wypis_python = {}
@@ -34,6 +32,7 @@ def kalkuluj_choroby(quizy):
 	odp = Odp()
 	id11, id12, id20, id21, id65 = odp, odp, odp, odp, odp
 	for quiz in quizy:
+		wyniki_quizu = {}
 		data_quizu = str(quiz.data)
 		wypis_python[data_quizu] = {}
 		wypis_datalog[data_quizu] = {}
@@ -45,39 +44,39 @@ def kalkuluj_choroby(quizy):
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in icd10g1:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		icd10g2 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=2)
 		numer_nazwy_grupy = 1
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in icd10g2:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		dsm5g3 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-5', grupa=3)
 		numer_nazwy_grupy = 2
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in dsm5g3:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		try:
 			id11 = Odp.objects.get(quiz=quiz, id_pytania=11)
 			temp = []
 			temp.append(id11.odpowiedz)
-			wyniki[nazwy_grup[3]] = temp
+			wyniki_quizu[nazwy_grup[3]] = temp
 			id12 = Odp.objects.get(quiz=quiz, id_pytania=12)
 			temp = []
 			temp.append(id12.odpowiedz)
-			wyniki[nazwy_grup[4]] = temp
+			wyniki_quizu[nazwy_grup[4]] = temp
 			id20 = Odp.objects.get(quiz=quiz, id_pytania=20)
 			temp = []
 			temp.append(id20.odpowiedz)
-			wyniki[nazwy_grup[5]] = temp
+			wyniki_quizu[nazwy_grup[5]] = temp
 			id21 = Odp.objects.get(quiz=quiz, id_pytania=21)
 			temp = []
 			temp.append(id21.odpowiedz)
-			wyniki[nazwy_grup[6]] = temp
+			wyniki_quizu[nazwy_grup[6]] = temp
 
 		except:
 			pass
@@ -89,14 +88,14 @@ def kalkuluj_choroby(quizy):
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in icd10g4:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		dsm4g5 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=5)
 		numer_nazwy_grupy = 8
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in dsm4g5:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		# OSOBOWOSC PARANOICZNA, powiedzmy po 4 z 7 kazdego testu, grupy: 6, 7
 
@@ -105,14 +104,14 @@ def kalkuluj_choroby(quizy):
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in icd10g6:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		dsm4g7 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=7)
 		numer_nazwy_grupy = 10
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in dsm4g7:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		# UNIKOWE ZABURZENIE OSOBOWOSCI: ICD10: min 4, DSM4: min 4, grupy: 8, 9
 
@@ -121,14 +120,14 @@ def kalkuluj_choroby(quizy):
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in icd10g8:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		dsm4g9 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=9)
 		numer_nazwy_grupy = 12
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in dsm4g9:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		# ZESPOL LEKU UOGOLNIONEGO: ICD10: 65, 1 z g11, 3 z g12, nie lek paniczny i nie ZOK, DSM5:
 
@@ -136,7 +135,7 @@ def kalkuluj_choroby(quizy):
 			id65 = Odp.objects.get(quiz=quiz, id_pytania=65)
 			temp = []
 			temp.append(id65.odpowiedz)
-			wyniki[nazwy_grup[13]] = temp
+			wyniki_quizu[nazwy_grup[13]] = temp
 		except:
 			pass
 		icd10g11 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=11)
@@ -144,28 +143,28 @@ def kalkuluj_choroby(quizy):
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in icd10g11:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		icd10g12 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=12)
 		numer_nazwy_grupy = 15
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in icd10g12:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		try:
 			id88 = Odp.objects.get(quiz=quiz, id_pytania=88)
 			temp = []
 			temp.append(id88.odpowiedz)
-			wyniki[nazwy_grup[16]] = temp
+			wyniki_quizu[nazwy_grup[16]] = temp
 			id96 = Odp.objects.get(quiz=quiz, id_pytania=96)
 			temp = []
 			temp.append(id96.odpowiedz)
-			wyniki[nazwy_grup[18]] = temp
+			wyniki_quizu[nazwy_grup[18]] = temp
 			id97 = Odp.objects.get(quiz=quiz, id_pytania=97)
 			temp = []
 			temp.append(id97.odpowiedz)
-			wyniki[nazwy_grup[19]] = temp
+			wyniki_quizu[nazwy_grup[19]] = temp
 		except:
 			pass
 		dsm5g14 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-5', grupa=14)
@@ -173,7 +172,7 @@ def kalkuluj_choroby(quizy):
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in dsm5g14:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		# ZABURZENIE OBSESYJNO-KOMPULSYJNE: ICD10: 98, 4 z g18, 103
 
@@ -182,10 +181,10 @@ def kalkuluj_choroby(quizy):
 			id103 = Odp.objects.get(quiz=quiz, id_pytania=103)
 			temp = []
 			temp.append(id98.odpowiedz)
-			wyniki[nazwy_grup[20]] = temp
+			wyniki_quizu[nazwy_grup[20]] = temp
 			temp = []
 			temp.append(id103.odpowiedz)
-			wyniki[nazwy_grup[22]] = temp
+			wyniki_quizu[nazwy_grup[22]] = temp
 		except:
 			pass
 		icd10g18 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=18)
@@ -193,7 +192,7 @@ def kalkuluj_choroby(quizy):
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in icd10g18:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		# HISTRIONICZNE ZABURZENIE OSOBOWOSCI: ICD 3 z g20, DSM-IV: 5 z g21
 
@@ -202,69 +201,41 @@ def kalkuluj_choroby(quizy):
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in icd10g20:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 		dsm4g21 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=21)
 		numer_nazwy_grupy = 24
 		odpowiedzi_do_przepisania = []
 		for odpowiedz in dsm4g21:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
-		wyniki[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 
 
 		# KALKULACJA PYTHON
 
 		czas_start = time.time()
-		wypis_python = zlicz_python(wyniki, wypis_python, data_quizu)
+		wypis_python = zlicz_python(wyniki_quizu, wypis_python, data_quizu)
 		czas_koniec = time.time()
 		czas_python = czas_koniec - czas_start
 		czas_python = "{:.12f}".format(czas_python)
 
 
+
 		# KALKULACJA DATALOG
 
 		czas_start = time.time()
-		obecny_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile( inspect.currentframe() ))[0])) + SLASH
-		wyniki_as_string = str(wyniki)
-		# wyniki_as_string = "{'ICD10_65': [1], 'ICD10_g20': [], 'DSMIV_g5': [1, 1, 1, 1, 1, 1, 1, 1], 'DSMIV_g7': [1, 1, 1, 1, 1, 1, 1], 'ICD10_g8': [1, 1, 1, 1, 1, 1], 'ICD10_g2': [1, 1, 1, 1, 1, 1, 1], 'ICD10_g1': [1, 1, 1], 'DSM5_97': [1], 'DSMIV_g9': [1, 1, 1, 1, 1, 1, 1], 'ICD10_g6': [1, 1, 1, 1, 1, 1, 1], 'ICD10_g4': [1, 1, 1, 1, 1, 1, 1, 1], 'DSM5_g3': [1, 1, 1, 1, 1, 1, 1, 1, 1], 'DSM5_11': [1], 'DSM5_12': [1], 'DSM5_96': [1], 'DSMIV_g21': [], 'DSM5_g14': [1, 1, 1, 1, 1, 1, 1], 'ICD10_g18': [1, 1, 1, 1], 'ICD10_g12': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'ICD10_g11': [1, 1, 1, 1], 'DSM5_88': [1], 'DSM5_21': [1], 'DSM5_20': [1], 'ICD10_103': [1], 'ICD10_98': [1]}"
-		wyniki_as_string = '"' + wyniki_as_string
-		wyniki_as_string = wyniki_as_string + '"'
-		cmd = "python /home/wbubicz/psycho/arche/backend/pydatalog.py "
-		# cmd = 'python "D:\\prog\\mgr\\psycho\\arche\\backend\\pydatalog.py" '
-		cmd = cmd + wyniki_as_string
-		try:
-			os.system("rm /home/wbubicz/psycho/arche/backend/output.txt")
-			# os.system('rm "D:\\prog\\mgr\\psycho\\arche\\backend\\output.txt"')
-		except:
-			pass
-		try:
-			os.system('touch /home/wbubicz/psycho/arche/backend/output.txt')
-			# os.system('touch "D:\\prog\\mgr\\psycho\\arche\\backend\\output.txt"')
-		except:
-			pass
-
-		#################################
-		# URUCHOMIENIE ZEWNETRZNEGO PLIKU
-		# os.system(cmd)
-		# with open(obecny_folder+'output.txt', 'r') as myfile:
-		# 	output = myfile.read().replace('\n', '')
-		# wypis_datalog_dla_quizu = ast.literal_eval(output)
-		#################################
-
-		#############################################################
-		# ODZEWNETRZNIENIE
 		import globals
 		import pydatalog
 		globals.init()
-		pydatalog.fun(str(wyniki))
+		pydatalog.kalkuluj_datalog(wyniki_quizu)
 		wypis_datalog_dla_quizu = globals.glob_dict
-		#
-		##############################################################
 
 		wypis_datalog[data_quizu] = wypis_datalog_dla_quizu
 		czas_koniec = time.time()
 		czas_datalog = czas_koniec - czas_start
+
+
 
 		temp = {}
 		for choroba_uogolniona in nazwy_uogolnione:
@@ -302,8 +273,6 @@ def kalkuluj_choroby(quizy):
 			choroby_uogolnione_datalog.append(nazwy_uogolnione[4])
 		if not True in wypis_datalog_dla_quizu:
 			choroby_uogolnione_datalog.append(nazwy_uogolnione[0])
-
-	# DWA SLESZE TRZEBA JAKOS GLOBALNIE DO ZMIENNEJ WSTAWIC BO INACZEJ BEDZIE DLA LINUXA INACZEJ DLA WINSOWSA!!!!!!!
 
 	return (wypis_python, choroby_uogolnione_python, wypis_datalog, czas_python, czas_datalog)
 
