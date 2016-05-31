@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 # encoding=utf8
-import ast
 import inspect
 import os
 import sys
 import time
 from zliczanie_python import zlicz_python
+from pyDatalog import pyDatalog
 
 from arche.backend.stale import *
 from arche.models import Odp
