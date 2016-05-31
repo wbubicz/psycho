@@ -5,6 +5,7 @@ def kalkuluj_datalog(wyniki_quizu):
 	pyDatalog.create_terms('X, Y, NazwaGrupy, odpowiedz_datalog, choroba_datalog, liczba_odp_tak')
 
 	import globals
+	pyDatalog.create_terms('X, Y, NazwaGrupy, odpowiedz_datalog, choroba_datalog, liczba_odp_tak')
 
 	for grupa in nazwy_grup:
 		for i in range(len(wyniki_quizu[grupa])):
