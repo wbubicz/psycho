@@ -33,8 +33,21 @@ nazwy_grup = [	# ICD
 				'ICD10_98', # 20				grupa 17
 				'ICD10_g18', # 21				grupa 18
 						'ICD10_103', # 22		grupa 19
+				# HISTRIONICZNE ZABURZENIE OSOBOWOSCI
 				'ICD10_g20', # 23				grupa 20
 					'DSMIV_g21', # 24			grupa 21
+				# OSOBOWOSC ZALEZNA
+				'ICD10_g22', # 25				grupa 22
+					'DSMIV_g23', # 26			grupa 23
+				# OSOBOWOSC SCHIZOIDALNA
+				'ICD10_g24', # 27				grupa 24
+					'DSMIV_g25', # 28			grupa 25
+				# PSYCHOPATIA
+						'ICD10_148', # 29		grupa 26
+						'ICD10_149', # 30		grupa 27
+				'ICD10_g28', # 31				grupa 28
+
+
 ]
 
 nazwy = ["",
@@ -51,6 +64,11 @@ nazwy = ["",
 		 "Zaburzenie obsesyjno-kompulsyjne (ICD-10)", # 11
 		 "Histrioniczne zaburzenie osobowosci (ICD-10)", # 12
 		 "Histrioniczne zaburzenie osobowosci (DSM-IV)", # 13
+		 "Osobowosc zalezna (ICD-10)", # 14
+		 "Osobowosc zalezna (DSM-IV)", # 15
+		 "Osobowosc schizoidalna (ICD-10)", # 16
+		 "Osobowosc schizoidalna (DSM-IV)", # 17
+		 "Psychopatia (ICD-10)", # 18
 		]
 
 nazwy_uogolnione = [
@@ -63,6 +81,9 @@ nazwy_uogolnione = [
 					"Zespol leku uogolnionego",				# 6
 					"Zaburzenie obsesyjno-kompulsyjne",		# 7
 					"Histrioniczne zaburzenie osobowosci",	# 8
+					"Osobowosc zalezna",					# 9
+					"Osobowosc schizoidalna",				# 10
+					"Psychopatia",							# 11
 					]
 
 MIN_GRUPA_1_DEPRESJA_ICD10 = 2
@@ -80,9 +101,14 @@ MIN_GRUPA_14_ZLU_DSM5 = 3
 MIN_GRUPA_18_ZOK_ICD10 = 4
 MIN_GRUPA_20_HZO_ICD10 = 3
 MIN_GRUPA_21_HZO_DSMIV = 5
+MIN_GRUPA_22_OZ_ICD10 = 3
+MIN_GRUPA_23_OZ_DSMIV = 3
+MIN_GRUPA_24_OS_ICD10 = 4 # p
+MIN_GRUPA_25_OS_DSMIV = 4 # p
+MIN_GRUPA_28_PSYCHOPATIA_ICD10 = 4 # p
 
-ISTNIEJACE_GRUPY = [1,2,3,0,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]
+ISTNIEJACE_GRUPY = [1,2,3,0,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
 
-GRUPY_WYMAGAJACE_ODDZIELENIA = [1,3,4,10,13,17,20] # przed tymi grupami powinien byc hr
+GRUPY_WYMAGAJACE_ODDZIELENIA = [1,3,4,10,13,17,20,22,24,26] # przed tymi grupami powinien byc hr
 
 SLASH = "/"

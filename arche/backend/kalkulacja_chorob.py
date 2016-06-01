@@ -209,6 +209,57 @@ def kalkuluj_choroby(quizy):
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
+		# OSOBOWOSC ZALEZNA
+
+		icd10g22 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=22)
+		numer_nazwy_grupy = 25
+		odpowiedzi_do_przepisania = []
+		for odpowiedz in icd10g22:
+			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+
+		dsm4g23 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=23)
+		numer_nazwy_grupy = 26
+		odpowiedzi_do_przepisania = []
+		for odpowiedz in dsm4g23:
+			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+
+		# OSOBOWOSC SCHIZOIDALNA
+
+		icd10g24 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=24)
+		numer_nazwy_grupy = 27
+		odpowiedzi_do_przepisania = []
+		for odpowiedz in icd10g24:
+			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+
+		dsm4g25 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=25)
+		numer_nazwy_grupy = 28
+		odpowiedzi_do_przepisania = []
+		for odpowiedz in dsm4g25:
+			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
+
+		# PSYCHOPATIA
+
+		try:
+			id148 = Odp.objects.get(quiz=quiz, id_pytania=148)
+			id149 = Odp.objects.get(quiz=quiz, id_pytania=149)
+			temp = []
+			temp.append(id148.odpowiedz)
+			wyniki_quizu[nazwy_grup[29]] = temp
+			temp = []
+			temp.append(id149.odpowiedz)
+			wyniki_quizu[nazwy_grup[30]] = temp
+		except:
+			pass
+		icd10g28 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=28)
+		numer_nazwy_grupy = 31
+		odpowiedzi_do_przepisania = []
+		for odpowiedz in icd10g28:
+			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
+		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
 
 		# KALKULACJA PYTHON

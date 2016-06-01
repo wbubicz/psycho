@@ -45,4 +45,19 @@ def zlicz_python(wyniki, wypis_python, data_quizu):
 	if wyniki['DSMIV_g21'].count(1) >= MIN_GRUPA_21_HZO_DSMIV:
 					wypis_python[data_quizu][nazwy[13]] = True
 
+	if wyniki['ICD10_g22'].count(1) >= MIN_GRUPA_22_OZ_ICD10:
+					wypis_python[data_quizu][nazwy[14]] = True
+	if wyniki['DSMIV_g23'].count(1) >= MIN_GRUPA_23_OZ_DSMIV:
+					wypis_python[data_quizu][nazwy[15]] = True
+
+	if wyniki['ICD10_g24'].count(1) >= MIN_GRUPA_24_OS_ICD10:
+					wypis_python[data_quizu][nazwy[16]] = True
+	if wyniki['DSMIV_g25'].count(1) >= MIN_GRUPA_25_OS_DSMIV:
+					wypis_python[data_quizu][nazwy[17]] = True
+
+	if wyniki['ICD10_g28'].count(1) >= MIN_GRUPA_28_PSYCHOPATIA_ICD10:
+		if wyniki['ICD10_148'][0] == 1:
+			if wyniki['ICD10_149'][0] == 1:
+					wypis_python[data_quizu][nazwy[18]] = True
+
 	return wypis_python

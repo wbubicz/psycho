@@ -49,6 +49,18 @@ def kalkuluj_datalog(wyniki_quizu):
 	(choroba_datalog[nazwy[12]]==True) <= (liczba_odp_tak['ICD10_g20']>=MIN_GRUPA_20_HZO_ICD10)
 	# Histrioniczne zaburzenie osobowosci (DSM-IV) 13
 	(choroba_datalog[nazwy[13]]==True) <= (liczba_odp_tak['DSMIV_g21']>=MIN_GRUPA_21_HZO_DSMIV)
+	# Osobowosc zalezna (ICD-10) 14
+	(choroba_datalog[nazwy[14]]==True) <= (liczba_odp_tak['ICD10_g22']>=MIN_GRUPA_22_OZ_ICD10)
+	# Osobowosc zalezna (DSM-IV) 15
+	(choroba_datalog[nazwy[15]]==True) <= (liczba_odp_tak['DSMIV_g23']>=MIN_GRUPA_23_OZ_DSMIV)
+	# Osobowosc schizoidalna (ICD-10) 16
+	(choroba_datalog[nazwy[16]]==True) <= (liczba_odp_tak['ICD10_g24']>=MIN_GRUPA_24_OS_ICD10)
+	# Osobowosc schizoidalna (DSM-IV) 17
+	(choroba_datalog[nazwy[17]]==True) <= (liczba_odp_tak['DSMIV_g25']>=MIN_GRUPA_25_OS_DSMIV)
+	# Psychopatia (ICD-10) 18
+	(choroba_datalog[nazwy[18]]==True) <= (liczba_odp_tak['ICD10_g28']>=MIN_GRUPA_28_PSYCHOPATIA_ICD10)\
+												& (odpowiedz_datalog['ICD10_148',0]==1)\
+												& (odpowiedz_datalog['ICD10_149',0]==1)
 
 	wypis_datalog_dla_quizu = {}
 	liczba_wpisow = len(nazwy) - 1 # minus 1 bo w choroba_datalog liczenie jest od 0, a w nazwach od 1
