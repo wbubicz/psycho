@@ -2,10 +2,48 @@
 <html>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+	<style>
+		.w3-Architects_Daughter {
+			font-family: "Architects Daughter", serif;
+		}
+	</style>
+	<style>
+		.w3-Amatic_SC {
+			font-family: "Amatic SC", serif;
+		}
+	</style>
+	<style>
+		/* unvisited link */
+		a:link {
+			color: rgb(48,48,48);
+			text-decoration: none;
+		}
+
+		/* visited link */
+		a:visited {
+			color: rgb(48,48,148);
+			text-decoration: none;
+		}
+
+		/* mouse over link */
+		a:hover {
+			color: rgb(255,0,0);
+			text-decoration: none;
+		}
+
+		/* selected link */
+		a:active {
+			color: rgb(216,0,0);
+			text-decoration: none;
+		}
+	</style>
 <head>
 </head>
-<body>
-	<center>PSYCHO 2016</br></br></center>
+<body class="w3-light-grey">
+<div class="w3-Architects_Daughter">
+	<p align="center" class="w3-xxlarge">Psycho 2016</p></div>
 	{% block content %}
 	{% endblock %}
 </body>
