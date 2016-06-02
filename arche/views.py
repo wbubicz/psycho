@@ -219,7 +219,9 @@ def test(request):
 			hr[i] = False
 
 	zipped = zip(pytania_wg_grupy, grupy, opisy_wg_grupy, hr)
-	return render(request, 'arche/test.html', {'zipped': zipped, })
+
+	wieki = range(15,91)
+	return render(request, 'arche/test.html', {'zipped': zipped, 'wieki': wieki})
 
 
 @login_required(login_url='/login/')

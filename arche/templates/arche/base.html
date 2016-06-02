@@ -4,36 +4,35 @@
 	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patrick+Hand">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 	<style>
 		.w3-Architects_Daughter {
 			font-family: "Architects Daughter", serif;
 		}
-	</style>
-	<style>
 		.w3-Amatic_SC {
 			font-family: "Amatic SC", serif;
 		}
-	</style>
-	<style>
-		/* unvisited link */
+
+		body
+		{
+			font-family: "Open Sans", serif;
+			font-size: 15px;
+			line-height: 110%;
+		}
+
 		a:link {
 			color: rgb(48,48,48);
 			text-decoration: none;
 		}
-
-		/* visited link */
 		a:visited {
 			color: rgb(48,48,148);
 			text-decoration: none;
 		}
-
-		/* mouse over link */
 		a:hover {
 			color: rgb(255,0,0);
 			text-decoration: none;
 		}
-
-		/* selected link */
 		a:active {
 			color: rgb(216,0,0);
 			text-decoration: none;
@@ -45,12 +44,29 @@
 		input {
 			background-color: white;
 		}
+		p {
+			margin: 0.1cm 0.1cm 0.1cm 0.1cm;
+		}
+		div.login-box {
+			width: 400px;
+			margin: auto;
+		}
+		div.test-box {
+			width: 650px;
+			margin: auto;
+			background-color: white;
+		}
+		div.grupa-box {
+			width: 300px;
+			margin: auto;
+			background-color: white;
+		}
 	</style>
 
 <head>
 </head>
 <body class="w3-light-grey">
-<div class="w3-Architects_Daughter">
+<div class="w3-Architects_Daughter w3-padding-tiny">
 	<p align="center" class="w3-xxlarge">Psycho 2016</p></div>
 	{% block content %}
 	{% endblock %}

@@ -1,17 +1,35 @@
 {% extends 'arche/base.html' %}
 
 {% block content %}
+<div class="test-box w3-container w3-round-xlarge w3-padding-medium w3-border w3-border-grey">
 
 	<form action="/gogogo/" method="post">
 	{% csrf_token %}
-		<input type="radio" name="student" value="0" checked>Nie jestem studentem/studentką</br>
-		<input type="radio" name="student" value="1">Studiuję na 1. roku</br>
-		<input type="radio" name="student" value="2">Studiuję na 2. roku</br>
-		<input type="radio" name="student" value="3">Studiuję na 3. roku</br>
-		<input type="radio" name="student" value="4">Studiuję na 4. roku</br>
-		<input type="radio" name="student" value="5">Studiuję na 5. roku</br>
-		<input type="radio" name="student" value="6">Studiuję na 6. roku</br>
-		<input type="radio" name="student" value="7">Studiuję na studiach doktoranckich</br></br>
+			</br>
+			<div class="grupa-box w3-container w3-round-large w3-padding-medium w3-border w3-border-grey">
+				<input type="radio" name="student" value="0" checked> Nie jestem osobą studiującą</br>
+				<input type="radio" name="student" value="1"> Studiuję na 1. roku</br>
+				<input type="radio" name="student" value="2"> Studiuję na 2. roku</br>
+				<input type="radio" name="student" value="3"> Studiuję na 3. roku</br>
+				<input type="radio" name="student" value="4"> Studiuję na 4. roku</br>
+				<input type="radio" name="student" value="5"> Studiuję na 5. roku</br>
+				<input type="radio" name="student" value="6"> Studiuję na 6. roku</br>
+				<input type="radio" name="student" value="7"> Studiuję na studiach doktoranckich</br>
+			</br>
+			<input type="radio" name="plec" value="M" checked> Jestem mężczyzną</br>
+			<input type="radio" name="plec" value="K"> Jestem kobietą</br>
+			</br>
+			Mam
+			<select>
+				{% for i in wieki %}
+					<option name="wiek" value="{{ i }}">{{ i }}</option>
+				{% endfor %}
+			</select>
+			lat
+			</br>
+			</div>
+
+		<center></br><a href="/pulpit">Opuść test</a></br></center>
 		{% for pytania_wg_grupy, grupa, opis_wg_grupy, hr in zipped %}
 			{% if hr %} <!-- jak zaczyna sie grupa 1,3,... to postaw hr -->
 				<hr>
@@ -38,15 +56,18 @@
 					<input type="radio" name="pytanie{{ pytanie.id }}" value="0"> Nie
 					<input type="radio" name="pytanie{{ pytanie.id }}" value="1" checked> Tak
 				{% endif %}
-				<!--<input type="hidden" name="dupa" value="shit">-->
 				</br></br>
 			{% endfor %}
 		{% endfor %}
-		<input type="submit" value="Wyślij">
+		<input type="submit" value="Wyślij!" type="button"
+			class="w3-round-xlarge w3-btn w3-Amatic_SC w3-xlarge w3-light-blue"
+		/>
 	</form>
 
 	</br>
 	</br>
-	<a href="/pulpit">Return to pulpit</a>
+	<a href="/pulpit">Opuść test</a>
+
+</div>
 
 {% endblock %}
