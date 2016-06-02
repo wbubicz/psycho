@@ -1,43 +1,65 @@
 {% extends 'arche/base.html' %}
 
 {% block content %}
-	<h1><center>Hello {{ username }}!</center></h1>
+	<style>
+		p.hello {
+			padding-top: 20px;
+			color: rgb(0,0,0);
+			font-size: 50px;
+		}
+		a {
+			line-height: 130%;
+			font-size: 30px;
+		}
+	</style>
+	<div class="manu-box w3-large w3-round-xlarge w3-padding-medium w3-light-blue w3-border w3-border-grey">
+		<div class="w3-row w3-padding-medium w3-Amatic_SC">
+			<div class="w3-col s4">
+				<p class="hello"><b>Hello {{ username }}!</b></p>
+			</div>
+			<div class="w3-col s4 w3-center">
+				<a href="/test">Wypełnij test</a></br>
+				{% if admin == True %}
+					<a href="/wykresy">Zobacz wykresy</a>
+				{% endif %}
+			</div>
+			<div class="w3-col s4 w3-center">
+				<a href="/chce_zmienic_haslo">Zmień hasło</a></br>
+				<a href="/logout">Wyloguj</a>
+			</div>
+		</div>
+	</div>
+	<div class="przerwa-box"></div>
 
-	Ogólny czas przetwarzania: {{ czas_wykonania }}</br></br>
-	<b>Moje choroby psychiczne PYTHON</b></br>
-	{% for w1, w2, w3 in wypis_python_zipped %}
-		{% if w1 != '' %}
-			</br>{{ w1 }}</br>
-		{% endif %}
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ w2 }}
-		{{ w3 }}</br>
-	{% endfor %}
-	</br>
-	Czas wykonania proceduralnie: {{ czas_python }}
-	</br>
-	</br>
+	<div class="wyniki-box w3-container w3-round-xlarge w3-padding-medium w3-white w3-border w3-border-grey">
+		<div class="w3-row">
+			<div class="w3-col m6 l6">
+				<b>Moje choroby psychiczne PYTHON</b></br>
+				{% for w1, w2, w3 in wypis_python_zipped %}
+					{% if w1 != '' %}
+						</br>{{ w1 }}</br>
+					{% endif %}
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ w2 }}
+					{{ w3 }}</br>
+				{% endfor %}
+				</br>
+				Czas wykonania proceduralnie: {{ czas_python }}
+			</div>
+			<div class="w3-col m6 l6">
+				<b>Moje choroby psychiczne DATALOG</b></br>
+				{% for w1, w2, w3 in wypis_datalog_zipped %}
+					{% if w1 != '' %}
+						</br>{{ w1 }}</br>
+					{% endif %}
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ w2 }}
+					{{ w3 }}</br>
+				{% endfor %}
+				</br>
+				Czas wykonania logicznie: {{ czas_datalog }}
+			</div>
+			Ogólny czas przetwarzania: {{ czas_wykonania }}</br></br>
+		</div>
 
-	<b>Moje choroby psychiczne DATALOG</b></br>
-	{% for w1, w2, w3 in wypis_datalog_zipped %}
-		{% if w1 != '' %}
-			</br>{{ w1 }}</br>
-		{% endif %}
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ w2 }}
-		{{ w3 }}</br>
-	{% endfor %}
-	</br>
-	Czas wykonania logicznie: {{ czas_datalog }}
-	</br>
-	</br>
 
-	<a href="/test">Wypełnij test</a></br>
-
-	<center>
-		{% if admin == True %}
-			<a href="/wykresy">Pretty charts</a>
-		{% endif %}
-		</br></br>
-		<a href="/chce_zmienic_haslo">I want to change my password</a></br>
-		<a href="/logout">Logout</a>
-	</center>
+	</div>
 {% endblock %}
