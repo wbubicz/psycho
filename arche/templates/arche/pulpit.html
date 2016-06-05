@@ -11,6 +11,9 @@
 			line-height: 130%;
 			font-size: 30px;
 		}
+		sto {
+			width: 100%;
+		}
 	</style>
 	<div class="manu-box w3-large w3-round-xlarge w3-padding-medium w3-light-blue w3-border w3-border-grey">
 		<div class="w3-row w3-padding-medium w3-Amatic_SC">
@@ -18,9 +21,12 @@
 				<p class="hello"><b>Hello {{ username }}!</b></p>
 			</div>
 			<div class="w3-col s4 w3-center">
-				<a href="/test">Wypełnij test</br>
 				{% if admin == True %}
-					<a href="/wykresy">Zobacz wykresy</a>
+					>> <a href="/test">Wypełnij test</a> <<</br>
+					<a href="/wykresy">Zobacz wykresy &#9684;</a>
+				{% else %}
+					</br>
+					>> <a href="/test">Wypełnij test</a> <<</br>
 				{% endif %}
 			</div>
 			<div class="w3-col s4 w3-center">
@@ -31,33 +37,37 @@
 	</div>
 	<div class="przerwa-box"></div>
 
+
+
 	<div class="wyniki-box w3-container w3-round-xlarge w3-padding-medium w3-white w3-border w3-border-grey">
+		Ogólny czas przetwarzania: {{ czas_wykonania }}</br></br>
 		<div class="w3-row">
 			<div class="w3-col m6 l6">
-				<b>Moje choroby psychiczne PYTHON</b></br>
-				{% for w1, w2, w3 in wypis_python_zipped %}
-					{% if w1 != '' %}
-						</br>{{ w1 }}</br>
-					{% endif %}
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ w2 }}
-					{{ w3 }}</br>
+				<b>Moje choroby psychiczne PYTHON</b></br></br>
+				{% for naglowek, tabelka in quizy_python_zipped %}
+					<div class="w3-dropdown-hover">
+						<button class="w3-btn w3-blue" style="width:483px">{{ naglowek }}</button></br></br>
+						<div class="w3-dropdown-content w3-border" style="width:100%"></br>
+							{{ tabelka | safe }}
+						</div>
+					</div>
 				{% endfor %}
-				</br>
-				Czas wykonania proceduralnie: {{ czas_python }}
+				</br>Czas wykonania proceduralnie: {{ czas_python }}
 			</div>
+
 			<div class="w3-col m6 l6">
-				<b>Moje choroby psychiczne DATALOG</b></br>
-				{% for w1, w2, w3 in wypis_datalog_zipped %}
-					{% if w1 != '' %}
-						</br>{{ w1 }}</br>
-					{% endif %}
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ w2 }}
-					{{ w3 }}</br>
+				<b>Moje choroby psychiczne DATALOG</b></br></br>
+				{% for naglowek, tabelka in quizy_datalog_zipped %}
+					<div class="w3-dropdown-hover">
+						<button class="w3-btn w3-blue" style="width:483px">{{ naglowek }}</button></br></br>
+						<div class="w3-dropdown-content w3-border" style="width:100%"></br>
+							{{ tabelka | safe }}
+						</div>
+					</div>
 				{% endfor %}
-				</br>
 				Czas wykonania logicznie: {{ czas_datalog }}
+				</table>
 			</div>
-			Ogólny czas przetwarzania: {{ czas_wykonania }}</br></br>
 		</div>
 
 

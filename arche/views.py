@@ -70,12 +70,84 @@ def pulpit(request):
 		admin = True
 	czas_koniec = time.time()
 	czas_wykonania = czas_koniec - czas_start
+
+	wypis_python_html = collections.OrderedDict()
+	for q in wypis_python:
+		wypis_python_html[q] = collections.OrderedDict()
+		wypis_python_html[q][nazwy_uogolnione_s[0]] = [ str( wypis_python[q][nazwy[3]] ), str( wypis_python[q][nazwy[4]] ) ]
+		wypis_python_html[q][nazwy_uogolnione_s[1]] = [ str( wypis_python[q][nazwy[1]] ), str( wypis_python[q][nazwy[2]] ) ]
+		wypis_python_html[q][nazwy_uogolnione_s[2]] = [ str( wypis_python[q][nazwy[12]] ), str( wypis_python[q][nazwy[13]] ) ]
+		wypis_python_html[q][nazwy_uogolnione_s[3]] = [ str( wypis_python[q][nazwy[16]] ), str( wypis_python[q][nazwy[17]] ) ]
+		wypis_python_html[q][nazwy_uogolnione_s[4]] = [ str( wypis_python[q][nazwy[14]] ), str( wypis_python[q][nazwy[15]] ) ]
+		wypis_python_html[q][nazwy_uogolnione_s[5]] = [ str( wypis_python[q][nazwy[5]] ), str( wypis_python[q][nazwy[6]] ) ]
+		wypis_python_html[q][nazwy_uogolnione_s[6]] = [ str( wypis_python[q][nazwy[11]] ), 'bd' ]
+		wypis_python_html[q][nazwy_uogolnione_s[7]] = [ str( wypis_python[q][nazwy[7]] ), str( wypis_python[q][nazwy[8]] ) ]
+		wypis_python_html[q][nazwy_uogolnione_s[8]] = [ str( wypis_python[q][nazwy[18]] ), 'bd' ]
+		wypis_python_html[q][nazwy_uogolnione_s[9]] = [ str( wypis_python[q][nazwy[9]] ), str( wypis_python[q][nazwy[10]] ) ]
+
+	wypis_datalog_html = collections.OrderedDict()
+	for q in wypis_datalog:
+		wypis_datalog_html[q] = collections.OrderedDict()
+		wypis_datalog_html[q][nazwy_uogolnione_s[0]] = [ str( wypis_datalog[q][nazwy[3]] ), str( wypis_datalog[q][nazwy[4]] ) ]
+		wypis_datalog_html[q][nazwy_uogolnione_s[1]] = [ str( wypis_datalog[q][nazwy[1]] ), str( wypis_datalog[q][nazwy[2]] ) ]
+		wypis_datalog_html[q][nazwy_uogolnione_s[2]] = [ str( wypis_datalog[q][nazwy[12]] ), str( wypis_datalog[q][nazwy[13]] ) ]
+		wypis_datalog_html[q][nazwy_uogolnione_s[3]] = [ str( wypis_datalog[q][nazwy[16]] ), str( wypis_datalog[q][nazwy[17]] ) ]
+		wypis_datalog_html[q][nazwy_uogolnione_s[4]] = [ str( wypis_datalog[q][nazwy[14]] ), str( wypis_datalog[q][nazwy[15]] ) ]
+		wypis_datalog_html[q][nazwy_uogolnione_s[5]] = [ str( wypis_datalog[q][nazwy[5]] ), str( wypis_datalog[q][nazwy[6]] ) ]
+		wypis_datalog_html[q][nazwy_uogolnione_s[6]] = [ str( wypis_datalog[q][nazwy[11]] ), 'bd' ]
+		wypis_datalog_html[q][nazwy_uogolnione_s[7]] = [ str( wypis_datalog[q][nazwy[7]] ), str( wypis_datalog[q][nazwy[8]] ) ]
+		wypis_datalog_html[q][nazwy_uogolnione_s[8]] = [ str( wypis_datalog[q][nazwy[18]] ), 'bd' ]
+		wypis_datalog_html[q][nazwy_uogolnione_s[9]] = [ str( wypis_datalog[q][nazwy[9]] ), str( wypis_datalog[q][nazwy[10]] ) ]
+
+	tabelki_python = []
+	naglowki_python = []
+	for q in wypis_python_html:
+		s = ""
+		s = s + '<table class="w3-table w3-green"> <tr class="w3-pink"> <th>Quiz z ' + str(q)[:-15] + '</th>'
+		s = s + '<th class="w3-center">ICD</th><th class="w3-center">DSM</th></tr>'
+		naglowki_python.append('Quiz z ' + str(q)[:-15])
+		for choroba in wypis_python_html[q]:
+			s = s + '<tr class="w3-red">'
+			s = s + '<td>' + choroba + '</td>'
+			for wynik in wypis_python_html[q][choroba]:
+				if wynik == 'True':
+					s = s + '<td class="w3-green w3-center">' + '&#10004;' + '</td>'
+				else:
+					s = s + '<td class="w3-center">' + '&#10007;' + '</td>'
+			s = s + '</tr>'
+		s = s + '</table>'
+		tabelki_python.append(s)
+	quizy_python_zipped = zip(naglowki_python, tabelki_python)
+
+	tabelki_datalog = []
+	naglowki_datalog = []
+	for q in wypis_python_html:
+		s = ""
+		s = s + '<table class="w3-table w3-green"> <tr class="w3-pink"> <th>Quiz z ' + str(q)[:-15] + '</th>'
+		s = s + '<th class="w3-center">ICD</th><th class="w3-center">DSM</th></tr>'
+		naglowki_datalog.append('Quiz z ' + str(q)[:-15])
+		for choroba in wypis_python_html[q]:
+			s = s + '<tr class="w3-red">'
+			s = s + '<td>' + choroba + '</td>'
+			for wynik in wypis_python_html[q][choroba]:
+				if wynik == 'True':
+					s = s + '<td class="w3-green w3-center">' + '&#10004;' + '</td>'
+				else:
+					s = s + '<td class="w3-center">' + '&#10007;' + '</td>'
+			s = s + '</tr>'
+		s = s + '</table>'
+		tabelki_datalog.append(s)
+	quizy_datalog_zipped = zip(naglowki_python, tabelki_datalog)
+
 	return render(request, 'arche/pulpit.html', {'username': user.username,
 												 'wypis_python_zipped': wypis_python_zipped,
 												 'wypis_datalog_zipped': wypis_datalog_zipped,
 												 'czas_python': czas_python,
 												 'czas_datalog': czas_datalog,
 												 'czas_wykonania': czas_wykonania,
+												 'wypis_datalog': wypis_datalog,
+												 'quizy_python_zipped': quizy_python_zipped,
+												 'quizy_datalog_zipped': quizy_datalog_zipped,
 												 'admin': admin})
 
 

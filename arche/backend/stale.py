@@ -85,6 +85,18 @@ nazwy_uogolnione = [
 					"Osobowosc schizoidalna",				# 10
 					"Psychopatia",							# 11
 					]
+nazwy_uogolnione_s = [
+					u"Anankastyczne zaburzenie osobowości", # 0
+					u"Depresja",							# 1
+					u"Histrioniczne zaburzenie osobowości",	# 2
+					u"Osobowość schizoidalna",				# 3
+					u"Osobowość zależna",					# 4
+					u"Paranoidalne zaburzenie osobowości",	# 5
+					u"Psychopatia",							# 6
+					u"Unikowe zaburzenie osobowości",		# 7
+					u"Zaburzenie obsesyjno-kompulsyjne",	# 8
+					u"Zespół lęku uogólnionego",			# 9
+					]
 
 MIN_GRUPA_1_DEPRESJA_ICD10 = 2
 MIN_GRUPA_2_DEPRESJA_ICD10 = 2
@@ -111,4 +123,4 @@ ISTNIEJACE_GRUPY = [1,2,3,0,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,2
 
 GRUPY_WYMAGAJACE_ODDZIELENIA = [1,3,4,10,13,17,20,22,24,26] # przed tymi grupami powinien byc hr
 
-SLASH = "/"
+SLASH = "\\"
