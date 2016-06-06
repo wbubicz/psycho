@@ -63,6 +63,7 @@
 		}
 	</script>
 	<div class="wykres1" id="chart_div"></div>
+	<div class="wykres1"></div>
 
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript">
@@ -78,7 +79,7 @@
 			}
 			data.addRows(arr);
 			var options = {'title':'Wiek uczestników badania', 'width':700, 'height':400};
-			var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+			var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
 			chart.draw(data, options);
 		}
 	</script>
