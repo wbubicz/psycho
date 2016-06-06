@@ -304,7 +304,7 @@ def gogogo(request):
 		quiz.data = timezone.now()
 		quiz.student = request.POST.get("student", 1)
 		quiz.plec = request.POST.get("plec", "M")
-		quiz.wiek = request.POST.get("plec", 18)
+		quiz.wiek = request.POST.get("wiek", 18)
 		quiz.save()
 		for id_pytania, odpowiedz in request.POST.iteritems():
 			if id_pytania[:7] == "pytanie":
