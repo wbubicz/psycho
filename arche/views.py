@@ -347,7 +347,7 @@ def wykresy(request):
 		wiek[q.wiek] = wiek[q.wiek] + 1
 	wieki = []
 	liczby_wiekow = []
-	for i in len(wiek):
+	for i in range(0,100):
 		if wiek[i] > 0:
 			wieki.append(i)
 			liczby_wiekow.append(wiek[i])
