@@ -72,6 +72,21 @@ nazwy = ["",
 		]
 
 nazwy_uogolnione = [
+					"Osoby zdrowe",							# 0
+					"Wiecej niz jedno zaburzenie",			# 1
+					"Depresja",								# 2
+					"Anankastyczne zaburzenie osobowosci",	# 3
+					"Paranoidalne zaburzenie osobowosci",	# 4
+					"Unikowe zaburzenie osobowosci",		# 5
+					"Zespol leku uogolnionego",				# 6
+					"Zaburzenie obsesyjno-kompulsyjne",		# 7
+					"Histrioniczne zaburzenie osobowosci",	# 8
+					"Osobowosc zalezna",					# 9
+					"Osobowosc schizoidalna",				# 10
+					"Psychopatia",							# 11
+					]
+
+nazwy_uogolnione_unicode = [
 					u"Osoby zdrowe",							# 0
 					u"Więcej niż jedno zaburzenie",				# 1
 					u"Depresja",								# 2
@@ -85,6 +100,7 @@ nazwy_uogolnione = [
 					u"Osobowość schizoidalna",					# 10
 					u"Psychopatia",								# 11
 					]
+
 nazwy_uogolnione_s = [
 					u"Anankastyczne zaburzenie osobowości", # 0
 					u"Depresja",							# 1
