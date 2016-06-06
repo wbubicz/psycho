@@ -20,9 +20,9 @@
 			<input type="radio" name="plec" value="K"> Jestem kobietą</br>
 			</br>
 			Mam
-			<select name="wiek">
+			<select id="wiek" name="wiek">
 				{% for i in wieki %}
-					<option value="{{ i }}">{{ i }}</option>
+					<option name="wiek" value="{{ i }}">{{ i }}</option>
 				{% endfor %}
 			</select>
 			lat
