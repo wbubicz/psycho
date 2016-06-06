@@ -8,8 +8,8 @@
 	<script> var liczby = {{ liczby|tojson }}; </script>
 	<script> var nazwy = {{ nazwy|safe }}; </script>
 
-	<script> var wieki = {{ wieki|safe }}; </script>
-	<script> var liczby_wiekow = {{ liczby_wiekow|safe }}; </script>
+	<script> var wieki = {{ wieki|tojson }}; </script>
+	<script> var liczby_wiekow = {{ liczby_wiekow|tojson }}; </script>
 	<p id="demo"></p>
 	<p id="demo2"></p>
 
@@ -49,8 +49,8 @@
 			data.addColumn('string', 'Choroba');
 			data.addColumn('number', 'Liczba osób');
 			var arr = [];
-			for (i = 0; i < wieki.length; i++) {
-				arr.push([wieki[i], liczby_wiekow[i]]);
+			for (i = 0; i < LICZBA_MOZLIWOSCI_CHOROB; i++) {
+				arr.push([nazwy[i], liczby[i]]);
 			}
 			data.addRows(arr);
 
@@ -61,11 +61,28 @@
 			var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
 			chart.draw(data, options);
 		}
-
-
-
 	</script>
 	<div class="wykres1" id="chart_div"></div>
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+		function drawChart() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Wiek');
+			data.addColumn('number', 'Liczba osób');
+			var arr = [];
+			for (i = 0; i < wieki.length; i++) {
+				arr.push([wieki[i], liczby_wiekow[i]]);
+			}
+			data.addRows(arr);
+			var options = {'title':'Wiek uczestników badania', 'width':700, 'height':400};
+			var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+		}
+	</script>
+	<div class="wykres1" id="chart_div2"></div>
 
 	<center>
 		<a href="/pulpit">Return tu pulpit</a>
