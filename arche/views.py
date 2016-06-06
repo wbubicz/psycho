@@ -103,9 +103,9 @@ def pulpit(request):
 	naglowki_python = []
 	for q in wypis_python_html:
 		s = ""
-		s = s + '<table class="w3-table"> <tr class="w3-blue"> <th>Quiz z ' + str(q)[:-16] + '</th>'
+		s = s + '<table class="w3-table"> <tr class="w3-blue"> <th>Quiz z ' + str(q)[:-9] + '</th>'
 		s = s + '<th class="w3-center">ICD</th><th class="w3-center">DSM</th></tr>'
-		naglowki_python.append('Quiz z ' + str(q)[:-16])
+		naglowki_python.append('Quiz z ' + str(q)[:-9])
 		for choroba in wypis_python_html[q]:
 			s = s + '<tr class="w3-white">'
 			s = s + '<td>' + choroba + '</td>'
@@ -123,9 +123,9 @@ def pulpit(request):
 	naglowki_datalog = []
 	for q in wypis_python_html:
 		s = ""
-		s = s + '<table class="w3-table"> <tr class="w3-blue"> <th>Quiz z ' + str(q)[:-16] + '</th>'
+		s = s + '<table class="w3-table"> <tr class="w3-blue"> <th>Quiz z ' + str(q)[:-9] + '</th>'
 		s = s + '<th class="w3-center">ICD</th><th class="w3-center">DSM</th></tr>'
-		naglowki_datalog.append('Quiz z ' + str(q)[:-16])
+		naglowki_datalog.append('Quiz z ' + str(q)[:-9])
 		for choroba in wypis_python_html[q]:
 			s = s + '<tr class="w3-white">'
 			s = s + '<td>' + choroba + '</td>'
@@ -303,13 +303,7 @@ def gogogo(request):
 		quiz.user = request.user
 		quiz.data = timezone.now()
 		quiz.student = request.POST.get("student", 1)
-		print request.POST.get("wiek")
-		print request.POST.get("plec")
 		quiz.plec = request.POST.get("plec", "M")
-		print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-		print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-		print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-		print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 		quiz.wiek = request.POST.get("wiek", 18)
 		quiz.save()
 		for id_pytania, odpowiedz in request.POST.iteritems():
