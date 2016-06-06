@@ -351,9 +351,6 @@ def wykresy(request):
 		if wiek[i] > 0:
 			wieki.append(str(i))
 			liczby_wiekow.append(wiek[i])
-	print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-	print wieki
-	print liczby_wiekow
 	return render(request, 'arche/wykresy.html', {
 													'choroby': choroby_uogolnione,
 													'liczby': liczby,
