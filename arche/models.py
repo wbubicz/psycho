@@ -80,6 +80,8 @@ class Quiz(models.Model):
 	user = models.ForeignKey('auth.User')
 	data = models.DateTimeField(blank=True, null=True)
 	student = models.IntegerField()
+	plec = models.CharField(max_length=1)
+	wiek = models.IntegerField()
 
 
 # class Odp(models.Model):

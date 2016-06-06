@@ -303,6 +303,8 @@ def gogogo(request):
 		quiz.user = request.user
 		quiz.data = timezone.now()
 		quiz.student = request.POST.get("student", 1)
+		quiz.plec = request.POST.get("plec", "M")
+		quiz.wiek = request.POST.get("plec", 18)
 		quiz.save()
 		for id_pytania, odpowiedz in request.POST.iteritems():
 			if id_pytania[:7] == "pytanie":
@@ -336,16 +338,26 @@ def wykresy(request):
 	# dla wszystkich ostatnich quizow pobieramy liste wynikajacych z niego chorob, powstaje zwykla lista
 	# choroby_uogolnione zawiera liczbe chorob z kazdego typu
 	wypis_python, choroby_uogolnione, wypis_datalog, czas_python, czas_datalog  = kalkuluj_choroby(quizy)
-	# for i in range(0, len(choroby_uogolnione)):
-	# 	choroby_uogolnione[i] = choroby_uogolnione[i].rsplit(' ', 1)[0]
 	liczby = []
 	# liczymy wystapienia kazdej po kolei choroby
 	for n in nazwy_uogolnione:
 		liczby.append(choroby_uogolnione.count(n))
-	print choroby_uogolnione
-	print liczby
-	return render(request, 'arche/wykresy.html',
-				  {'choroby': choroby_uogolnione, 'liczby': liczby, 'nazwy': nazwy_uogolnione})
+	wiek = [0]*100
+	for q in quizy:
+		wiek[q.wiek] = wiek[q.wiek] + 1
+	wieki = []
+	liczby_wiekow = []
+	for i in len(wiek):
+		if wiek[i] > 0:
+			wieki.append(i)
+			liczby_wiekow.append(wiek[i])
+	return render(request, 'arche/wykresy.html', {
+													'choroby': choroby_uogolnione,
+													'liczby': liczby,
+													'nazwy': nazwy_uogolnione,
+													'wieki': wieki,
+													'liczby_wiekow': liczby_wiekow,
+												})
 
 
 def load(request):

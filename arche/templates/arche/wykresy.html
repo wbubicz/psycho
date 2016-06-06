@@ -7,6 +7,9 @@
 
 	<script> var liczby = {{ liczby|tojson }}; </script>
 	<script> var nazwy = {{ nazwy|safe }}; </script>
+
+	<script> var wieki = {{ wieki|safe }}; </script>
+	<script> var liczby_wiekow = {{ liczby_wiekow|safe }}; </script>
 	<p id="demo"></p>
 	<p id="demo2"></p>
 
@@ -31,7 +34,7 @@
 	<!--Load the AJAX API-->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript">
-		var LICZBA_MOZLIWOSCI_CHOROB = 7;
+		var LICZBA_MOZLIWOSCI_CHOROB = 12;
 
 		// Load the Visualization API and the corechart package.
 		google.charts.load('current', {'packages':['corechart']});
@@ -44,7 +47,7 @@
 			// Create the data table.
 			var data = new google.visualization.DataTable();
 			data.addColumn('string', 'Choroba');
-			data.addColumn('number', 'Liczba osob');
+			data.addColumn('number', 'Liczba osób');
 			var arr = [];
 			for (i = 0; i < LICZBA_MOZLIWOSCI_CHOROB; i++) {
 				arr.push([nazwy[i], liczby[i]]);
@@ -52,14 +55,33 @@
 			data.addRows(arr);
 
 			// Set chart options
-			var options = {'title':'Ile jakich chorób mają ludzie', 'width':1400, 'height':500};
+			var options = {'title':'Dystrybucja zaburzeń u uczestników badania', 'width':1400, 'height':500};
 
 			// Instantiate and draw our chart, passing in some options.
 			var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
 			chart.draw(data, options);
 		}
 	</script>
-	<div id="chart_div"></div>
+	<div id="chart_div" style="width: 1000px"></div>
+
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+		function drawChart() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Wiek');
+			data.addColumn('number', 'Liczba osób');
+			var arr = [];
+			for (i = 0; i < wieki.length; i++) {
+				arr.push([wieki[i], liczby_wiekow[i]]);
+			}
+			data.addRows(arr);
+			var options = {'title':'Wiek uczestników badania', 'width':1400, 'height':500};
+			var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
+			chart.draw(data, options);
+		}
+	</script>
+	<div id="chart_div2" style="width: 1000px"></div>
 
 	<center>
 		<a href="/pulpit">Return tu pulpit</a>
