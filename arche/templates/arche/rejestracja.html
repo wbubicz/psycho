@@ -1,21 +1,23 @@
 {% extends 'arche/base.html' %}
 
 {% block content %}
-	{% if form.errors %}
-	<p>Nieprawidłowo uzupełnione dane.</p>
-	{% endif %}
-	<div class="login-box w3-container w3-round-xlarge w3-center w3-padding-medium w3-light-blue w3-border w3-border-grey">
+	<div class="rejestracja-box w3-container w3-round-xlarge w3-center w3-padding-medium w3-light-blue w3-border w3-border-grey">
 		<p class="w3-Amatic_SC w3-xxlarge">Rejestracja!</p>
-		<p>Wpisz nazwę użytkownika (username), swój email i hasło (password).
-			Nazwa użytkownika może mieć maksymalnie 30 znaków wybranych spośród liter, cyfr oraz @ . + - _</p>
-		<form method="POST">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<input type="submit" value="Register" type="button"
-				class="w3-round-xlarge w3-btn w3-white w3-Amatic_SC w3-large"
-			/>
-		</form>
-		</br>
+		<div class="w3-left">
+			<p></br>Wpisz nazwę użytkownika (username), swój email i hasło (password).
+				Nazwa użytkownika może mieć maksymalnie 30 znaków wybranych spośród liter, cyfr oraz @ . + - _</p>
+			<form method="POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<input type="submit" value="Register" type="button"
+					class="w3-round-xlarge w3-btn w3-white w3-Amatic_SC w3-large"
+				/>
+			</form>
+			</br>
+		</div>
+		{% if form.errors %}
+		<p style="color:red;"></br>Nieprawidłowo uzupełnione dane.</p></br></br>
+		{% endif %}
 		<a href="/login">Wróć do strony logowania</a>
 	</div>
 {% endblock %}
