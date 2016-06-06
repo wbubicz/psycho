@@ -55,17 +55,15 @@
 			data.addRows(arr);
 
 			// Set chart options
-			var options = {'title':'Dystrybucja zaburzeń u uczestników badania', 'width':1400, 'height':500};
+			var options = {'title':'Dystrybucja zaburzeń u uczestników badania', 'width':500, 'height':200};
 
 			// Instantiate and draw our chart, passing in some options.
 			var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
 			chart.draw(data, options);
 		}
-	</script>
-	<div class="wykres1" id="chart_div"></div>
 
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript">
+
+
 		google.charts.load('current', {'packages':['corechart']});
 		google.charts.setOnLoadCallback(drawChart);
 		function drawChart() {
@@ -78,11 +76,14 @@
 			}
 			data.addRows(arr);
 			var options = {'title':'Wiek uczestników badania', 'width':1400, 'height':500};
-			var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
+			var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
 			chart.draw(data, options);
 		}
+
+
+
 	</script>
-	<div id="chart_div2" style="width: 1000px"></div>
+	<div class="wykres1" id="chart_div"></div>
 
 	<center>
 		<a href="/pulpit">Return tu pulpit</a>
