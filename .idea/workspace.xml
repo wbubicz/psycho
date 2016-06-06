@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ddec5e6-2924-42cb-961c-9a47c959b8a7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/base.html" afterPath="$PROJECT_DIR$/arche/templates/arche/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/zmiana_hasla.html" afterPath="$PROJECT_DIR$/arche/templates/arche/zmiana_hasla.html" />
     </list>
     <ignored path="psycho.iws" />
@@ -49,8 +48,8 @@
       <file leaf-file-name="zmiana_hasla.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/arche/templates/arche/zmiana_hasla.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33872977">
-              <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.31755915">
+              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -902,8 +901,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/arche/templates/arche/zmiana_hasla.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33872977">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.31755915">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
           <folding />
         </state>
       </provider>
