@@ -303,12 +303,13 @@ def gogogo(request):
 		quiz.user = request.user
 		quiz.data = timezone.now()
 		quiz.student = request.POST.get("student", 1)
+		print request.POST.get("wiek")
+		print request.POST.get("plec")
 		quiz.plec = request.POST.get("plec", "M")
 		print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 		print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 		print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 		print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-		print request.POST.get("wiek")
 		quiz.wiek = request.POST.get("wiek", 18)
 		quiz.save()
 		for id_pytania, odpowiedz in request.POST.iteritems():
