@@ -174,7 +174,7 @@ def rejestracja(request):
 
 	else:
 		form = FormularzUser()
-		return render(request, 'arche/rejestracja.html', {'form': form})
+	return render(request, 'arche/rejestracja.html', {'form': form})
 
 
 def evil(request):
