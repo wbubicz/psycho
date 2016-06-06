@@ -349,7 +349,7 @@ def wykresy(request):
 	liczby_wiekow = []
 	for i in range(0,100):
 		if wiek[i] > 0:
-			wieki.append(i)
+			wieki.append(str(i))
 			liczby_wiekow.append(wiek[i])
 	print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 	print wieki

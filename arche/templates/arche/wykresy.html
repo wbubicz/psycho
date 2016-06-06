@@ -8,8 +8,8 @@
 	<script> var liczby = {{ liczby|tojson }}; </script>
 	<script> var nazwy = {{ nazwy|safe }}; </script>
 
-	<script> var wieki = {{ wieki|tojson }}; </script>
 	<script> var liczby_wiekow = {{ liczby_wiekow|tojson }}; </script>
+	<script> var wieki = {{ wieki|safe }}; </script>
 	<p id="demo"></p>
 	<p id="demo2"></p>
 
@@ -32,6 +32,28 @@
 	<!--</script>-->
 
 	<!--Load the AJAX API-->
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart2);
+		function drawChart2() {
+			var data2 = new google.visualization.DataTable();
+			data2.addColumn('string', 'Wiek');
+			data2.addColumn('number', 'Liczba osób');
+			var arr2 = [];
+			for (i = 0; i < wieki.length; i++) {
+				arr2.push([wieki[i], liczby_wiekow[i]]);
+			}
+			data2.addRows(arr2);
+			var options2 = {'title':'Wiek uczestników badania', 'width':700, 'height':400};
+			var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
+			chart2.draw(data2, options2);
+		}
+	</script>
+	<div class="wykres1" id="chart_div2"></div>
+	<div class="wykres1"></div>
+
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript">
 		var LICZBA_MOZLIWOSCI_CHOROB = 12;
@@ -63,27 +85,8 @@
 		}
 	</script>
 	<div class="wykres1" id="chart_div"></div>
-	<div class="wykres1"></div>
 
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript">
-		google.charts.load('current', {'packages':['corechart']});
-		google.charts.setOnLoadCallback(drawChart);
-		function drawChart() {
-			var data = new google.visualization.DataTable();
-			data.addColumn('string', 'Wiek');
-			data.addColumn('number', 'Liczba osób');
-			var arr = [];
-			for (i = 0; i < wieki.length; i++) {
-				arr.push([wieki[i], liczby_wiekow[i]]);
-			}
-			data.addRows(arr);
-			var options = {'title':'Wiek uczestników badania', 'width':700, 'height':400};
-			var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
-			chart.draw(data, options);
-		}
-	</script>
-	<div class="wykres1" id="chart_div2"></div>
+
 
 	<center>
 		<a href="/pulpit">Return tu pulpit</a>
