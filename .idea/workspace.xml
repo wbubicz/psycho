@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ddec5e6-2924-42cb-961c-9a47c959b8a7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/base.html" afterPath="$PROJECT_DIR$/arche/templates/arche/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/wykresy.html" afterPath="$PROJECT_DIR$/arche/templates/arche/wykresy.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/rejestracja.html" afterPath="$PROJECT_DIR$/arche/templates/arche/rejestracja.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/zapomnialem_hasla.html" afterPath="$PROJECT_DIR$/arche/templates/arche/zapomnialem_hasla.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/zeton_wyslany.html" afterPath="$PROJECT_DIR$/arche/templates/arche/zeton_wyslany.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/registration/login.html" afterPath="$PROJECT_DIR$/arche/templates/registration/login.html" />
     </list>
     <ignored path="psycho.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,11 +27,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="wykresy.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/arche/templates/arche/wykresy.html">
+      <file leaf-file-name="zapomnialem_hasla.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/arche/templates/arche/zapomnialem_hasla.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.87297636">
-              <caret line="84" column="10" selection-start-line="84" selection-start-column="10" selection-end-line="84" selection-end-column="10" />
+            <state vertical-scroll-proportion="-1.6451613">
+              <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="15" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rejestracja.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/arche/templates/arche/rejestracja.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.870968">
+              <caret line="18" column="49" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="zeton_wyslany.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/arche/templates/arche/zeton_wyslany.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.032258">
+              <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="zeton_nie_istnieje.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/arche/templates/arche/zeton_nie_istnieje.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.08468244">
+              <caret line="4" column="72" selection-start-line="4" selection-start-column="72" selection-end-line="4" selection-end-column="72" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/arche/templates/registration/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.6451613">
+              <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="5" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -37,58 +80,8 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/arche/templates/arche/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.516129">
-              <caret line="93" column="28" selection-start-line="93" selection-start-column="28" selection-end-line="93" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stale.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/arche/backend/stale.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="88" column="24" selection-start-line="88" selection-start-column="24" selection-end-line="88" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/psycho/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="76" column="0" selection-start-line="76" selection-start-column="2" selection-end-line="86" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/arche/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="83" column="32" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/arche/templates/arche/test.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.064516">
-              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/arche/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="105" column="88" selection-start-line="105" selection-start-column="88" selection-end-line="105" selection-end-column="88" />
+            <state vertical-scroll-proportion="-17.129032">
+              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="126" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -119,12 +112,9 @@
         <option value="$PROJECT_DIR$/arche/templates/base.html" />
         <option value="$PROJECT_DIR$/arche/templates/arche/zly_zeton.html" />
         <option value="$PROJECT_DIR$/arche/templates/arche/email_zajety.html" />
-        <option value="$PROJECT_DIR$/arche/templates/arche/zeton_wyslany.html" />
         <option value="$PROJECT_DIR$/arche/templates/arche/haslo_zmienione.html" />
         <option value="$PROJECT_DIR$/arche/templates/arche/zeton_nie_istnieje.html" />
         <option value="$PROJECT_DIR$/arche/templates/arche/cosiestao.html" />
-        <option value="$PROJECT_DIR$/arche/templates/arche/rejestracja.html" />
-        <option value="$PROJECT_DIR$/arche/templates/arche/zapomnialem_hasla.html" />
         <option value="$PROJECT_DIR$/arche/templates/arche/chce_zmienic_haslo.html" />
         <option value="$PROJECT_DIR$/arche/forms.py" />
         <option value="$PROJECT_DIR$/arche/filtry.py" />
@@ -151,7 +141,6 @@
         <option value="$PROJECT_DIR$/arche/backend/pydatalog.py" />
         <option value="$USER_HOME$/Desktop/a.html" />
         <option value="$PROJECT_DIR$/../a.html" />
-        <option value="$PROJECT_DIR$/arche/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/arche/backend/kalkulacja_chorob.py" />
         <option value="$PROJECT_DIR$/arche/templates/arche/pulpit.html" />
         <option value="$PROJECT_DIR$/arche/models.py" />
@@ -161,6 +150,10 @@
         <option value="$PROJECT_DIR$/arche/views.py" />
         <option value="$PROJECT_DIR$/arche/templates/arche/base.html" />
         <option value="$PROJECT_DIR$/arche/templates/arche/wykresy.html" />
+        <option value="$PROJECT_DIR$/arche/templates/registration/login.html" />
+        <option value="$PROJECT_DIR$/arche/templates/arche/zapomnialem_hasla.html" />
+        <option value="$PROJECT_DIR$/arche/templates/arche/rejestracja.html" />
+        <option value="$PROJECT_DIR$/arche/templates/arche/zeton_wyslany.html" />
       </list>
     </option>
   </component>
@@ -586,13 +579,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arche/templates/arche/zeton_nie_istnieje.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08468244">
-          <caret line="4" column="72" selection-start-line="4" selection-start-column="72" selection-end-line="4" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/arche/templates/arche/email_zajety.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08468244">
@@ -607,13 +593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arche/templates/arche/zeton_wyslany.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6451613">
-          <caret line="3" column="74" selection-start-line="3" selection-start-column="74" selection-end-line="4" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/arche/templates/arche/chce_zmienic_haslo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12702367">
@@ -625,13 +604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19053549">
           <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/arche/templates/arche/zapomnialem_hasla.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23287672">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -796,25 +768,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arche/templates/arche/rejestracja.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16936488">
-          <caret line="8" column="38" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/arche/templates/registration/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.290323">
-          <caret line="37" column="14" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/arche/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2117061">
           <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -822,12 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.95765877">
           <caret line="80" column="14" selection-start-line="80" selection-start-column="14" selection-end-line="80" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -835,13 +786,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.91846526">
           <caret line="327" column="94" selection-start-line="327" selection-start-column="94" selection-end-line="327" selection-end-column="94" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/arche/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="1.5083933">
           <caret line="83" column="32" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
           <folding />
         </state>
@@ -849,7 +799,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/psycho/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="1.5491607">
           <caret line="76" column="0" selection-start-line="76" selection-start-column="2" selection-end-line="86" selection-end-column="3" />
           <folding />
         </state>
@@ -857,7 +807,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/arche/backend/stale.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="1.793765">
           <caret line="88" column="24" selection-start-line="88" selection-start-column="24" selection-end-line="88" selection-end-column="24" />
           <folding />
         </state>
@@ -865,7 +815,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/arche/templates/arche/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.064516">
+        <state vertical-scroll-proportion="0.46575344">
           <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
           <folding />
         </state>
@@ -873,16 +823,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/arche/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="1.8549161">
           <caret line="105" column="88" selection-start-line="105" selection-start-column="88" selection-end-line="105" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/arche/templates/arche/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.516129">
-          <caret line="93" column="28" selection-start-line="93" selection-start-column="28" selection-end-line="93" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -891,6 +833,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.87297636">
           <caret line="84" column="10" selection-start-line="84" selection-start-column="10" selection-end-line="84" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/templates/arche/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.129032">
+          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="126" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/templates/arche/zapomnialem_hasla.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.6451613">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="15" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/templates/registration/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.6451613">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="5" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/templates/arche/rejestracja.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.870968">
+          <caret line="18" column="49" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/templates/arche/zeton_wyslany.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.032258">
+          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/templates/arche/zeton_nie_istnieje.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08468244">
+          <caret line="4" column="72" selection-start-line="4" selection-start-column="72" selection-end-line="4" selection-end-column="72" />
           <folding />
         </state>
       </provider>
