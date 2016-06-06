@@ -207,7 +207,7 @@ def zapomnialem_hasla(request):
 
 
 def wyslij_mail(email, username, token):
-	link = 'http://127.0.0.1:8000/zmiana_hasla/'
+	link = 'http://wbubicz.pythonanywhere.com/zmiana_hasla/'
 	tresc = 'Czesc ' + username + '!\n\nJesli chcesz zmienic haslo na stronie Psycho, kliknij w link:\n\n'
 	tresc = tresc + link + '\n\n'
 	tresc = tresc + 'i wklej w pole "zeton" nastepujacy kod:\n\n'
@@ -304,6 +304,11 @@ def gogogo(request):
 		quiz.data = timezone.now()
 		quiz.student = request.POST.get("student", 1)
 		quiz.plec = request.POST.get("plec", "M")
+		print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		print request.POST.get("wiek")
 		quiz.wiek = request.POST.get("wiek", 18)
 		quiz.save()
 		for id_pytania, odpowiedz in request.POST.iteritems():
