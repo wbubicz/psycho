@@ -14,13 +14,16 @@
 		sto {
 			width: 100%;
 		}
+		div.tlo {
+			background-color: rgb(199,226,248);
+		}
 	</style>
-	<div class="manu-box w3-large w3-round-xlarge w3-padding-medium w3-light-blue w3-border w3-border-grey">
-		<div class="w3-row w3-padding-medium w3-Amatic_SC">
-			<div class="w3-col s4">
+	<div class="manu-box w3-large w3-round-xlarge w3-padding-medium w3-border w3-border-grey">
+		<div class="w3-row w3-padding-medium w3-Amatic_SC dupa">
+			<div class="w3-col s12 m12 l4">
 				<p class="hello"><b>Hello {{ username }}!</b></p>
 			</div>
-			<div class="w3-col s4 w3-center">
+			<div class="w3-col s12 m12 l4 w3-center">
 				{% if admin == True %}
 					>> <a href="/test">Wypełnij test</a> <<</br>
 					<a href="/wykresy">Zobacz wykresy &#9684;</a>
@@ -29,7 +32,7 @@
 					>> <a href="/test">Wypełnij test</a> <<</br>
 				{% endif %}
 			</div>
-			<div class="w3-col s4 w3-center">
+			<div class="w3-col s12 m12 l4 w3-center">
 				<a href="/chce_zmienic_haslo">Zmień hasło ***</a></br>
 				<a href="/logout"><b>Wyloguj -></b></a>
 			</div>
@@ -40,33 +43,36 @@
 
 
 	<div class="wyniki-box w3-container w3-round-xlarge w3-padding-medium w3-white w3-border w3-border-grey">
-		Ogólny czas przetwarzania: {{ czas_wykonania }}</br></br>
+		<p class="w3-tiny">Ogólny czas przetwarzania: {{ czas_wykonania }} s</p></br>
 		<div class="w3-row">
-			<div class="w3-col s6">
-				<b>Moje choroby psychiczne PYTHON</b></br></br>
+			<div class="w3-col l6">
+				<p class="w3-Amatic_SC w3-xlarge"><b>Moje choroby psychiczne:</b></p></br></br>
+				<p class="w3-tiny">PYTHON:</p>
 				{% for naglowek, tabelka in quizy_python_zipped %}
 					<div class="w3-dropdown-hover">
-						<button class="w3-btn w3-blue" style="width:473px">{{ naglowek }}</button></br></br>
+						<button class="w3-btn w3-blue-grey" style="width:473px">{{ naglowek }}</button></br></br>
 						<div class="w3-dropdown-content w3-border" style="width:100%"></br>
 							{{ tabelka | safe }}
 						</div>
 					</div>
 				{% endfor %}
-				</br>Czas wykonania proceduralnie: {{ czas_python }}
+				<div class="pole-box"></div>
+				Czas wykonania proceduralnie: {{ czas_python }} s
 			</div>
 
-			<div class="w3-col s6">
-				<b>Moje choroby psychiczne DATALOG</b></br></br>
+			<div class="w3-col l6">
+				<p class="w3-Amatic_SC w3-xlarge"><b></br></b></p></br></br>
+				<p class="w3-tiny">pyDatalog:</p>
 				{% for naglowek, tabelka in quizy_datalog_zipped %}
 					<div class="w3-dropdown-hover">
-						<button class="w3-btn w3-blue" style="width:473px">{{ naglowek }}</button></br></br>
+						<button class="w3-btn w3-blue-grey" style="width:473px">{{ naglowek }}</button></br></br>
 						<div class="w3-dropdown-content w3-border" style="width:100%"></br>
 							{{ tabelka | safe }}
 						</div>
 					</div>
 				{% endfor %}
-				Czas wykonania logicznie: {{ czas_datalog }}
-				</table>
+				<div class="pole-box"></div>
+				Czas wykonania logicznie: {{ czas_datalog }} s
 			</div>
 		</div>
 

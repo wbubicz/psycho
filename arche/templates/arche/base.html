@@ -64,27 +64,59 @@
 		div.wyniki-box {
 			width: 1000px;
 			margin: auto;
-			background-color: blue;
 		}
 		div.manu-box {
 			width: 1000px;
 			height: 110px;
 			margin: auto;
-			background-color: black;
+			background-color: rgb(135,206,235);
 		}
 		div.przerwa-box {
 			width: 1000px;
 			height: 5px;
 			margin: auto;
 		}
+		div.pole-box {
+			height: 335px;
+			margin: auto;
+		}
+		div.tysiac {
+			width: 1000px;
+			margin: auto;
+		}
+
+		@media only screen and (max-width: 993px) {
+			div.wyniki-box {
+				width: 600px;
+				margin: auto;
+			}
+			div.manu-box {
+				width: 600px;
+				height: 330px;
+				margin: auto;
+				background-color: rgb(200,225,235);
+			}
+			div.dupa {
+				text-align: center;
+				line-height: 50px;
+			}
+			div.tysiac {
+				width: 600px;
+				margin: auto;
+			}
+		}
 	</style>
 
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class="w3-light-grey">
-<div class="w3-Architects_Daughter w3-padding-tiny">
-	<p align="center" class="w3-xxlarge">Psycho 2016</p></div>
+		<div class="w3-Architects_Daughter w3-padding-tiny w3-center tysiac">
+			</br>
+			<p class="w3-xxlarge">Psycho 2016</p>
+		</div>
 	{% block content %}
 	{% endblock %}
+	<p align="center" class="w3-tiny">Throm-Ka!</p>
 </body>
 </html>

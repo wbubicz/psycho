@@ -45,7 +45,7 @@ def pulpit(request):
 			if x == temp:
 				wypis1.append("")
 			else:
-				wypis1.append("Quiz z " + str(x)[:-15] + ":")
+				wypis1.append("Quiz z " + str(x)[:-15])
 				temp = x
 			wypis2.append(y + ":")
 			wypis3.append(wypis_python[x][y])
@@ -59,7 +59,7 @@ def pulpit(request):
 			if x == temp:
 				wypis1.append("")
 			else:
-				wypis1.append("Quiz z " + str(x)[:-15] + ":")
+				wypis1.append("Quiz z " + str(x)[:-15])
 				temp = x
 			wypis2.append(y + ":")
 			wypis3.append(wypis_datalog[x][y])
@@ -103,11 +103,11 @@ def pulpit(request):
 	naglowki_python = []
 	for q in wypis_python_html:
 		s = ""
-		s = s + '<table class="w3-table w3-green"> <tr class="w3-pink"> <th>Quiz z ' + str(q)[:-15] + '</th>'
+		s = s + '<table class="w3-table"> <tr class="w3-blue"> <th>Quiz z ' + str(q)[:-16] + '</th>'
 		s = s + '<th class="w3-center">ICD</th><th class="w3-center">DSM</th></tr>'
-		naglowki_python.append('Quiz z ' + str(q)[:-15])
+		naglowki_python.append('Quiz z ' + str(q)[:-16])
 		for choroba in wypis_python_html[q]:
-			s = s + '<tr class="w3-red">'
+			s = s + '<tr class="w3-white">'
 			s = s + '<td>' + choroba + '</td>'
 			for wynik in wypis_python_html[q][choroba]:
 				if wynik == 'True':
@@ -123,11 +123,11 @@ def pulpit(request):
 	naglowki_datalog = []
 	for q in wypis_python_html:
 		s = ""
-		s = s + '<table class="w3-table w3-green"> <tr class="w3-pink"> <th>Quiz z ' + str(q)[:-15] + '</th>'
+		s = s + '<table class="w3-table"> <tr class="w3-blue"> <th>Quiz z ' + str(q)[:-16] + '</th>'
 		s = s + '<th class="w3-center">ICD</th><th class="w3-center">DSM</th></tr>'
-		naglowki_datalog.append('Quiz z ' + str(q)[:-15])
+		naglowki_datalog.append('Quiz z ' + str(q)[:-16])
 		for choroba in wypis_python_html[q]:
-			s = s + '<tr class="w3-red">'
+			s = s + '<tr class="w3-white">'
 			s = s + '<td>' + choroba + '</td>'
 			for wynik in wypis_python_html[q][choroba]:
 				if wynik == 'True':

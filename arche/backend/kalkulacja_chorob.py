@@ -284,6 +284,7 @@ def kalkuluj_choroby(quizy):
 		wypis_datalog[data_quizu] = wypis_datalog_dla_quizu
 		czas_koniec = time.time()
 		czas_datalog = czas_koniec - czas_start
+		czas_datalog = "{:.12f}".format(czas_datalog)
 
 
 
@@ -325,4 +326,3 @@ def kalkuluj_choroby(quizy):
 			choroby_uogolnione_datalog.append(nazwy_uogolnione[0])
 
 	return (wypis_python, choroby_uogolnione_python, wypis_datalog, czas_python, czas_datalog)
-
