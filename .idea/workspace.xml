@@ -2,19 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ddec5e6-2924-42cb-961c-9a47c959b8a7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/backend/pydatalog.py" afterPath="$PROJECT_DIR$/arche/backend/pydatalog.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/base.html" afterPath="$PROJECT_DIR$/arche/templates/arche/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/chce_zmienic_haslo.html" afterPath="$PROJECT_DIR$/arche/templates/arche/chce_zmienic_haslo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/email_zajety.html" afterPath="$PROJECT_DIR$/arche/templates/arche/email_zajety.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/haslo_zmienione.html" afterPath="$PROJECT_DIR$/arche/templates/arche/haslo_zmienione.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/pulpit.html" afterPath="$PROJECT_DIR$/arche/templates/arche/pulpit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/rejestracja.html" afterPath="$PROJECT_DIR$/arche/templates/arche/rejestracja.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/wykresy.html" afterPath="$PROJECT_DIR$/arche/templates/arche/wykresy.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/zapomnialem_hasla.html" afterPath="$PROJECT_DIR$/arche/templates/arche/zapomnialem_hasla.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/zeton_wyslany.html" afterPath="$PROJECT_DIR$/arche/templates/arche/zeton_wyslany.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/arche/zmiana_hasla.html" afterPath="$PROJECT_DIR$/arche/templates/arche/zmiana_hasla.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/templates/registration/login.html" afterPath="$PROJECT_DIR$/arche/templates/registration/login.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arche/views.py" afterPath="$PROJECT_DIR$/arche/views.py" />
     </list>
     <ignored path="psycho.iws" />
@@ -68,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/arche/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="222" column="17" selection-start-line="222" selection-start-column="17" selection-end-line="222" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.735012">
+              <caret line="226" column="17" selection-start-line="226" selection-start-column="17" selection-end-line="226" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -98,10 +85,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pydatalog.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pydatalog.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/arche/backend/pydatalog.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38729018">
+            <state vertical-scroll-proportion="0.0">
               <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
@@ -203,10 +190,10 @@
         <option value="$PROJECT_DIR$/arche/templates/arche/rejestracja.html" />
         <option value="$PROJECT_DIR$/arche/templates/arche/zapomnialem_hasla.html" />
         <option value="$PROJECT_DIR$/arche/templates/arche/chce_zmienic_haslo.html" />
-        <option value="$PROJECT_DIR$/arche/views.py" />
         <option value="$PROJECT_DIR$/psycho/settings.py" />
         <option value="$PROJECT_DIR$/arche/backend/stale.py" />
         <option value="$PROJECT_DIR$/arche/backend/pydatalog.py" />
+        <option value="$PROJECT_DIR$/arche/views.py" />
       </list>
     </option>
   </component>
@@ -884,14 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arche/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="222" column="17" selection-start-line="222" selection-start-column="17" selection-end-line="222" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/arche/templates/arche/chce_zmienic_haslo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.2903225">
@@ -936,11 +915,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/arche/backend/pydatalog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38729018">
+        <state vertical-scroll-proportion="0.0">
           <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arche/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.735012">
+          <caret line="226" column="17" selection-start-line="226" selection-start-column="17" selection-end-line="226" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>

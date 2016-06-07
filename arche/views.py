@@ -213,13 +213,13 @@ def wyslij_mail(email, username, token):
 	tresc = tresc + 'i wklej w pole "zeton" nastepujacy kod:\n\n'
 	tresc = tresc + token + '\n\n'
 	tresc = tresc + 'Pozdrawiamy!'
-	nadawca = 'psycho2016@interia.pl'
+	nadawca = 'wbubicz.psycho@gmail.com'
 	msg = "From: " + nadawca + " <" + nadawca + ">" + "\n" + "To: To Person <" + email + ">" + "\n"
 	msg = msg + "Subject: Zmiana hasla na Psycho\n" + tresc
-	fromaddr = 'psycho2016@interia.pl'
+	fromaddr = 'wbubicz.psycho@gmail.com'
 	toaddrs = email
 	password = '39ev578g'
-	server = smtplib.SMTP('smtp.interia.pl:587')
+	server = smtplib.SMTP('smtp.gmail.com:587')
 	server.ehlo()
 	server.starttls()
 	server.login(fromaddr, password)
