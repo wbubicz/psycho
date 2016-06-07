@@ -2,15 +2,15 @@
 
 {% block content %}
 	<div class="rejestracja-box w3-container w3-round-xlarge w3-center w3-padding-medium w3-light-blue w3-border w3-border-grey">
-		</br>
-		<p class="w3-Amatic_SC w3-xxlarge"><b>Rejestracja!</b></p>
+		</br></br>
+		<p class="w3-Amatic_SC w3-xxxlarge"><b>Hurra!&nbsp;&nbsp;Rejestracja!</b></p></br>
 		<div class="w3-left">
 			<p></br>Wpisz nazwę użytkownika (username), swój email i hasło (password).
-				Nazwa użytkownika może mieć maksymalnie 30 znaków wybranych spośród liter, cyfr oraz @ . + - _</p>
+				Nazwa użytkownika może mieć maksymalnie 30 znaków wybranych spośród liter, cyfr oraz @ . + - _</p></br>
 			<form method="POST">
 				{% csrf_token %}
 				{{ form.as_p }}
-				<input type="submit" value="Register" type="button"
+				<input type="submit" value="Rejestruj" type="button"
 					class="w3-round-xlarge w3-btn w3-white w3-Amatic_SC w3-large"
 				/>
 			</form>

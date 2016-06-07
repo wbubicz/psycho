@@ -55,7 +55,7 @@
 			data.addRows(arr);
 
 			// Set chart options
-			var options = {'title':'Dystrybucja zaburzeń u uczestników badania', 'width':600, 'height':200};
+			var options = {'title':'Dystrybucja zaburzeń u uczestników badania', 'width':600, 'height':350};
 
 			// Instantiate and draw our chart, passing in some options.
 			var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -71,7 +71,7 @@
 				arr2.push([wieki[i], liczby_wiekow[i]]);
 			}
 			data2.addRows(arr2);
-			var options2 = {'title':'Wiek uczestników badania', 'width':600, 'height':200};
+			var options2 = {'title':'Wiek uczestników badania', 'width':600, 'height':350};
 			var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
 			chart2.draw(data2, options2);
 		}
@@ -81,6 +81,6 @@
 
 
 	<div class="w3-center tysiac">
-		<a href="/pulpit">Return tu pulpit</a>
+		<a href="/pulpit">Wróć do pulpitu</a>
 	</div>
 {% endblock %}

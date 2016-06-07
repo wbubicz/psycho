@@ -73,3 +73,19 @@ def kalkuluj_datalog(wyniki_quizu):
 				wypis_datalog_dla_quizu[nazwy[i + 1]] = True
 
 	globals.glob_dict = wypis_datalog_dla_quizu
+
+# from stale import *
+# from pyDatalog import pyDatalog
+#
+# def kalkuluj_datalog(wyniki_quizu):
+# 	import globals
+#
+# 	wypis_datalog_dla_quizu = {}
+# 	liczba_wpisow = len(nazwy) - 1 # minus 1 bo w choroba_datalog liczenie jest od 0, a w nazwach od 1
+# 	for i in range(liczba_wpisow):
+# 		wypis_datalog_dla_quizu[nazwy[i + 1]] = False
+#
+# 	for i in range(liczba_wpisow):
+# 				wypis_datalog_dla_quizu[nazwy[i + 1]] = True
+#
+# 	globals.glob_dict = wypis_datalog_dla_quizu
