@@ -7,11 +7,11 @@ nazwy_grup = [	# ICD
 				# DEPRESJA
 				'ICD10_g1', # 0					grupa 1
 				'ICD10_g2', # 1					grupa 2
-					'DSM5_g3', # 2				grupa 3
-						'DSM5_11', # 3			grupa 0
-						'DSM5_12', # 4				  0
-						'DSM5_20', # 5				  0
-						'DSM5_21', # 6				  0
+					'DSMIV_g3', # 2				grupa 3
+						'DSMIV_11', # 3			grupa 0
+						'DSMIV_12', # 4				  0
+						'DSMIV_20', # 5				  0
+						'DSMIV_21', # 6				  0
 				# ANANKASTYCZNE ZABURZENIE
 				'ICD10_g4', # 7					grupa 4
 					'DSMIV_g5', # 8				grupa 5
@@ -25,10 +25,10 @@ nazwy_grup = [	# ICD
 						'ICD10_65', # 13		grupa 10
 				'ICD10_g11', # 14				grupa 11
 				'ICD10_g12', # 15				grupa 12
-						'DSM5_88', # 16			grupa 13
-					'DSM5_g14', # 17			grupa 14
-						'DSM5_96', # 18			grupa 15
-						'DSM5_97', # 19			grupa 16
+						'DSMIV_88', # 16			grupa 13
+					'DSMIV_g14', # 17			grupa 14
+						'DSMIV_96', # 18			grupa 15
+						'DSMIV_97', # 19			grupa 16
 				# ZABURZENIE OBSESYJNO-KOMPULSYJNE
 				'ICD10_98', # 20				grupa 17
 				'ICD10_g18', # 21				grupa 18
@@ -116,7 +116,7 @@ nazwy_uogolnione_s = [
 
 MIN_GRUPA_1_DEPRESJA_ICD10 = 2
 MIN_GRUPA_2_DEPRESJA_ICD10 = 2
-MIN_GRUPA_3_DEPRESJA_DSM5 = 5
+MIN_GRUPA_3_DEPRESJA_DSMIV = 5
 MIN_GRUPA_4_ANANKASTYCZNE_ICD10 = 4
 MIN_GRUPA_5_ANANKASTYCZNE_DSMIV = 5
 MIN_GRUPA_6_PARANOICZNA_ICD10 = 4
@@ -125,7 +125,7 @@ MIN_GRUPA_8_UNIKOWE_ICD10 = 4
 MIN_GRUPA_9_UNIKOWE_DSMIV = 4
 MIN_GRUPA_11_ZLU_ICD10 = 1
 MIN_GRUPA_12_ZLU_ICD10 = 3
-MIN_GRUPA_14_ZLU_DSM5 = 3
+MIN_GRUPA_14_ZLU_DSMIV = 3
 MIN_GRUPA_18_ZOK_ICD10 = 4
 MIN_GRUPA_20_HZO_ICD10 = 3
 MIN_GRUPA_21_HZO_DSMIV = 5

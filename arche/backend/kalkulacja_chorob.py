@@ -36,7 +36,7 @@ def kalkuluj_choroby(quizy):
 		wypis_python[data_quizu] = {}
 		wypis_datalog[data_quizu] = {}
 
-		# DEPRESJA: ICD10: 2 z grupy pierwszej oraz 2 z grupy 2, DSM5: 5 z grupy 3, id11 lub id12, 20, ~21
+		# DEPRESJA: ICD10: 2 z grupy pierwszej oraz 2 z grupy 2, DSMIV: 5 z grupy 3, id11 lub id12, 20, ~21
 
 		icd10g1 = Odp.objects.filter(quiz=quiz, klasyfikacja='ICD-10', grupa=1)
 		numer_nazwy_grupy = 0
@@ -52,10 +52,10 @@ def kalkuluj_choroby(quizy):
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
-		dsm5g3 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-5', grupa=3)
+		dsm4g3 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=3)
 		numer_nazwy_grupy = 2
 		odpowiedzi_do_przepisania = []
-		for odpowiedz in dsm5g3:
+		for odpowiedz in dsm4g3:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
@@ -128,7 +128,7 @@ def kalkuluj_choroby(quizy):
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 
-		# ZESPOL LEKU UOGOLNIONEGO: ICD10: 65, 1 z g11, 3 z g12, nie lek paniczny i nie ZOK, DSM5:
+		# ZESPOL LEKU UOGOLNIONEGO: ICD10: 65, 1 z g11, 3 z g12, nie lek paniczny i nie ZOK, DSMIV:
 
 		try:
 			id65 = Odp.objects.get(quiz=quiz, id_pytania=65)
@@ -166,10 +166,10 @@ def kalkuluj_choroby(quizy):
 			wyniki_quizu[nazwy_grup[19]] = temp
 		except:
 			pass
-		dsm5g14 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-5', grupa=14)
+		dsm4g14 = Odp.objects.filter(quiz=quiz, klasyfikacja='DSM-IV', grupa=14)
 		numer_nazwy_grupy = 17
 		odpowiedzi_do_przepisania = []
-		for odpowiedz in dsm5g14:
+		for odpowiedz in dsm4g14:
 			odpowiedzi_do_przepisania.append(odpowiedz.odpowiedz)
 		wyniki_quizu[nazwy_grup[numer_nazwy_grupy]] = odpowiedzi_do_przepisania
 

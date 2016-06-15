@@ -104,7 +104,7 @@ def pulpit(request):
 	for q in wypis_python_html:
 		s = ""
 		s = s + '<table class="w3-table"> <tr class="w3-blue"> <th>Quiz z ' + str(q)[:-9] + '</th>'
-		s = s + '<th class="w3-center">ICD</th><th class="w3-center">DSM</th></tr>'
+		s = s + '<th class="w3-center">ICD-10</th><th class="w3-center">DSM-IV</th></tr>'
 		naglowki_python.append('Quiz z ' + str(q)[:-9])
 		for choroba in wypis_python_html[q]:
 			s = s + '<tr class="w3-white">'
@@ -124,7 +124,7 @@ def pulpit(request):
 	for q in wypis_python_html:
 		s = ""
 		s = s + '<table class="w3-table"> <tr class="w3-blue"> <th>Quiz z ' + str(q)[:-9] + '</th>'
-		s = s + '<th class="w3-center">ICD</th><th class="w3-center">DSM</th></tr>'
+		s = s + '<th class="w3-center">ICD-10</th><th class="w3-center">DSM-IV</th></tr>'
 		naglowki_datalog.append('Quiz z ' + str(q)[:-9])
 		for choroba in wypis_python_html[q]:
 			s = s + '<tr class="w3-white">'

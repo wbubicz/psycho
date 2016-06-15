@@ -15,11 +15,11 @@ def kalkuluj_datalog(wyniki_quizu):
 	# Depresja (ICD-10) 1
 	(choroba_datalog[nazwy[1]]==True) <= (liczba_odp_tak['ICD10_g1']>=MIN_GRUPA_1_DEPRESJA_ICD10)\
 												& (liczba_odp_tak['ICD10_g2']>=MIN_GRUPA_2_DEPRESJA_ICD10)
-	# Depresja (DSM-5) 2
-	(choroba_datalog[nazwy[2]]==True) <= (liczba_odp_tak['DSM5_g3']>=MIN_GRUPA_3_DEPRESJA_DSM5)\
-												& ((odpowiedz_datalog['DSM5_11',0]==1) or (odpowiedz_datalog['DSM5_12',0]==1))\
-												& (odpowiedz_datalog['DSM5_20',0]==1)\
-												& (odpowiedz_datalog['DSM5_21',0]==0)
+	# Depresja (DSM-IV) 2
+	(choroba_datalog[nazwy[2]]==True) <= (liczba_odp_tak['DSMIV_g3']>=MIN_GRUPA_3_DEPRESJA_DSMIV)\
+												& ((odpowiedz_datalog['DSMIV_11',0]==1) or (odpowiedz_datalog['DSMIV_12',0]==1))\
+												& (odpowiedz_datalog['DSMIV_20',0]==1)\
+												& (odpowiedz_datalog['DSMIV_21',0]==0)
 	# Anankastyczne zaburzenie osobowosci (ICD-10) 3
 	(choroba_datalog[nazwy[3]]==True) <= (liczba_odp_tak['ICD10_g4']>=MIN_GRUPA_4_ANANKASTYCZNE_ICD10)
 	# Anankastyczne zaburzenie osobowosci (DSM-IV) 4
@@ -36,11 +36,11 @@ def kalkuluj_datalog(wyniki_quizu):
 	(choroba_datalog[nazwy[9]]==True) <= (liczba_odp_tak['ICD10_g11']>=MIN_GRUPA_11_ZLU_ICD10)\
 												& (liczba_odp_tak['ICD10_g12']>=MIN_GRUPA_12_ZLU_ICD10)\
 												& (odpowiedz_datalog['ICD10_65',0]==1)
-	# Zespol leku uogolnionego (DSM-5) 10
-	(choroba_datalog[nazwy[10]]==True) <= (liczba_odp_tak['DSM5_g14']>=MIN_GRUPA_14_ZLU_DSM5)\
-												& (odpowiedz_datalog['DSM5_88',0]==1)\
-												& (odpowiedz_datalog['DSM5_96',0]==1)\
-												& (odpowiedz_datalog['DSM5_97',0]==0)
+	# Zespol leku uogolnionego (DSM-IV) 10
+	(choroba_datalog[nazwy[10]]==True) <= (liczba_odp_tak['DSMIV_g14']>=MIN_GRUPA_14_ZLU_DSMIV)\
+												& (odpowiedz_datalog['DSMIV_88',0]==1)\
+												& (odpowiedz_datalog['DSMIV_96',0]==1)\
+												& (odpowiedz_datalog['DSMIV_97',0]==1)
 	# Zaburzenie obsesyjno-kompulsyjne (ICD-10) 11
 	(choroba_datalog[nazwy[11]]==True) <= (liczba_odp_tak['ICD10_g18']>=MIN_GRUPA_18_ZOK_ICD10)\
 												& (odpowiedz_datalog['ICD10_98',0]==1)\
