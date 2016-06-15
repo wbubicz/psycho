@@ -9,7 +9,7 @@ def zlicz_python(wyniki, wypis_python, data_quizu):
 					wypis_python[data_quizu][nazwy[1]] = True
 	if wyniki['DSMIV_g3'].count(1) >= MIN_GRUPA_3_DEPRESJA_DSMIV:
 		if wyniki['DSMIV_11'][0] == 1 or wyniki['DSMIV_12'][0] == 1:
-			if wyniki['DSMIV_20'][0] == 1 and wyniki['DSMIV_21'][0] == 0:
+			if wyniki['DSMIV_20'][0] == 1 and wyniki['DSMIV_21'][0] == 1:
 
 					wypis_python[data_quizu][nazwy[2]] = True
 	if wyniki['ICD10_g4'].count(1) >= MIN_GRUPA_4_ANANKASTYCZNE_ICD10:
