@@ -73,10 +73,10 @@ nazwy = ["",
 
 nazwy_uogolnione = [
 					"Osoby zdrowe",							# 0
-					"Wi\u0119cej ni\u017C jedno zaburzenie",			# 1
+					"Wiecej niz jedno zaburzenie",			# 1
 					"Depresja",								# 2
 					"Anankastyczne zaburzenie osobowosci",	# 3
-					"Paranoidalne zaburzenie osobowo\u015Bci",	# 4
+					"Paranoidalne zaburzenie osobowosci",	# 4
 					"Unikowe zaburzenie osobowosci",		# 5
 					"Zespol leku uogolnionego",				# 6
 					"Zaburzenie obsesyjno-kompulsyjne",		# 7
