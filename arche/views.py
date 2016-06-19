@@ -103,7 +103,7 @@ def pulpit(request):
 	naglowki_python = []
 	for q in wypis_python_html:
 		s = ""
-		s = s + '<table class="w3-table"> <tr class="w3-blue"> <th>Quiz z ' + str(q)[:-9] + '</th>'
+		s = s + '<table class="w3-table"> <tr class="w3-blue"> <th>Test z ' + str(q)[:-9] + '</th>'
 		s = s + '<th class="w3-center">ICD-10</th><th class="w3-center">DSM-IV</th></tr>'
 		naglowki_python.append('Test z ' + str(q)[:-9])
 		for choroba in wypis_python_html[q]:
@@ -123,7 +123,7 @@ def pulpit(request):
 	naglowki_datalog = []
 	for q in wypis_python_html:
 		s = ""
-		s = s + '<table class="w3-table"> <tr class="w3-blue"> <th>Quiz z ' + str(q)[:-9] + '</th>'
+		s = s + '<table class="w3-table"> <tr class="w3-blue"> <th>Test z ' + str(q)[:-9] + '</th>'
 		s = s + '<th class="w3-center">ICD-10</th><th class="w3-center">DSM-IV</th></tr>'
 		naglowki_datalog.append('Test z ' + str(q)[:-9])
 		for choroba in wypis_python_html[q]:
@@ -208,14 +208,14 @@ def zapomnialem_hasla(request):
 
 def wyslij_mail(email, username, token):
 	link = 'http://wbubicz.pythonanywhere.com/zmiana_hasla/'
-	tresc = 'Czesc ' + username + '!\n\nJesli chcesz zmienic haslo na stronie Psycho, kliknij w link:\n\n'
+	tresc = u'Cześć ' + username + u'!\n\nJeśli chcesz zmienić hasło na stronie Psycho, kliknij w link:\n\n'
 	tresc = tresc + link + '\n\n'
-	tresc = tresc + 'i wklej w pole "zeton" nastepujacy kod:\n\n'
+	tresc = tresc + u'i wklej w pole "token" następujacy kod:\n\n'
 	tresc = tresc + token + '\n\n'
 	tresc = tresc + 'Pozdrawiamy!'
 	nadawca = 'wbubicz.psycho@gmail.com'
 	msg = "From: " + nadawca + " <" + nadawca + ">" + "\n" + "To: To Person <" + email + ">" + "\n"
-	msg = msg + "Subject: Zmiana hasla na Psycho\n" + tresc
+	msg = msg + u"Subject: Zmiana hasła na Psycho\n" + tresc
 	fromaddr = 'wbubicz.psycho@gmail.com'
 	toaddrs = email
 	password = '39ev578g'
